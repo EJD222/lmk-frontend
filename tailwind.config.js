@@ -4,12 +4,23 @@ module.exports = {
   content: ["./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        brand: ['Outfit', 'sans-serif'],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        lmk: {
+          primary:   '#FF6B35',
+          secondary: '#5B2EFF',
+          tertiary:  '#00D4AA',
+          accent:    '#FFE14D',
+          light:     '#FAF8F5',
+          dark:      '#111111',
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
