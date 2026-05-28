@@ -1,5 +1,7 @@
+import { WelcomePage } from '@/pages/WelcomePage';
+
 function App() {
-  return null;
+    return <WelcomePage />;
 }
 
 export default App;
