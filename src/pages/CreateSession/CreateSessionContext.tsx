@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import { sessionService } from '@/services/sessionService';
 
 export type CreateSessionStep = 'host-topic' | 'context';
 
@@ -46,7 +47,9 @@ export function CreateSessionProvider({ children }: CreateSessionProviderProps) 
   };
 
   const handleSubmit = () => {
-    // TODO: implement session creation API call
+    sessionService.createSession({
+      topic: 
+    })
   };
 
   return (
