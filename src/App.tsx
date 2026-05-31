@@ -1,11 +1,17 @@
-import { WelcomePage } from "@/pages/WelcomePage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AppLayout } from "./components/layout/AppLayout";
+import { WelcomePage } from "@/pages/WelcomePage";
 
 function App() {
 	return (
-		<AppLayout>
-			<WelcomePage />
-		</AppLayout>
+		<BrowserRouter>
+			<AppLayout>
+				<Routes>
+					<Route path="/" element={<WelcomePage />} />
+					<Route path="*" element={<WelcomePage />} />
+				</Routes>
+			</AppLayout>
+		</BrowserRouter>
 	);
 }
 
