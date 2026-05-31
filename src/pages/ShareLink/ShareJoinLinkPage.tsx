@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { notifySuccess, notifyError } from '@/lib/notify';
+import { buildSessionPath } from '@/common/routes';
 
 interface SharePageState {
   sessionId: string;
@@ -24,9 +25,6 @@ export function ShareJoinLinkPage() {
 
   const { joinLink } = state;
 
-  // The backend may return join_link as a full URL, a malformed URL,
-  // or a bare code. Splitting by '/' and taking the last segment handles
-  // all cases and rebuilds from the current origin for any deployment.
   const linkId = joinLink.split('/').filter(Boolean).pop() ?? joinLink;
   const shareUrl = `${window.location.origin}/join-session/${linkId}`;
 
@@ -52,7 +50,9 @@ export function ShareJoinLinkPage() {
   };
 
   const handleContinueToQuestions = () => {
-    // TODO: navigate to the answering/questions page (FE-X)
+    navigate(buildSessionPath(state.sessionId), {
+      state: { sessionId: state.sessionId, participantId: state.hostParticipantId },
+    });
   };
 
   return (
