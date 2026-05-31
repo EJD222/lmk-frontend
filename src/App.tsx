@@ -4,11 +4,13 @@ import { WelcomePage } from "@/pages/WelcomePage";
 import { CreateSessionPage } from "@/pages/CreateSession/CreateSessionPage";
 import { JoinSessionPage } from "@/pages/JoinSession/JoinSessionPage";
 import { ShareJoinLinkPage } from "@/pages/ShareLink/ShareJoinLinkPage";
+import { SessionPage } from "@/pages/Session/SessionPage";
 import {
 	CREATE_SESSION_ROUTE,
 	JOIN_SESSION_ROUTE,
 	JOIN_SESSION_WITH_LINK_ROUTE,
 	SHARE_JOIN_LINK_ROUTE,
+	SESSION_ROUTE,
 } from "@/common/routes";
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
 					<Route path={JOIN_SESSION_ROUTE} element={<JoinSessionPage />} />
 					<Route path={JOIN_SESSION_WITH_LINK_ROUTE} element={<JoinSessionPage />} />
 					<Route path={SHARE_JOIN_LINK_ROUTE} element={<ShareJoinLinkPage />} />
+					<Route path={SESSION_ROUTE} element={<SessionPage />} />
 					<Route path="*" element={<WelcomePage />} />
 				</Routes>
 			</AppLayout>
