@@ -4,4 +4,5 @@ export interface JoinSessionRequest {
 
 export interface JoinSessionResponse {
   participant_id: string;
+  session_id: string;
 }
