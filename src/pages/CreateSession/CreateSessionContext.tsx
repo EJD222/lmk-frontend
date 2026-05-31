@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { sessionService } from '@/services/sessionService';
 import { notifyError } from '@/lib/notify';
+import { minDelay } from '@/lib/utils';
 import { SHARE_JOIN_LINK_ROUTE } from '@/common/routes';
 
 export type CreateSessionStep = 'host-topic' | 'context';
@@ -54,11 +55,14 @@ export function CreateSessionProvider({ children }: CreateSessionProviderProps) 
 
   const handleSubmit = () => {
     setIsLoading(true);
-    sessionService.createSession({
-      topic: formData.topic,
-      host_display_name: formData.hostName,
-      context: formData.context || undefined,
-    }).then(response => {
+    Promise.all([
+      sessionService.createSession({
+        topic: formData.topic,
+        host_display_name: formData.hostName,
+        context: formData.context || undefined,
+      }),
+      minDelay(2000),
+    ]).then(([response]) => {
       setIsLoading(false);
       navigate(SHARE_JOIN_LINK_ROUTE, {
         state: {
