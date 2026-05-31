@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { sessionService } from '@/services/sessionService';
 import { notifyError } from '@/lib/notify';
+import { SHARE_JOIN_LINK_ROUTE } from '@/common/routes';
 
 export type CreateSessionStep = 'host-topic' | 'context';
 
@@ -29,6 +31,7 @@ interface CreateSessionProviderProps {
 }
 
 export function CreateSessionProvider({ children }: CreateSessionProviderProps) {
+  const navigate = useNavigate();
   const [step, setStep] = useState<CreateSessionStep>('host-topic');
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<CreateSessionFormData>({
@@ -57,7 +60,13 @@ export function CreateSessionProvider({ children }: CreateSessionProviderProps) 
       context: formData.context || undefined,
     }).then(response => {
       setIsLoading(false);
-      // TODO: navigate to session created / share-link page (FE-5)
+      navigate(SHARE_JOIN_LINK_ROUTE, {
+        state: {
+          sessionId: response.session_id,
+          hostParticipantId: response.host_participant_id,
+          joinLink: response.join_link,
+        },
+      });
     }).catch(() => {
       setIsLoading(false);
       notifyError('Failed to create session. Please try again.');
