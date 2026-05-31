@@ -4,7 +4,6 @@ export interface CreateSessionRequest {
   topic: string;
   host_display_name: string;
   context?: string;
-  host_notes?: string;
 }
 
 export interface CreateSessionResponse {
