@@ -14,18 +14,29 @@ export function ContextForm() {
         add context so the questions are actually useful
       </p>
 
-      <textarea
-        value={formData.context}
-        onChange={e => setContext(e.target.value)}
-        placeholder="e.g. mix of introverts and extroverts, some people don't drive, keep it under $30"
-        rows={5}
-        className={cn(
-          'w-full px-4 py-3.5 rounded-xl border border-lmk-dark/10 bg-white',
-          'font-medium text-[16px] text-lmk-dark placeholder:text-lmk-dark/35',
-          'outline-none transition-[border-color,box-shadow] resize-none',
-          'focus:border-lmk-secondary focus:shadow-[0_0_0_4px_rgba(91,46,255,0.15)]'
-        )}
-      />
+      <div className="flex flex-col gap-1.5">
+        <div className="flex items-center justify-end">
+          <span className={cn(
+            'text-[11px] font-medium tabular-nums transition-colors',
+            formData.context.length >= 500 ? 'text-lmk-primary' : 'text-lmk-dark/30'
+          )}>
+            {formData.context.length}/500
+          </span>
+        </div>
+        <textarea
+          value={formData.context}
+          onChange={e => setContext(e.target.value)}
+          placeholder="e.g. mix of introverts and extroverts, some people don't drive, keep it under $30"
+          maxLength={500}
+          rows={5}
+          className={cn(
+            'w-full px-4 py-3.5 rounded-xl border border-lmk-dark/10 bg-white',
+            'font-medium text-[16px] text-lmk-dark placeholder:text-lmk-dark/35',
+            'outline-none transition-[border-color,box-shadow] resize-none',
+            'focus:border-lmk-secondary focus:shadow-[0_0_0_4px_rgba(91,46,255,0.15)]'
+          )}
+        />
+      </div>
 
       <div className="mt-auto md:mt-8 flex flex-col items-center gap-3">
         <Button

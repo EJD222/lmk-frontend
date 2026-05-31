@@ -36,13 +36,22 @@ export function HostTopicForm() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label className="text-[11px] font-bold uppercase tracking-[0.12em] text-lmk-dark/50">
-            what are you deciding?
-          </label>
+          <div className="flex items-center justify-between">
+            <label className="text-[11px] font-bold uppercase tracking-[0.12em] text-lmk-dark/50">
+              what are you deciding?
+            </label>
+            <span className={cn(
+              'text-[11px] font-medium tabular-nums transition-colors',
+              formData.topic.length >= 250 ? 'text-lmk-primary' : 'text-lmk-dark/30'
+            )}>
+              {formData.topic.length}/250
+            </span>
+          </div>
           <textarea
             value={formData.topic}
             onChange={e => setTopic(e.target.value)}
             placeholder="e.g. where should we hang out this Saturday?"
+            maxLength={250}
             rows={4}
             className={cn(
               'w-full px-4 py-3.5 rounded-xl border border-lmk-dark/10 bg-white',
