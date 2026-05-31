@@ -14,9 +14,6 @@ export const sessionService = {
   createSession: (body: CreateSessionRequest): Promise<CreateSessionResponse> =>
     api.post<CreateSessionResponse>('/sessions/', body),
 
-  getSessionByLink: (linkId: string): Promise<SessionInfoResponse> =>
-    api.get<SessionInfoResponse>(`/sessions/link/${linkId}`),
-
   getSession: (sessionId: string): Promise<SessionInfoResponse> =>
     api.get<SessionInfoResponse>(`/sessions/${sessionId}`),
 
