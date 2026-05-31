@@ -1,3 +1,4 @@
+import { Toaster } from "sonner"
 import { cn } from "@/lib/utils"
 
 interface AppLayoutProps {
@@ -11,6 +12,14 @@ export function AppLayout({ children, className }: AppLayoutProps) {
       <main className="w-full max-w-[1200px] mx-auto px-4">
         {children}
       </main>
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          classNames: {
+            toast: "font-body text-[14px]",
+          },
+        }}
+      />
     </div>
   )
 }
