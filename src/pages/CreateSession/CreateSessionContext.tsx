@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { sessionService } from '@/services/sessionService';
+import { notifyError } from '@/lib/notify';
 
 export type CreateSessionStep = 'host-topic' | 'context';
 
@@ -48,8 +49,15 @@ export function CreateSessionProvider({ children }: CreateSessionProviderProps) 
 
   const handleSubmit = () => {
     sessionService.createSession({
-      topic: 
-    })
+      topic: formData.topic,
+      host_display_name: formData.hostName,
+      context: formData.context,
+    }).then(response => {
+      //TODO: move to loading then join link page. To be implemented in FE-5 ticket
+      console.log('Session created with ID:', response);
+    }).catch(() => {
+      notifyError('Failed to create session. Please try again.');
+    });
   };
 
   return (
