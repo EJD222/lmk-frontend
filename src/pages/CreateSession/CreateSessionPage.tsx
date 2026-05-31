@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { CreateSessionProvider, useCreateSession } from './CreateSessionContext';
 import { HostTopicForm } from './HostTopicForm';
 import { ContextForm } from './ContextForm';
+import { GeneratingQuestions } from '@/pages/Loading/GeneratingQuestions';
 
 const STEP_PROGRESS = {
   'host-topic': 50,
@@ -9,8 +10,12 @@ const STEP_PROGRESS = {
 } as const;
 
 function CreateSessionContent() {
-  const { step, goToPrev } = useCreateSession();
+  const { step, isLoading, goToPrev } = useCreateSession();
   const navigate = useNavigate();
+
+  if (isLoading) {
+    return <GeneratingQuestions />;
+  }
 
   const handleBack = () => {
     if (step === 'host-topic') {

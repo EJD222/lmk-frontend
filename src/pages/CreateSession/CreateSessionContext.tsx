@@ -12,6 +12,7 @@ export interface CreateSessionFormData {
 
 interface CreateSessionContextValue {
   step: CreateSessionStep;
+  isLoading: boolean;
   formData: CreateSessionFormData;
   setHostName: (v: string) => void;
   setTopic: (v: string) => void;
@@ -29,6 +30,7 @@ interface CreateSessionProviderProps {
 
 export function CreateSessionProvider({ children }: CreateSessionProviderProps) {
   const [step, setStep] = useState<CreateSessionStep>('host-topic');
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<CreateSessionFormData>({
     hostName: '',
     topic: '',
@@ -48,21 +50,23 @@ export function CreateSessionProvider({ children }: CreateSessionProviderProps) 
   };
 
   const handleSubmit = () => {
+    setIsLoading(true);
     sessionService.createSession({
       topic: formData.topic,
       host_display_name: formData.hostName,
-      context: formData.context,
+      context: formData.context || undefined,
     }).then(response => {
-      //TODO: move to loading then join link page. To be implemented in FE-5 ticket
-      console.log('Session created with ID:', response);
+      setIsLoading(false);
+      // TODO: navigate to session created / share-link page (FE-5)
     }).catch(() => {
+      setIsLoading(false);
       notifyError('Failed to create session. Please try again.');
     });
   };
 
   return (
     <CreateSessionContext.Provider
-      value={{ step, formData, setHostName, setTopic, setContext, goToNext, goToPrev, handleSubmit }}
+      value={{ step, isLoading, formData, setHostName, setTopic, setContext, goToNext, goToPrev, handleSubmit }}
     >
       {children}
     </CreateSessionContext.Provider>
