@@ -1,11 +1,11 @@
 import { GenericLoadingScreen } from '@/components/common/GenericLoadingScreen';
 
 const MESSAGES = [
-  'thinking about your vibe...',
-  'crafting your questions...',
-  'almost ready...',
+  'loading your questions...',
+  'setting up the session...',
+  'almost there...',
 ];
 
-export function GeneratingQuestions() {
+export function LoadingQuestions() {
   return <GenericLoadingScreen messages={MESSAGES} />;
 }
