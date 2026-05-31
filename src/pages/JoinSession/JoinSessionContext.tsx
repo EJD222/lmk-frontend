@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
+import { participantService } from '@/services/participantService';
+import { notifyError } from '@/lib/notify';
 
 interface JoinSessionContextValue {
   linkId: string;
@@ -20,7 +22,14 @@ export function JoinSessionProvider({ children, initialLinkId = '' }: JoinSessio
   const [displayName, setDisplayName] = useState('');
 
   const handleJoin = () => {
-    // TODO: implement join session — call participantService.joinSession
+    participantService.joinSession(linkId, { display_name: displayName })
+      .then(response => {
+        // TODO: move to loading then session page. To be implemented in FE-5 ticket
+        console.log('Joined session with participant ID:', response.participant_id);
+      })
+      .catch(() => {
+        notifyError('Failed to join session. Please check the link and try again.');
+      });
   };
 
   return (
