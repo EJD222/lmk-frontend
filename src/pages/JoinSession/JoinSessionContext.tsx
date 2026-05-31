@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { participantService } from '@/services/participantService';
 import { notifyError } from '@/lib/notify';
+import { buildSessionPath } from '@/common/routes';
 
 interface JoinSessionContextValue {
   linkId: string;
@@ -18,14 +20,16 @@ interface JoinSessionProviderProps {
 }
 
 export function JoinSessionProvider({ children, initialLinkId = '' }: JoinSessionProviderProps) {
+  const navigate = useNavigate();
   const [linkId, setLinkId] = useState(initialLinkId);
   const [displayName, setDisplayName] = useState('');
 
   const handleJoin = () => {
     participantService.joinSession(linkId, { display_name: displayName })
       .then(response => {
-        // TODO: move to loading then session page. To be implemented in FE-5 ticket
-        console.log('Joined session with participant ID:', response.participant_id);
+        navigate(buildSessionPath(response.session_id), {
+          state: { sessionId: response.session_id, participantId: response.participant_id },
+        });
       })
       .catch(() => {
         notifyError('Failed to join session. Please check the link and try again.');
