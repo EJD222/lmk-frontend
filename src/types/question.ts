@@ -1,4 +1,11 @@
-export type Mechanic = 'MULTISELECT' | 'SLIDER' | 'TEXT' | 'SWIPE';
+export const MECHANIC = {
+  MULTISELECT: 'MULTISELECT',
+  SLIDER: 'SLIDER',
+  TEXT: 'TEXT',
+  SWIPE: 'SWIPE',
+} as const;
+
+export type Mechanic = (typeof MECHANIC)[keyof typeof MECHANIC];
 
 export interface QuestionOptionOut {
   id: string;
