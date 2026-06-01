@@ -3,7 +3,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { SessionProvider, useSession } from './SessionContext';
 import { QuestionRenderer } from './Questions/QuestionRenderer';
 import { LoadingQuestions } from '@/pages/Loading/LoadingQuestions';
+import { Wordmark } from '@/components/common/Wordmark';
+import { PrimaryButton } from '@/components/common/PrimaryButton';
 import { Button } from '@/components/ui/Button';
+import { canAdvanceQuestion } from '@/lib/question';
+import { MECHANIC } from '@/types/question';
 
 interface SessionPageState {
   sessionId: string;
@@ -34,20 +38,7 @@ function SessionContent() {
   const isLast = currentIndex === total - 1;
   const progress = ((currentIndex + 1) / total) * 100;
   const currentQuestion = questions[currentIndex];
-  const isSwipe = currentQuestion?.mechanic === 'SWIPE';
-
-  const canAdvance = (() => {
-    const answer = answers[currentQuestion?.id];
-    if (answer === undefined || answer === null) return false;
-    if (answer === false || answer === 0) return true;
-    if (currentQuestion.mechanic === 'MULTISELECT') {
-      return Array.isArray(answer) && answer.length > 0;
-    }
-    if (currentQuestion.mechanic === 'TEXT') {
-      return typeof answer === 'string' && answer.trim().length > 0;
-    }
-    return true;
-  })();
+  const isSwipe = currentQuestion?.mechanic === MECHANIC.SWIPE;
 
   const handleBack = () => {
     if (isFirst) {
@@ -60,7 +51,7 @@ function SessionContent() {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="px-6 pt-12 pb-4 w-full max-w-[600px] mx-auto">
-        <span className="font-brand font-extrabold text-xl tracking-[-0.04em]">lmk</span>
+        <Wordmark />
       </header>
 
       <div className="px-6 w-full max-w-[600px] mx-auto">
@@ -94,14 +85,12 @@ function SessionContent() {
 
         <div className="px-6 pb-8 pt-4 flex flex-col gap-3 w-full max-w-[600px] mx-auto">
           {!isSwipe && (
-            <Button
-              size="lg"
+            <PrimaryButton
               onClick={isLast ? handleSubmit : goNext}
-              disabled={isSubmitting || !canAdvance}
-              className="w-full h-[52px] bg-lmk-primary hover:bg-lmk-primary/90 text-white text-[15px] font-bold rounded-md"
+              disabled={isSubmitting || !canAdvanceQuestion(currentQuestion, answers[currentQuestion.id])}
             >
               {isLast ? (isSubmitting ? 'Submitting...' : 'Submit') : 'Next'}
-            </Button>
+            </PrimaryButton>
           )}
           <Button
             size="lg"
