@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Wordmark } from '@/components/common/Wordmark';
 
 interface GenericLoadingScreenProps {
   messages: string[];
@@ -24,9 +25,7 @@ export function GenericLoadingScreen({ messages }: GenericLoadingScreenProps) {
 
   return (
     <div className="min-h-screen bg-lmk-dark flex flex-col items-center justify-center text-center px-6">
-      <span className="font-brand font-extrabold text-xl tracking-[-0.04em] text-lmk-light mb-16">
-        lmk
-      </span>
+      <Wordmark className="text-lmk-light mb-16" />
 
       <div className="flex gap-3 mb-10">
         {DOT_COLORS.map((color, i) => (
