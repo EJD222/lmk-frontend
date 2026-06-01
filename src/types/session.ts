@@ -1,4 +1,5 @@
 export type SessionState = 'ANSWERING' | 'GENERATING' | 'RESULTS';
+export type SessionPhase = 'loading' | 'answering' | 'waiting' | 'generating';
 
 export interface CreateSessionRequest {
   topic: string;
@@ -19,6 +20,7 @@ export interface SessionInfoResponse {
   join_link: string;
   created_at: string;
   context?: string;
+  host_id: string;
 }
 
 export interface SessionStateResponse {
