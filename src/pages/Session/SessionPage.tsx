@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SessionProvider, useSession } from './SessionContext';
 import { QuestionRenderer } from './Questions/QuestionRenderer';
+import { WaitingScreen } from './WaitingScreen';
 import { LoadingQuestions } from '@/pages/Loading/LoadingQuestions';
+import { GeneratingResults } from '@/pages/Loading/GeneratingResults';
 import { Wordmark } from '@/components/common/Wordmark';
 import { PrimaryButton } from '@/components/common/PrimaryButton';
 import { Button } from '@/components/ui/Button';
@@ -16,13 +18,21 @@ interface SessionPageState {
 
 function SessionContent() {
   const {
-    questions, currentIndex, answers, isLoading, isSubmitting,
+    phase, questions, currentIndex, answers, isSubmitting,
     goNext, goPrev, handleSubmit,
   } = useSession();
   const navigate = useNavigate();
 
-  if (isLoading) {
+  if (phase === 'loading') {
     return <LoadingQuestions />;
+  }
+
+  if (phase === 'waiting') {
+    return <WaitingScreen />;
+  }
+
+  if (phase === 'generating') {
+    return <GeneratingResults />;
   }
 
   if (questions.length === 0) {
