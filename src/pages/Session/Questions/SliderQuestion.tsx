@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { useSession } from '../SessionContext';
-import type { QuestionOut } from '@/types/question';
+import { useEffect } from "react";
+import { useSession } from "../SessionContext";
+import type { QuestionOut } from "@/types/question";
 
 interface SliderQuestionProps {
   question: QuestionOut;
@@ -17,8 +17,8 @@ export function SliderQuestion({ question }: SliderQuestionProps) {
     }
   }, [question.id, answers, setAnswer]);
 
-  const minEmoji = question.options[0]?.label || '';
-  const maxEmoji = question.options[question.options.length - 1]?.label || '';
+  const minEmoji = question.options[0]?.label || "";
+  const maxEmoji = question.options[question.options.length - 1]?.label || "";
   const displayEmoji = value < 50 ? minEmoji : maxEmoji;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +43,7 @@ export function SliderQuestion({ question }: SliderQuestionProps) {
         value={value}
         onChange={handleChange}
         className="slider-input w-full"
-        style={{ '--slider-pct': `${value}%` } as React.CSSProperties}
+        style={{ "--slider-pct": `${value}%` } as React.CSSProperties}
       />
     </div>
   );

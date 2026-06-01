@@ -1,7 +1,7 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { JoinSessionProvider } from './JoinSessionContext';
-import { ParticipantForm } from './ParticipantForm';
-import { Wordmark } from '@/components/common/Wordmark';
+import { useNavigate, useParams } from "react-router-dom";
+import { JoinSessionProvider } from "./JoinSessionContext";
+import { ParticipantForm } from "./ParticipantForm";
+import { Wordmark } from "@/components/common/Wordmark";
 
 function JoinSessionContent() {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ export function JoinSessionPage() {
   const { linkId } = useParams<{ linkId: string }>();
 
   return (
-    <JoinSessionProvider initialLinkId={linkId ?? ''}>
+    <JoinSessionProvider initialLinkId={linkId ?? ""}>
       <JoinSessionContent />
     </JoinSessionProvider>
   );

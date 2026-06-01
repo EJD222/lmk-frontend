@@ -1,6 +1,6 @@
-import { useRef, useCallback, useState } from 'react';
-import { useSession } from '../SessionContext';
-import type { QuestionOut } from '@/types/question';
+import { useRef, useCallback, useState } from "react";
+import { useSession } from "../SessionContext";
+import type { QuestionOut } from "@/types/question";
 
 interface SwipeQuestionProps {
   question: QuestionOut;
@@ -16,19 +16,22 @@ export function SwipeQuestion({ question }: SwipeQuestionProps) {
 
   const SWIPE_THRESHOLD = 100;
 
-  const leftLabel = question.options[0]?.label || 'No';
-  const rightLabel = question.options[question.options.length - 1]?.label || 'Yes';
+  const leftLabel = question.options[0]?.label || "No";
+  const rightLabel = question.options[question.options.length - 1]?.label || "Yes";
 
-  const handleSwipeComplete = useCallback((direction: 'left' | 'right') => {
-    const value = direction === 'left' ? leftLabel : rightLabel;
-    setAnswer(question.id, value);
-    setIsExiting(true);
-    setTimeout(() => {
-      setIsExiting(false);
-      setOffset(0);
-      goNext();
-    }, 350);
-  }, [question.id, leftLabel, rightLabel, setAnswer, goNext]);
+  const handleSwipeComplete = useCallback(
+    (direction: "left" | "right") => {
+      const value = direction === "left" ? leftLabel : rightLabel;
+      setAnswer(question.id, value);
+      setIsExiting(true);
+      setTimeout(() => {
+        setIsExiting(false);
+        setOffset(0);
+        goNext();
+      }, 350);
+    },
+    [question.id, leftLabel, rightLabel, setAnswer, goNext]
+  );
 
   const onPointerDown = (e: React.PointerEvent) => {
     setIsDragging(true);
@@ -46,7 +49,7 @@ export function SwipeQuestion({ question }: SwipeQuestionProps) {
     setIsDragging(false);
 
     if (Math.abs(offset) > SWIPE_THRESHOLD) {
-      const dir = offset > 0 ? 'right' : 'left';
+      const dir = offset > 0 ? "right" : "left";
       handleSwipeComplete(dir);
     } else {
       setOffset(0);
@@ -77,14 +80,12 @@ export function SwipeQuestion({ question }: SwipeQuestionProps) {
         onPointerCancel={onPointerUp}
         className="w-full max-w-[320px] aspect-[3/4] bg-lmk-secondary rounded-2xl flex flex-col items-center justify-center px-8 text-white cursor-grab active:cursor-grabbing select-none touch-none shadow-[0_8px_32px_rgba(0,0,0,0.15)]"
         style={{
-          transform: isExiting
-            ? exitTransform
-            : `translateX(${offset}px) rotate(${rotation}deg)`,
+          transform: isExiting ? exitTransform : `translateX(${offset}px) rotate(${rotation}deg)`,
           transition: isDragging
-            ? 'none'
+            ? "none"
             : isExiting
-              ? 'transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.3s'
-              : 'transform 0.5s cubic-bezier(0.34,1.56,0.64,1)',
+              ? "transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.3s"
+              : "transform 0.5s cubic-bezier(0.34,1.56,0.64,1)",
           opacity: isExiting ? 0 : 1,
         }}
       >

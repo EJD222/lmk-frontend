@@ -1,4 +1,4 @@
-export type ResultType = 'RECOMMENDATION';
+export type ResultType = "RECOMMENDATION";
 
 export interface ResultOut {
   id: string;

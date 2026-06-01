@@ -1,8 +1,8 @@
-import { Wordmark } from '@/components/common/Wordmark';
-import { PrimaryButton } from '@/components/common/PrimaryButton';
-import { useSession } from './SessionContext';
+import { Wordmark } from "@/components/common/Wordmark";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
+import { useSession } from "./SessionContext";
 
-const DOT_COLORS = ['#FF6B35', '#5B2EFF', '#00D4AA', '#FFE14D'];
+const DOT_COLORS = ["#FF6B35", "#5B2EFF", "#00D4AA", "#FFE14D"];
 
 export function WaitingScreen() {
   const { isHost, isAdvancing, handleAdvance } = useSession();
@@ -22,7 +22,7 @@ export function WaitingScreen() {
               style={{
                 backgroundColor: color,
                 animationDelay: `${i * 0.2}s`,
-                animationDuration: '1.4s',
+                animationDuration: "1.4s",
                 opacity: 0.5,
               }}
             />
@@ -30,13 +30,15 @@ export function WaitingScreen() {
         </div>
 
         <h2 className="font-brand font-bold text-[28px] leading-[1.2] tracking-tight">
-          waiting for host<br />to advance
+          waiting for host
+          <br />
+          to advance
         </h2>
 
         {isHost && (
           <div className="w-full max-w-[400px]">
             <PrimaryButton onClick={handleAdvance} disabled={isAdvancing}>
-              {isAdvancing ? 'Advancing...' : 'Advance Session'}
+              {isAdvancing ? "Advancing..." : "Advance Session"}
             </PrimaryButton>
           </div>
         )}

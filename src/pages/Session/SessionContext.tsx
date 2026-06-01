@@ -1,12 +1,12 @@
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { sessionService } from '@/services/sessionService';
-import { answerService } from '@/services/answerService';
-import { notifyError, notifySuccess } from '@/lib/notify';
-import { minDelay } from '@/lib/utils';
-import { RESULTS_ROUTE } from '@/common/routes';
-import type { AnswerSubmission, QuestionOut } from '@/types/question';
-import type { SessionInfoResponse, SessionPhase } from '@/types/session';
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { sessionService } from "@/services/sessionService";
+import { answerService } from "@/services/answerService";
+import { notifyError, notifySuccess } from "@/lib/notify";
+import { minDelay } from "@/lib/utils";
+import { RESULTS_ROUTE } from "@/common/routes";
+import type { AnswerSubmission, QuestionOut } from "@/types/question";
+import type { SessionInfoResponse, SessionPhase } from "@/types/session";
 
 interface SessionContextValue {
   sessionId: string;
@@ -37,7 +37,7 @@ interface SessionProviderProps {
 export function SessionProvider({ children, sessionId, participantId }: SessionProviderProps) {
   const navigate = useNavigate();
   const [sessionInfo, setSessionInfo] = useState<SessionInfoResponse | null>(null);
-  const [phase, setPhase] = useState<SessionPhase>('loading');
+  const [phase, setPhase] = useState<SessionPhase>("loading");
   const [questions, setQuestions] = useState<QuestionOut[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, unknown>>({});
@@ -56,24 +56,24 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
         setQuestions(sorted);
         setSessionInfo(info);
 
-        if (info.state === 'GENERATING') {
-          setPhase('generating');
-        } else if (info.state === 'RESULTS') {
+        if (info.state === "GENERATING") {
+          setPhase("generating");
+        } else if (info.state === "RESULTS") {
           navigate(RESULTS_ROUTE, { state: { sessionId, participantId }, replace: true });
         } else {
-          setPhase(answeredRes.answered ? 'waiting' : 'answering');
+          setPhase(answeredRes.answered ? "waiting" : "answering");
         }
       })
       .catch(() => {
-        notifyError('Failed to load session. Please try again.');
+        notifyError("Failed to load session. Please try again.");
       });
   }, [sessionId, participantId, navigate]);
 
   useEffect(() => {
     const source = sessionService.streamSession(sessionId, (event) => {
-      if (event.state === 'GENERATING') {
-        setPhase('generating');
-      } else if (event.state === 'RESULTS') {
+      if (event.state === "GENERATING") {
+        setPhase("generating");
+      } else if (event.state === "RESULTS") {
         navigate(RESULTS_ROUTE, { state: { sessionId, participantId }, replace: true });
       }
     });
@@ -83,15 +83,15 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
   const isHost = sessionInfo?.host_id === participantId;
 
   const setAnswer = useCallback((questionId: string, value: unknown) => {
-    setAnswers(prev => ({ ...prev, [questionId]: value }));
+    setAnswers((prev) => ({ ...prev, [questionId]: value }));
   }, []);
 
   const goNext = useCallback(() => {
-    setCurrentIndex(prev => prev + 1);
+    setCurrentIndex((prev) => prev + 1);
   }, []);
 
   const goPrev = useCallback(() => {
-    setCurrentIndex(prev => Math.max(prev - 1, 0));
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
   }, []);
 
   const handleSubmit = useCallback(() => {
@@ -103,23 +103,21 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
       .submitAnswers(sessionId, { participant_id: participantId, answers: submissionAnswers })
       .then(() => {
         setIsSubmitting(false);
-        notifySuccess('Answers submitted!');
-        setPhase('waiting');
+        notifySuccess("Answers submitted!");
+        setPhase("waiting");
       })
       .catch(() => {
         setIsSubmitting(false);
-        notifyError('Failed to submit answers. Please try again.');
+        notifyError("Failed to submit answers. Please try again.");
       });
   }, [sessionId, participantId, answers]);
 
   const handleAdvance = useCallback(() => {
     setIsAdvancing(true);
-    sessionService
-      .advanceSession(sessionId, { participant_id: participantId })
-      .catch(() => {
-        setIsAdvancing(false);
-        notifyError('Failed to advance session. Please try again.');
-      });
+    sessionService.advanceSession(sessionId, { participant_id: participantId }).catch(() => {
+      setIsAdvancing(false);
+      notifyError("Failed to advance session. Please try again.");
+    });
   }, [sessionId, participantId]);
 
   return (
@@ -149,6 +147,6 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
 
 export function useSession(): SessionContextValue {
   const ctx = useContext(SessionContext);
-  if (!ctx) throw new Error('useSession must be used within SessionProvider');
+  if (!ctx) throw new Error("useSession must be used within SessionProvider");
   return ctx;
 }

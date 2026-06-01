@@ -1,8 +1,8 @@
 export const MECHANIC = {
-  MULTISELECT: 'MULTISELECT',
-  SLIDER: 'SLIDER',
-  TEXT: 'TEXT',
-  SWIPE: 'SWIPE',
+  MULTISELECT: "MULTISELECT",
+  SLIDER: "SLIDER",
+  TEXT: "TEXT",
+  SWIPE: "SWIPE",
 } as const;
 
 export type Mechanic = (typeof MECHANIC)[keyof typeof MECHANIC];

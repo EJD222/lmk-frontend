@@ -1,4 +1,4 @@
-import { api, BASE_URL } from './api';
+import { api, BASE_URL } from "./api";
 import type {
   CreateSessionRequest,
   CreateSessionResponse,
@@ -6,13 +6,13 @@ import type {
   SessionStateResponse,
   AdvanceRequest,
   SessionStateEvent,
-} from '@/types/session';
-import type { QuestionOut, HasAnsweredResponse } from '@/types/question';
-import type { ResultsResponse } from '@/types/result';
+} from "@/types/session";
+import type { QuestionOut, HasAnsweredResponse } from "@/types/question";
+import type { ResultsResponse } from "@/types/result";
 
 export const sessionService = {
   createSession: (body: CreateSessionRequest): Promise<CreateSessionResponse> =>
-    api.post<CreateSessionResponse>('/sessions/', body),
+    api.post<CreateSessionResponse>("/sessions/", body),
 
   getSession: (sessionId: string): Promise<SessionInfoResponse> =>
     api.get<SessionInfoResponse>(`/sessions/${sessionId}`),
@@ -26,7 +26,10 @@ export const sessionService = {
   getQuestions: (sessionId: string): Promise<QuestionOut[]> =>
     api.get<QuestionOut[]>(`/sessions/${sessionId}/questions`),
 
-  hasParticipantAnswered: (sessionId: string, participantId: string): Promise<HasAnsweredResponse> =>
+  hasParticipantAnswered: (
+    sessionId: string,
+    participantId: string
+  ): Promise<HasAnsweredResponse> =>
     api.get<HasAnsweredResponse>(`/sessions/${sessionId}/participants/${participantId}/answered`),
 
   getResults: (sessionId: string): Promise<ResultsResponse> =>
@@ -35,11 +38,11 @@ export const sessionService = {
   streamSession: (
     sessionId: string,
     onStateChange: (event: SessionStateEvent) => void,
-    onError?: (error: Event) => void,
+    onError?: (error: Event) => void
   ): EventSource => {
     const source = new EventSource(`${BASE_URL}/sessions/${sessionId}/stream`);
 
-    source.addEventListener('state_change', (e: MessageEvent) => {
+    source.addEventListener("state_change", (e: MessageEvent) => {
       const parsed = JSON.parse(e.data) as SessionStateEvent;
       onStateChange(parsed);
     });

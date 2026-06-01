@@ -1,9 +1,9 @@
-import { MultiSelectQuestion } from './MultiSelectQuestion';
-import { TextQuestion } from './TextQuestion';
-import { SliderQuestion } from './SliderQuestion';
-import { SwipeQuestion } from './SwipeQuestion';
-import { MECHANIC } from '@/types/question';
-import type { QuestionOut } from '@/types/question';
+import { MultiSelectQuestion } from "./MultiSelectQuestion";
+import { TextQuestion } from "./TextQuestion";
+import { SliderQuestion } from "./SliderQuestion";
+import { SwipeQuestion } from "./SwipeQuestion";
+import { MECHANIC } from "@/types/question";
+import type { QuestionOut } from "@/types/question";
 
 interface QuestionRendererProps {
   question: QuestionOut;

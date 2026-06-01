@@ -1,5 +1,5 @@
-export type SessionState = 'ANSWERING' | 'GENERATING' | 'RESULTS';
-export type SessionPhase = 'loading' | 'answering' | 'waiting' | 'generating';
+export type SessionState = "ANSWERING" | "GENERATING" | "RESULTS";
+export type SessionPhase = "loading" | "answering" | "waiting" | "generating";
 
 export interface CreateSessionRequest {
   topic: string;

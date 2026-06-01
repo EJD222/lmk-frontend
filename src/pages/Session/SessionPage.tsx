@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { SessionProvider, useSession } from './SessionContext';
-import { QuestionRenderer } from './Questions/QuestionRenderer';
-import { WaitingScreen } from './WaitingScreen';
-import { LoadingQuestions } from '@/pages/Loading/LoadingQuestions';
-import { GeneratingResults } from '@/pages/Loading/GeneratingResults';
-import { Wordmark } from '@/components/common/Wordmark';
-import { PrimaryButton } from '@/components/common/PrimaryButton';
-import { Button } from '@/components/ui/Button';
-import { canAdvanceQuestion } from '@/lib/question';
-import { MECHANIC } from '@/types/question';
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { SessionProvider, useSession } from "./SessionContext";
+import { QuestionRenderer } from "./Questions/QuestionRenderer";
+import { WaitingScreen } from "./WaitingScreen";
+import { LoadingQuestions } from "@/pages/Loading/LoadingQuestions";
+import { GeneratingResults } from "@/pages/Loading/GeneratingResults";
+import { Wordmark } from "@/components/common/Wordmark";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
+import { Button } from "@/components/ui/Button";
+import { canAdvanceQuestion } from "@/lib/question";
+import { MECHANIC } from "@/types/question";
 
 interface SessionPageState {
   sessionId: string;
@@ -17,21 +17,19 @@ interface SessionPageState {
 }
 
 function SessionContent() {
-  const {
-    phase, questions, currentIndex, answers, isSubmitting,
-    goNext, goPrev, handleSubmit,
-  } = useSession();
+  const { phase, questions, currentIndex, answers, isSubmitting, goNext, goPrev, handleSubmit } =
+    useSession();
   const navigate = useNavigate();
 
-  if (phase === 'loading') {
+  if (phase === "loading") {
     return <LoadingQuestions />;
   }
 
-  if (phase === 'waiting') {
+  if (phase === "waiting") {
     return <WaitingScreen />;
   }
 
-  if (phase === 'generating') {
+  if (phase === "generating") {
     return <GeneratingResults />;
   }
 
@@ -77,10 +75,7 @@ function SessionContent() {
       </div>
 
       <div className="flex flex-col flex-1 w-full max-w-[600px] mx-auto">
-        <div
-          key={currentIndex}
-          className="flex flex-col flex-1 animate-fade-in"
-        >
+        <div key={currentIndex} className="flex flex-col flex-1 animate-fade-in">
           {isSwipe ? (
             <QuestionRenderer question={currentQuestion} />
           ) : (
@@ -97,9 +92,11 @@ function SessionContent() {
           {!isSwipe && (
             <PrimaryButton
               onClick={isLast ? handleSubmit : goNext}
-              disabled={isSubmitting || !canAdvanceQuestion(currentQuestion, answers[currentQuestion.id])}
+              disabled={
+                isSubmitting || !canAdvanceQuestion(currentQuestion, answers[currentQuestion.id])
+              }
             >
-              {isLast ? (isSubmitting ? 'Submitting...' : 'Submit') : 'Next'}
+              {isLast ? (isSubmitting ? "Submitting..." : "Submit") : "Next"}
             </PrimaryButton>
           )}
           <Button
@@ -123,7 +120,7 @@ export function SessionPage() {
 
   useEffect(() => {
     if (!state?.sessionId || !state?.participantId) {
-      navigate('/', { replace: true });
+      navigate("/", { replace: true });
     }
   }, [state, navigate]);
 

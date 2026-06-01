@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { participantService } from '@/services/participantService';
-import { notifyError } from '@/lib/notify';
-import { buildSessionPath } from '@/common/routes';
+import React, { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { participantService } from "@/services/participantService";
+import { notifyError } from "@/lib/notify";
+import { buildSessionPath } from "@/common/routes";
 
 interface JoinSessionContextValue {
   linkId: string;
@@ -19,25 +19,28 @@ interface JoinSessionProviderProps {
   initialLinkId?: string;
 }
 
-export function JoinSessionProvider({ children, initialLinkId = '' }: JoinSessionProviderProps) {
+export function JoinSessionProvider({ children, initialLinkId = "" }: JoinSessionProviderProps) {
   const navigate = useNavigate();
   const [linkId, setLinkId] = useState(initialLinkId);
-  const [displayName, setDisplayName] = useState('');
+  const [displayName, setDisplayName] = useState("");
 
   const handleJoin = () => {
-    participantService.joinSession(linkId, { display_name: displayName })
-      .then(response => {
+    participantService
+      .joinSession(linkId, { display_name: displayName })
+      .then((response) => {
         navigate(buildSessionPath(response.session_id), {
           state: { sessionId: response.session_id, participantId: response.participant_id },
         });
       })
       .catch(() => {
-        notifyError('Failed to join session. Please check the link and try again.');
+        notifyError("Failed to join session. Please check the link and try again.");
       });
   };
 
   return (
-    <JoinSessionContext.Provider value={{ linkId, displayName, setLinkId, setDisplayName, handleJoin }}>
+    <JoinSessionContext.Provider
+      value={{ linkId, displayName, setLinkId, setDisplayName, handleJoin }}
+    >
       {children}
     </JoinSessionContext.Provider>
   );
@@ -45,6 +48,6 @@ export function JoinSessionProvider({ children, initialLinkId = '' }: JoinSessio
 
 export function useJoinSession(): JoinSessionContextValue {
   const ctx = useContext(JoinSessionContext);
-  if (!ctx) throw new Error('useJoinSession must be used within JoinSessionProvider');
+  if (!ctx) throw new Error("useJoinSession must be used within JoinSessionProvider");
   return ctx;
 }

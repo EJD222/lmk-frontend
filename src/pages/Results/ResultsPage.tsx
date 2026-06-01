@@ -1,12 +1,12 @@
-import React from 'react'
-import ConsensusPage from './ConsensusPage'
+import React from "react";
+import ConsensusPage from "./ConsensusPage";
 
 const ResultsPage = () => {
   return (
     <div>
-        <ConsensusPage />
+      <ConsensusPage />
     </div>
-  )
-}
+  );
+};
 
-export default ResultsPage
+export default ResultsPage;

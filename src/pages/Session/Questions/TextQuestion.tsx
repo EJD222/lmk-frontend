@@ -1,5 +1,5 @@
-import { useSession } from '../SessionContext';
-import type { QuestionOut } from '@/types/question';
+import { useSession } from "../SessionContext";
+import type { QuestionOut } from "@/types/question";
 
 const MAX_CHARS = 500;
 
@@ -9,7 +9,7 @@ interface TextQuestionProps {
 
 export function TextQuestion({ question }: TextQuestionProps) {
   const { answers, setAnswer } = useSession();
-  const value = (answers[question.id] as string) || '';
+  const value = (answers[question.id] as string) || "";
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value.slice(0, MAX_CHARS);

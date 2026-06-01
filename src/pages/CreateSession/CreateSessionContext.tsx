@@ -1,11 +1,11 @@
-import React, { createContext, useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { sessionService } from '@/services/sessionService';
-import { notifyError } from '@/lib/notify';
-import { minDelay } from '@/lib/utils';
-import { SHARE_JOIN_LINK_ROUTE } from '@/common/routes';
+import React, { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { sessionService } from "@/services/sessionService";
+import { notifyError } from "@/lib/notify";
+import { minDelay } from "@/lib/utils";
+import { SHARE_JOIN_LINK_ROUTE } from "@/common/routes";
 
-export type CreateSessionStep = 'host-topic' | 'context';
+export type CreateSessionStep = "host-topic" | "context";
 
 export interface CreateSessionFormData {
   hostName: string;
@@ -33,24 +33,24 @@ interface CreateSessionProviderProps {
 
 export function CreateSessionProvider({ children }: CreateSessionProviderProps) {
   const navigate = useNavigate();
-  const [step, setStep] = useState<CreateSessionStep>('host-topic');
+  const [step, setStep] = useState<CreateSessionStep>("host-topic");
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<CreateSessionFormData>({
-    hostName: '',
-    topic: '',
-    context: '',
+    hostName: "",
+    topic: "",
+    context: "",
   });
 
-  const setHostName = (v: string) => setFormData(prev => ({ ...prev, hostName: v }));
-  const setTopic = (v: string) => setFormData(prev => ({ ...prev, topic: v }));
-  const setContext = (v: string) => setFormData(prev => ({ ...prev, context: v }));
+  const setHostName = (v: string) => setFormData((prev) => ({ ...prev, hostName: v }));
+  const setTopic = (v: string) => setFormData((prev) => ({ ...prev, topic: v }));
+  const setContext = (v: string) => setFormData((prev) => ({ ...prev, context: v }));
 
   const goToNext = () => {
-    if (step === 'host-topic') setStep('context');
+    if (step === "host-topic") setStep("context");
   };
 
   const goToPrev = () => {
-    if (step === 'context') setStep('host-topic');
+    if (step === "context") setStep("host-topic");
   };
 
   const handleSubmit = () => {
@@ -62,24 +62,36 @@ export function CreateSessionProvider({ children }: CreateSessionProviderProps) 
         context: formData.context || undefined,
       }),
       minDelay(2000),
-    ]).then(([response]) => {
-      setIsLoading(false);
-      navigate(SHARE_JOIN_LINK_ROUTE, {
-        state: {
-          sessionId: response.session_id,
-          hostParticipantId: response.host_participant_id,
-          joinLink: response.join_link,
-        },
+    ])
+      .then(([response]) => {
+        setIsLoading(false);
+        navigate(SHARE_JOIN_LINK_ROUTE, {
+          state: {
+            sessionId: response.session_id,
+            hostParticipantId: response.host_participant_id,
+            joinLink: response.join_link,
+          },
+        });
+      })
+      .catch(() => {
+        setIsLoading(false);
+        notifyError("Failed to create session. Please try again.");
       });
-    }).catch(() => {
-      setIsLoading(false);
-      notifyError('Failed to create session. Please try again.');
-    });
   };
 
   return (
     <CreateSessionContext.Provider
-      value={{ step, isLoading, formData, setHostName, setTopic, setContext, goToNext, goToPrev, handleSubmit }}
+      value={{
+        step,
+        isLoading,
+        formData,
+        setHostName,
+        setTopic,
+        setContext,
+        goToNext,
+        goToPrev,
+        handleSubmit,
+      }}
     >
       {children}
     </CreateSessionContext.Provider>
@@ -88,6 +100,6 @@ export function CreateSessionProvider({ children }: CreateSessionProviderProps) 
 
 export function useCreateSession(): CreateSessionContextValue {
   const ctx = useContext(CreateSessionContext);
-  if (!ctx) throw new Error('useCreateSession must be used within CreateSessionProvider');
+  if (!ctx) throw new Error("useCreateSession must be used within CreateSessionProvider");
   return ctx;
 }

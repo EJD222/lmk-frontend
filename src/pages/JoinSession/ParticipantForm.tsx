@@ -1,6 +1,6 @@
-import { cn } from '@/lib/utils';
-import { PrimaryButton } from '@/components/common/PrimaryButton';
-import { useJoinSession } from './JoinSessionContext';
+import { cn } from "@/lib/utils";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
+import { useJoinSession } from "./JoinSessionContext";
 
 export function ParticipantForm() {
   const { linkId, displayName, setLinkId, setDisplayName, handleJoin } = useJoinSession();
@@ -21,13 +21,13 @@ export function ParticipantForm() {
           <input
             type="text"
             value={displayName}
-            onChange={e => setDisplayName(e.target.value)}
+            onChange={(e) => setDisplayName(e.target.value)}
             placeholder="keep it fun"
             className={cn(
-              'w-full h-[52px] px-4 rounded-xl border border-lmk-dark/10 bg-white',
-              'font-medium text-[16px] text-lmk-dark placeholder:text-lmk-dark/35',
-              'outline-none transition-[border-color,box-shadow]',
-              'focus:border-lmk-secondary focus:shadow-[0_0_0_4px_rgba(91,46,255,0.15)]'
+              "w-full h-[52px] px-4 rounded-xl border border-lmk-dark/10 bg-white",
+              "font-medium text-[16px] text-lmk-dark placeholder:text-lmk-dark/35",
+              "outline-none transition-[border-color,box-shadow]",
+              "focus:border-lmk-secondary focus:shadow-[0_0_0_4px_rgba(91,46,255,0.15)]"
             )}
           />
         </div>
@@ -39,14 +39,14 @@ export function ParticipantForm() {
           <input
             type="text"
             value={linkId}
-            onChange={e => setLinkId(e.target.value)}
+            onChange={(e) => setLinkId(e.target.value)}
             placeholder="e.g. a7x3k9"
             className={cn(
-              'w-full h-[52px] px-4 rounded-xl border border-lmk-dark/10 bg-white',
-              'font-medium text-[16px] text-lmk-dark placeholder:text-lmk-dark/35',
-              'outline-none transition-[border-color,box-shadow]',
-              'focus:border-lmk-secondary focus:shadow-[0_0_0_4px_rgba(91,46,255,0.15)]',
-              linkId.length > 0 && 'border-lmk-tertiary'
+              "w-full h-[52px] px-4 rounded-xl border border-lmk-dark/10 bg-white",
+              "font-medium text-[16px] text-lmk-dark placeholder:text-lmk-dark/35",
+              "outline-none transition-[border-color,box-shadow]",
+              "focus:border-lmk-secondary focus:shadow-[0_0_0_4px_rgba(91,46,255,0.15)]",
+              linkId.length > 0 && "border-lmk-tertiary"
             )}
           />
           {linkId.length === 0 && (

@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/Button';
-import { Wordmark } from '@/components/common/Wordmark';
-import { PrimaryButton } from '@/components/common/PrimaryButton';
-import { notifySuccess, notifyError } from '@/lib/notify';
-import { buildSessionPath } from '@/common/routes';
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/Button";
+import { Wordmark } from "@/components/common/Wordmark";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
+import { notifySuccess, notifyError } from "@/lib/notify";
+import { buildSessionPath } from "@/common/routes";
 
 interface SharePageState {
   sessionId: string;
@@ -19,7 +19,7 @@ export function ShareJoinLinkPage() {
 
   useEffect(() => {
     if (!state?.joinLink) {
-      navigate('/', { replace: true });
+      navigate("/", { replace: true });
     }
   }, [state, navigate]);
 
@@ -27,20 +27,20 @@ export function ShareJoinLinkPage() {
 
   const { joinLink } = state;
 
-  const linkId = joinLink.split('/').filter(Boolean).pop() ?? joinLink;
+  const linkId = joinLink.split("/").filter(Boolean).pop() ?? joinLink;
   const shareUrl = `${window.location.origin}/join-session/${linkId}`;
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(shareUrl);
-      notifySuccess('Link copied!');
+      notifySuccess("Link copied!");
     } catch {
-      notifyError('Could not copy. Please copy the link manually.');
+      notifyError("Could not copy. Please copy the link manually.");
     }
   };
 
   const handleShare = async () => {
-    if ('share' in navigator) {
+    if ("share" in navigator) {
       try {
         await navigator.share({ title: "Join my lmk session", url: shareUrl });
       } catch {
@@ -60,7 +60,6 @@ export function ShareJoinLinkPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-6">
       <div className="w-full max-w-[400px] flex flex-col items-center">
-
         <Wordmark className="self-start mb-12" />
 
         <h1 className="font-brand text-[56px] leading-none uppercase tracking-tight mb-6 self-start">
@@ -72,10 +71,8 @@ export function ShareJoinLinkPage() {
         </div>
 
         <div className="w-full flex flex-col gap-3 mb-8">
-          <PrimaryButton onClick={handleCopy}>
-            Copy link
-          </PrimaryButton>
-          {'share' in navigator && (
+          <PrimaryButton onClick={handleCopy}>Copy link</PrimaryButton>
+          {"share" in navigator && (
             <Button
               size="lg"
               variant="outline"
@@ -97,7 +94,6 @@ export function ShareJoinLinkPage() {
         >
           continue to questions →
         </button>
-
       </div>
     </div>
   );

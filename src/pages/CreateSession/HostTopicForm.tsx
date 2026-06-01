@@ -1,6 +1,6 @@
-import { cn } from '@/lib/utils';
-import { PrimaryButton } from '@/components/common/PrimaryButton';
-import { useCreateSession } from './CreateSessionContext';
+import { cn } from "@/lib/utils";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
+import { useCreateSession } from "./CreateSessionContext";
 
 export function HostTopicForm() {
   const { formData, setHostName, setTopic, goToNext } = useCreateSession();
@@ -24,13 +24,13 @@ export function HostTopicForm() {
           <input
             type="text"
             value={formData.hostName}
-            onChange={e => setHostName(e.target.value)}
+            onChange={(e) => setHostName(e.target.value)}
             placeholder="keep it fun"
             className={cn(
-              'w-full h-[52px] px-4 rounded-xl border border-lmk-dark/10 bg-white',
-              'font-medium text-[16px] text-lmk-dark placeholder:text-lmk-dark/35',
-              'outline-none transition-[border-color,box-shadow]',
-              'focus:border-lmk-secondary focus:shadow-[0_0_0_4px_rgba(91,46,255,0.15)]'
+              "w-full h-[52px] px-4 rounded-xl border border-lmk-dark/10 bg-white",
+              "font-medium text-[16px] text-lmk-dark placeholder:text-lmk-dark/35",
+              "outline-none transition-[border-color,box-shadow]",
+              "focus:border-lmk-secondary focus:shadow-[0_0_0_4px_rgba(91,46,255,0.15)]"
             )}
           />
         </div>
@@ -40,24 +40,26 @@ export function HostTopicForm() {
             <label className="text-[11px] font-bold uppercase tracking-[0.12em] text-lmk-dark/50">
               what are you deciding?
             </label>
-            <span className={cn(
-              'text-[11px] font-medium tabular-nums transition-colors',
-              formData.topic.length >= 250 ? 'text-lmk-primary' : 'text-lmk-dark/30'
-            )}>
+            <span
+              className={cn(
+                "text-[11px] font-medium tabular-nums transition-colors",
+                formData.topic.length >= 250 ? "text-lmk-primary" : "text-lmk-dark/30"
+              )}
+            >
               {formData.topic.length}/250
             </span>
           </div>
           <textarea
             value={formData.topic}
-            onChange={e => setTopic(e.target.value)}
+            onChange={(e) => setTopic(e.target.value)}
             placeholder="e.g. where should we hang out this Saturday?"
             maxLength={250}
             rows={4}
             className={cn(
-              'w-full px-4 py-3.5 rounded-xl border border-lmk-dark/10 bg-white',
-              'font-medium text-[16px] text-lmk-dark placeholder:text-lmk-dark/35',
-              'outline-none transition-[border-color,box-shadow] resize-none',
-              'focus:border-lmk-secondary focus:shadow-[0_0_0_4px_rgba(91,46,255,0.15)]'
+              "w-full px-4 py-3.5 rounded-xl border border-lmk-dark/10 bg-white",
+              "font-medium text-[16px] text-lmk-dark placeholder:text-lmk-dark/35",
+              "outline-none transition-[border-color,box-shadow] resize-none",
+              "focus:border-lmk-secondary focus:shadow-[0_0_0_4px_rgba(91,46,255,0.15)]"
             )}
           />
         </div>

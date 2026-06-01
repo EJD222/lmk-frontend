@@ -1,5 +1,5 @@
-import { api } from './api';
-import type { JoinSessionRequest, JoinSessionResponse } from '@/types/participant';
+import { api } from "./api";
+import type { JoinSessionRequest, JoinSessionResponse } from "@/types/participant";
 
 export const participantService = {
   joinSession: (linkId: string, body: JoinSessionRequest): Promise<JoinSessionResponse> =>
