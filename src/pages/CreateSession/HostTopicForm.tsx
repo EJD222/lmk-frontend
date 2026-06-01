@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
+import { PrimaryButton } from '@/components/common/PrimaryButton';
 import { useCreateSession } from './CreateSessionContext';
 
 export function HostTopicForm() {
@@ -64,14 +64,9 @@ export function HostTopicForm() {
       </div>
 
       <div className="mt-auto md:mt-8">
-        <Button
-          size="lg"
-          disabled={!isValid}
-          onClick={goToNext}
-          className="w-full h-[52px] bg-lmk-primary hover:bg-lmk-primary/90 text-white text-[15px] font-bold rounded-md"
-        >
+        <PrimaryButton disabled={!isValid} onClick={goToNext}>
           Continue
-        </Button>
+        </PrimaryButton>
       </div>
     </div>
   );

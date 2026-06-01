@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
+import { PrimaryButton } from '@/components/common/PrimaryButton';
 import { useCreateSession } from './CreateSessionContext';
 
 export function ContextForm() {
@@ -39,13 +39,9 @@ export function ContextForm() {
       </div>
 
       <div className="mt-auto md:mt-8 flex flex-col items-center gap-3">
-        <Button
-          size="lg"
-          onClick={handleSubmit}
-          className="w-full h-[52px] bg-lmk-primary hover:bg-lmk-primary/90 text-white text-[15px] font-bold rounded-md"
-        >
+        <PrimaryButton onClick={handleSubmit}>
           Continue
-        </Button>
+        </PrimaryButton>
         <button
           onClick={handleSubmit}
           className="bg-transparent border-none text-lmk-primary font-semibold text-[14px] cursor-pointer py-2 hover:opacity-75 transition-opacity"

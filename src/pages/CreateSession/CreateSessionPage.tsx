@@ -3,6 +3,7 @@ import { CreateSessionProvider, useCreateSession } from './CreateSessionContext'
 import { HostTopicForm } from './HostTopicForm';
 import { ContextForm } from './ContextForm';
 import { GeneratingQuestions } from '@/pages/Loading/GeneratingQuestions';
+import { Wordmark } from '@/components/common/Wordmark';
 
 const STEP_PROGRESS = {
   'host-topic': 50,
@@ -35,7 +36,7 @@ function CreateSessionContent() {
         >
           ←
         </button>
-        <span className="font-brand font-extrabold text-xl tracking-[-0.04em]">lmk</span>
+        <Wordmark />
       </header>
 
       <div className="px-6 mb-6 w-full max-w-[600px] mx-auto">
