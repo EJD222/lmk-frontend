@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
+import { PrimaryButton } from '@/components/common/PrimaryButton';
 import { useJoinSession } from './JoinSessionContext';
 
 export function ParticipantForm() {
@@ -58,14 +58,9 @@ export function ParticipantForm() {
       </div>
 
       <div className="mt-auto md:mt-8">
-        <Button
-          size="lg"
-          disabled={!isValid}
-          onClick={handleJoin}
-          className="w-full h-[52px] bg-lmk-primary hover:bg-lmk-primary/90 text-white text-[15px] font-bold rounded-md"
-        >
+        <PrimaryButton disabled={!isValid} onClick={handleJoin}>
           Join session
-        </Button>
+        </PrimaryButton>
       </div>
     </div>
   );

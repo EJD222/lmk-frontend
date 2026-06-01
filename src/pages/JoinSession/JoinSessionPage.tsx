@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { JoinSessionProvider } from './JoinSessionContext';
-import { ParticipantForm } from './ParcticipantForm';
+import { ParticipantForm } from './ParticipantForm';
+import { Wordmark } from '@/components/common/Wordmark';
 
 function JoinSessionContent() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ function JoinSessionContent() {
         >
           ←
         </button>
-        <span className="font-brand font-extrabold text-xl tracking-[-0.04em]">lmk</span>
+        <Wordmark />
       </header>
 
       <div className="flex flex-col flex-1 px-6 pb-8 w-full max-w-[600px] mx-auto">
