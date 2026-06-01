@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
+import { Wordmark } from '@/components/common/Wordmark';
+import { PrimaryButton } from '@/components/common/PrimaryButton';
 import { notifySuccess, notifyError } from '@/lib/notify';
 import { buildSessionPath } from '@/common/routes';
 
@@ -42,7 +44,7 @@ export function ShareJoinLinkPage() {
       try {
         await navigator.share({ title: "Join my lmk session", url: shareUrl });
       } catch {
-        // user dismissed the share sheet — no error needed
+        // user dismissed the share sheet
       }
     } else {
       handleCopy();
@@ -59,9 +61,7 @@ export function ShareJoinLinkPage() {
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-6">
       <div className="w-full max-w-[400px] flex flex-col items-center">
 
-        <span className="font-brand font-extrabold text-xl tracking-[-0.04em] self-start mb-12">
-          lmk
-        </span>
+        <Wordmark className="self-start mb-12" />
 
         <h1 className="font-brand text-[56px] leading-none uppercase tracking-tight mb-6 self-start">
           you're in.
@@ -72,13 +72,9 @@ export function ShareJoinLinkPage() {
         </div>
 
         <div className="w-full flex flex-col gap-3 mb-8">
-          <Button
-            size="lg"
-            onClick={handleCopy}
-            className="w-full h-[52px] bg-lmk-primary hover:bg-lmk-primary/90 text-white text-[15px] font-bold rounded-md"
-          >
+          <PrimaryButton onClick={handleCopy}>
             Copy link
-          </Button>
+          </PrimaryButton>
           {'share' in navigator && (
             <Button
               size="lg"
