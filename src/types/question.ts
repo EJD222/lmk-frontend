@@ -22,3 +22,11 @@ export interface SubmitAnswersRequest {
   participant_id: string;
   answers: AnswerSubmission[];
 }
+
+export interface SubmitAnswersResponse {
+  submitted: number;
+}
+
+export interface HasAnsweredResponse {
+  answered: boolean;
+}
