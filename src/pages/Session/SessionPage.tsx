@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SessionProvider, useSession } from './SessionContext';
-import { QuestionPlaceholder } from './QuestionPlaceholder';
+import { QuestionRenderer } from './Questions/QuestionRenderer';
 import { LoadingQuestions } from '@/pages/Loading/LoadingQuestions';
 import { Button } from '@/components/ui/Button';
 
@@ -11,8 +11,10 @@ interface SessionPageState {
 }
 
 function SessionContent() {
-  const { questions, currentIndex, isLoading, isSubmitting, goNext, goPrev, handleSubmit } =
-    useSession();
+  const {
+    questions, currentIndex, answers, isLoading, isSubmitting,
+    goNext, goPrev, handleSubmit,
+  } = useSession();
   const navigate = useNavigate();
 
   if (isLoading) {
@@ -32,6 +34,20 @@ function SessionContent() {
   const isLast = currentIndex === total - 1;
   const progress = ((currentIndex + 1) / total) * 100;
   const currentQuestion = questions[currentIndex];
+  const isSwipe = currentQuestion?.mechanic === 'SWIPE';
+
+  const canAdvance = (() => {
+    const answer = answers[currentQuestion?.id];
+    if (answer === undefined || answer === null) return false;
+    if (answer === false || answer === 0) return true;
+    if (currentQuestion.mechanic === 'MULTISELECT') {
+      return Array.isArray(answer) && answer.length > 0;
+    }
+    if (currentQuestion.mechanic === 'TEXT') {
+      return typeof answer === 'string' && answer.trim().length > 0;
+    }
+    return true;
+  })();
 
   const handleBack = () => {
     if (isFirst) {
@@ -43,7 +59,6 @@ function SessionContent() {
 
   return (
     <div className="min-h-screen flex flex-col">
-
       <header className="px-6 pt-12 pb-4 w-full max-w-[600px] mx-auto">
         <span className="font-brand font-extrabold text-xl tracking-[-0.04em]">lmk</span>
       </header>
@@ -60,20 +75,34 @@ function SessionContent() {
         </p>
       </div>
 
-      <div className="flex flex-col flex-1 px-6 pb-8 w-full max-w-[600px] mx-auto">
-        <div className="py-8">
-          <QuestionPlaceholder question={currentQuestion} />
+      <div className="flex flex-col flex-1 w-full max-w-[600px] mx-auto">
+        <div
+          key={currentIndex}
+          className="flex flex-col flex-1 animate-fade-in"
+        >
+          {isSwipe ? (
+            <QuestionRenderer question={currentQuestion} />
+          ) : (
+            <div className="px-6 py-8 flex-1">
+              <h2 className="font-brand font-bold text-[28px] leading-[1.2] tracking-tight mb-6">
+                {currentQuestion.text}
+              </h2>
+              <QuestionRenderer question={currentQuestion} />
+            </div>
+          )}
         </div>
 
-        <div className="mt-auto md:mt-8 flex flex-col gap-3">
-          <Button
-            size="lg"
-            onClick={isLast ? handleSubmit : goNext}
-            disabled={isSubmitting}
-            className="w-full h-[52px] bg-lmk-primary hover:bg-lmk-primary/90 text-white text-[15px] font-bold rounded-md"
-          >
-            {isLast ? (isSubmitting ? 'Submitting...' : 'Submit') : 'Next'}
-          </Button>
+        <div className="px-6 pb-8 pt-4 flex flex-col gap-3 w-full max-w-[600px] mx-auto">
+          {!isSwipe && (
+            <Button
+              size="lg"
+              onClick={isLast ? handleSubmit : goNext}
+              disabled={isSubmitting || !canAdvance}
+              className="w-full h-[52px] bg-lmk-primary hover:bg-lmk-primary/90 text-white text-[15px] font-bold rounded-md"
+            >
+              {isLast ? (isSubmitting ? 'Submitting...' : 'Submit') : 'Next'}
+            </Button>
+          )}
           <Button
             size="lg"
             variant="outline"
@@ -84,7 +113,6 @@ function SessionContent() {
           </Button>
         </div>
       </div>
-
     </div>
   );
 }
