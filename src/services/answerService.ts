@@ -1,7 +1,7 @@
 import { api } from './api';
-import type { SubmitAnswersRequest } from '@/types/question';
+import type { SubmitAnswersRequest, SubmitAnswersResponse } from '@/types/question';
 
 export const answerService = {
-  submitAnswers: (sessionId: string, body: SubmitAnswersRequest): Promise<unknown> =>
-    api.post<unknown>(`/sessions/${sessionId}/answers`, body),
+  submitAnswers: (sessionId: string, body: SubmitAnswersRequest): Promise<SubmitAnswersResponse> =>
+    api.post<SubmitAnswersResponse>(`/sessions/${sessionId}/answers`, body),
 };

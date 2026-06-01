@@ -7,7 +7,7 @@ import type {
   AdvanceRequest,
   SessionStateEvent,
 } from '@/types/session';
-import type { QuestionOut } from '@/types/question';
+import type { QuestionOut, HasAnsweredResponse } from '@/types/question';
 import type { ResultsResponse } from '@/types/result';
 
 export const sessionService = {
@@ -25,6 +25,9 @@ export const sessionService = {
 
   getQuestions: (sessionId: string): Promise<QuestionOut[]> =>
     api.get<QuestionOut[]>(`/sessions/${sessionId}/questions`),
+
+  hasParticipantAnswered: (sessionId: string, participantId: string): Promise<HasAnsweredResponse> =>
+    api.get<HasAnsweredResponse>(`/sessions/${sessionId}/participants/${participantId}/answered`),
 
   getResults: (sessionId: string): Promise<ResultsResponse> =>
     api.get<ResultsResponse>(`/sessions/${sessionId}/results`),
