@@ -1,4 +1,3 @@
-// pages/WelcomePage.tsx
 import { Button } from "@/components/ui/Button";
 import { TypographyH1, TypographyP } from "@/components/ui/Typography";
 import { HeroCircles } from "@/components/ui/HeroCircles";
@@ -19,7 +18,7 @@ export function WelcomePage() {
 	return (
 		<div
 			id="welcome-page"
-			className="min-h-screen flex flex-col items-center justify-center text-center px-6"
+			className="flex flex-col items-center justify-center min-h-screen px-6 text-center"
 		>
 			<TypographyH1 className="text-7xl tracking-[-0.04em] text-lmk-dark mb-4">
 				lmk
