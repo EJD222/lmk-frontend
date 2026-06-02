@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
 import { Wordmark } from "@/components/common/Wordmark";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
+import { TextButton } from "@/components/common/TextButton";
 import { notifySuccess, notifyError } from "@/lib/notify";
 import { buildSessionPath } from "@/common/routes";
 import { SharePageState } from "@/types/navigation";
@@ -53,7 +54,7 @@ export function ShareJoinLinkPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center text-center px-6">
+    <div className="flex flex-col items-center justify-center min-h-screen px-6 text-center">
       <div className="w-full max-w-[400px] flex flex-col items-center">
         <Wordmark className="self-start mb-12" />
 
@@ -65,7 +66,7 @@ export function ShareJoinLinkPage() {
           {shareUrl}
         </div>
 
-        <div className="w-full flex flex-col gap-3 mb-8">
+        <div className="flex flex-col w-full gap-3 mb-8">
           <PrimaryButton onClick={handleCopy}>Copy link</PrimaryButton>
           {"share" in navigator && (
             <Button
@@ -83,12 +84,9 @@ export function ShareJoinLinkPage() {
           share this with your group. we'll wait.
         </p>
 
-        <button
-          onClick={handleContinueToQuestions}
-          className="mt-10 bg-transparent border-none text-lmk-primary font-semibold text-[16px] cursor-pointer py-2 hover:opacity-75 transition-opacity"
-        >
+        <TextButton onClick={handleContinueToQuestions} className="mt-10 text-[16px]">
           continue to questions →
-        </button>
+        </TextButton>
       </div>
     </div>
   );

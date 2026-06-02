@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
+import { TextButton } from "@/components/common/TextButton";
 import { useCreateSession } from "./CreateSessionContext";
 
 export function ContextForm() {
@@ -42,12 +43,9 @@ export function ContextForm() {
 
       <div className="mt-auto md:mt-8 flex flex-col items-center gap-3">
         <PrimaryButton onClick={handleSubmit}>Continue</PrimaryButton>
-        <button
-          onClick={handleSubmit}
-          className="bg-transparent border-none text-lmk-primary font-semibold text-[14px] cursor-pointer py-2 hover:opacity-75 transition-opacity"
-        >
+        <TextButton onClick={handleSubmit} className="text-[14px]">
           skip for now
-        </button>
+        </TextButton>
       </div>
     </div>
   );

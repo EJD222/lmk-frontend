@@ -30,10 +30,7 @@ export function ByTheNumbersPage() {
             />
           ))}
 
-          <div className="bg-black/[0.04] rounded-xl p-4">
-            <p className="font-brand font-semibold text-[11px] tracking-[0.08em] uppercase text-lmk-dark/50 mb-2">
-              VIBE
-            </p>
+          <ResultCard label="VIBE">
             <div className="flex flex-wrap gap-2 mt-2">
               <span className="px-3 py-1 rounded-full font-brand text-[13px] font-medium bg-lmk-secondary/10 text-lmk-secondary">
                 indoor
@@ -45,7 +42,7 @@ export function ByTheNumbersPage() {
                 Saturday AM
               </span>
             </div>
-          </div>
+          </ResultCard>
         </div>
       </div>
 

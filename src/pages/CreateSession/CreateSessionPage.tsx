@@ -5,6 +5,7 @@ import { ContextForm } from "./ContextForm";
 import { GeneratingQuestions } from "@/pages/Loading/GeneratingQuestions";
 import { Wordmark } from "@/components/common/Wordmark";
 import { BackButton } from "@/components/common/BackButton";
+import { ProgressBar } from "@/components/common/ProgressBar";
 
 const STEP_PROGRESS = {
   "host-topic": 50,
@@ -32,12 +33,7 @@ function CreateSessionContent() {
       </header>
 
       <div className="px-6 mb-6 w-full max-w-[600px] mx-auto">
-        <div className="h-[3px] bg-lmk-dark/[0.08] rounded-full overflow-hidden">
-          <div
-            className="h-full bg-lmk-primary rounded-full transition-[width] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
-            style={{ width: `${STEP_PROGRESS[step]}%` }}
-          />
-        </div>
+        <ProgressBar value={STEP_PROGRESS[step]} />
       </div>
 
       <div className="flex flex-col flex-1 px-6 pb-8 w-full max-w-[600px] mx-auto">

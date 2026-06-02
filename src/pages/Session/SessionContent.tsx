@@ -6,6 +6,7 @@ import { LoadingQuestions } from "@/pages/Loading/LoadingQuestions";
 import { GeneratingResults } from "@/pages/Loading/GeneratingResults";
 import { Wordmark } from "@/components/common/Wordmark";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
+import { ProgressBar } from "@/components/common/ProgressBar";
 import { Button } from "@/components/ui/Button";
 import { canAdvanceQuestion } from "@/lib/question";
 import { MECHANIC } from "@/types/question";
@@ -46,12 +47,7 @@ export function SessionContent() {
       </header>
 
       <div className="px-6 w-full max-w-[600px] mx-auto">
-        <div className="h-[3px] bg-lmk-dark/[0.08] rounded-full overflow-hidden">
-          <div
-            className="h-full bg-lmk-primary rounded-full transition-[width] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
+        <ProgressBar value={progress} />
         <p className="text-center text-[11px] font-bold uppercase tracking-[0.08em] text-lmk-dark/40 mt-3">
           question {currentIndex + 1} of {total}
         </p>
