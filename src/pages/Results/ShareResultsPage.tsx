@@ -1,6 +1,4 @@
-import React from "react";
-
-const ShareResultsPage = () => {
+export function ShareResultsPage() {
   return (
     <div className="flex flex-col min-h-screen bg-lmk-dark text-lmk-light">
       <div className="flex-1 flex items-center justify-center">
@@ -34,6 +32,4 @@ const ShareResultsPage = () => {
       </div>
     </div>
   );
-};
-
-export default ShareResultsPage;
+}

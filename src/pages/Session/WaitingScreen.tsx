@@ -1,8 +1,7 @@
 import { Wordmark } from "@/components/common/Wordmark";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { useSession } from "./SessionContext";
-
-const DOT_COLORS = ["#FF6B35", "#5B2EFF", "#00D4AA", "#FFE14D"];
+import { DOT_COLORS } from "@/lib/constants";
 
 export function WaitingScreen() {
   const { isHost, isAdvancing, handleAdvance } = useSession();

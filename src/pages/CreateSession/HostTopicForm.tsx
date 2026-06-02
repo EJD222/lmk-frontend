@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
+import { FormInput } from "@/components/common/FormInput";
 import { useCreateSession } from "./CreateSessionContext";
 
 export function HostTopicForm() {
@@ -17,23 +18,13 @@ export function HostTopicForm() {
       </p>
 
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-1.5">
-          <label className="text-[11px] font-bold uppercase tracking-[0.12em] text-lmk-dark/50">
-            your name
-          </label>
-          <input
-            type="text"
-            value={formData.hostName}
-            onChange={(e) => setHostName(e.target.value)}
-            placeholder="keep it fun"
-            className={cn(
-              "w-full h-[52px] px-4 rounded-xl border border-lmk-dark/10 bg-white",
-              "font-medium text-[16px] text-lmk-dark placeholder:text-lmk-dark/35",
-              "outline-none transition-[border-color,box-shadow]",
-              "focus:border-lmk-secondary focus:shadow-[0_0_0_4px_rgba(91,46,255,0.15)]"
-            )}
-          />
-        </div>
+        <FormInput
+          label="your name"
+          type="text"
+          value={formData.hostName}
+          onChange={(e) => setHostName(e.target.value)}
+          placeholder="keep it fun"
+        />
 
         <div className="flex flex-col gap-1.5">
           <div className="flex items-center justify-between">

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Wordmark } from "@/components/common/Wordmark";
+import { DOT_COLORS } from "@/lib/constants";
 
 interface GenericLoadingScreenProps {
   messages: string[];
 }
-
-const DOT_COLORS = ["#FF6B35", "#5B2EFF", "#00D4AA", "#FFE14D"];
 
 export function GenericLoadingScreen({ messages }: GenericLoadingScreenProps) {
   const [msgIndex, setMsgIndex] = useState(0);

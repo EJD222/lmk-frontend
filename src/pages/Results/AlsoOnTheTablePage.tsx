@@ -1,13 +1,13 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { SHARE_RESULTS_ROUTE } from "@/common/routes";
 import { TypographyH2 } from "@/components/ui/Typography";
+import { TapToContinue } from "@/components/common/TapToContinue";
 
 interface RunnerUpItem {
   name: string;
   desc: string;
   count: string;
-  accentColor: string;
+  accentClass: string;
 }
 
 const runners: RunnerUpItem[] = [
@@ -15,23 +15,23 @@ const runners: RunnerUpItem[] = [
     name: "Farmers Market",
     desc: "outdoor option, free entry, Saturday AM",
     count: "4/6",
-    accentColor: "#FF6B35",
+    accentClass: "bg-lmk-primary",
   },
   {
     name: "Brunch Spot",
     desc: "accommodates dietary needs, indoor",
     count: "4/6",
-    accentColor: "#00D4AA",
+    accentClass: "bg-lmk-tertiary",
   },
   {
     name: "Morning Hike",
     desc: "free, but 1 person needs a ride",
     count: "3/6",
-    accentColor: "#FFE14D",
+    accentClass: "bg-lmk-accent",
   },
 ];
 
-const AlsoOnTheTablePage = () => {
+export function AlsoOnTheTablePage() {
   const navigate = useNavigate();
 
   return (
@@ -48,13 +48,10 @@ const AlsoOnTheTablePage = () => {
               key={runner.name}
               className="flex gap-3 p-4 bg-white rounded-xl border border-black/[0.06] items-stretch"
             >
-              <div
-                className="w-1 rounded-sm flex-shrink-0"
-                style={{ background: runner.accentColor }}
-              />
+              <div className={`w-1 rounded-sm flex-shrink-0 ${runner.accentClass}`} />
               <div className="flex-1">
                 <p className="font-brand font-semibold text-[16px]">{runner.name}</p>
-                <p className="font-brand text-[13px] text-[#888888] mt-1">{runner.desc}</p>
+                <p className="font-brand text-[13px] text-lmk-dark/50 mt-1">{runner.desc}</p>
               </div>
               <p className="font-brand font-bold text-[14px] text-lmk-tertiary whitespace-nowrap self-center">
                 {runner.count}
@@ -64,11 +61,7 @@ const AlsoOnTheTablePage = () => {
         </div>
       </div>
 
-      <div className="absolute text-xs -translate-x-1/2 opacity-50 bottom-8 left-1/2 animate-bounce">
-        tap to continue ↑
-      </div>
+      <TapToContinue className="opacity-50" />
     </div>
   );
-};
-
-export default AlsoOnTheTablePage;
+}

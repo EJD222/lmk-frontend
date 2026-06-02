@@ -1,8 +1,8 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { NO_CONSENSUS_DIVERGED_ROUTE } from "@/common/routes";
+import { TapToContinue } from "@/components/common/TapToContinue";
 
-const NoConsensusIntroPage = () => {
+export function NoConsensusIntroPage() {
   const navigate = useNavigate();
 
   return (
@@ -20,11 +20,7 @@ const NoConsensusIntroPage = () => {
           </p>
         </div>
       </div>
-      <div className="absolute text-xs text-lmk-light -translate-x-1/2 opacity-40 bottom-8 left-1/2 animate-bounce">
-        tap to continue ↑
-      </div>
+      <TapToContinue />
     </div>
   );
-};
-
-export default NoConsensusIntroPage;
+}

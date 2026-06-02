@@ -4,6 +4,7 @@ import { HostTopicForm } from "./HostTopicForm";
 import { ContextForm } from "./ContextForm";
 import { GeneratingQuestions } from "@/pages/Loading/GeneratingQuestions";
 import { Wordmark } from "@/components/common/Wordmark";
+import { BackButton } from "@/components/common/BackButton";
 
 const STEP_PROGRESS = {
   "host-topic": 50,
@@ -19,23 +20,14 @@ function CreateSessionContent() {
   }
 
   const handleBack = () => {
-    if (step === "host-topic") {
-      navigate(-1);
-    } else {
-      goToPrev();
-    }
+    if (step === "host-topic") navigate(-1);
+    else goToPrev();
   };
 
   return (
     <div className="min-h-screen flex flex-col">
       <header className="flex items-center gap-3 px-6 pt-12 pb-4 w-full max-w-[600px] mx-auto">
-        <button
-          onClick={handleBack}
-          aria-label="Go back"
-          className="w-9 h-9 flex items-center justify-center rounded-full bg-lmk-dark/[0.06] text-lmk-dark cursor-pointer text-lg transition-colors hover:bg-lmk-dark/10 active:bg-lmk-dark/[0.12]"
-        >
-          ←
-        </button>
+        <BackButton onClick={handleBack} />
         <Wordmark />
       </header>
 

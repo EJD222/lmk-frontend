@@ -1,8 +1,8 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { CONSENSUS_RESULT_ROUTE } from "@/common/routes";
+import { TapToContinue } from "@/components/common/TapToContinue";
 
-const ResultsPage = () => {
+export function ResultsPage() {
   const navigate = useNavigate();
 
   return (
@@ -19,11 +19,7 @@ const ResultsPage = () => {
           <p className="font-brand text-[13px] opacity-50">6 friends · 5 questions</p>
         </div>
       </div>
-      <div className="absolute text-xs text-lmk-light -translate-x-1/2 opacity-40 bottom-8 left-1/2 animate-bounce">
-        tap to continue ↑
-      </div>
+      <TapToContinue />
     </div>
   );
-};
-
-export default ResultsPage;
+}

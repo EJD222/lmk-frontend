@@ -1,15 +1,14 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { SPLIT_RESULT_ROUTE } from "@/common/routes";
+import { TapToContinue } from "@/components/common/TapToContinue";
 
-const ConsensusPage = () => {
+export function ConsensusPage() {
   const navigate = useNavigate();
 
   return (
     <div
       onClick={() => navigate(SPLIT_RESULT_ROUTE)}
-      className="flex flex-col min-h-screen bg-lmk-tertiary cursor-pointer"
-      style={{ color: "#003D30" }}
+      className="flex flex-col min-h-screen bg-lmk-tertiary text-lmk-tertiary-fg cursor-pointer"
     >
       <div className="flex-1 flex items-center justify-center">
         <div className="px-6 w-full max-w-[600px] mx-auto text-center">
@@ -24,11 +23,7 @@ const ConsensusPage = () => {
           </p>
         </div>
       </div>
-      <div className="absolute text-xs -translate-x-1/2 opacity-40 bottom-8 left-1/2 animate-bounce">
-        tap to continue ↑
-      </div>
+      <TapToContinue />
     </div>
   );
-};
-
-export default ConsensusPage;
+}

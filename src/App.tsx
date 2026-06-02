@@ -22,16 +22,16 @@ import {
   NO_CONSENSUS_DIVERGED_ROUTE,
   NO_CONSENSUS_WHAT_NOW_ROUTE,
 } from "@/common/routes";
-import ResultsPage from "./pages/Results/ResultsPage";
-import ConsensusPage from "./pages/Results/ConsensusPage";
-import SplitRevealPage from "./pages/Results/SplitRevealPage";
-import ByTheNumbersPage from "./pages/Results/ByTheNumbersPage";
-import AIRecommendationPage from "./pages/Results/AIRecommendationPage";
-import AlsoOnTheTablePage from "./pages/Results/AlsoOnTheTablePage";
-import ShareResultsPage from "./pages/Results/ShareResultsPage";
-import NoConsensusIntroPage from "./pages/Results/NoConsensusIntroPage";
-import NoConsensusDivergedPage from "./pages/Results/NoConsensusDivergedPage";
-import NoConsensusWhatNowPage from "./pages/Results/NoConsensusWhatNowPage";
+import { ResultsPage } from "./pages/Results/ResultsPage";
+import { ConsensusPage } from "./pages/Results/ConsensusPage";
+import { SplitRevealPage } from "./pages/Results/SplitRevealPage";
+import { ByTheNumbersPage } from "./pages/Results/ByTheNumbersPage";
+import { AIRecommendationPage } from "./pages/Results/AIRecommendationPage";
+import { AlsoOnTheTablePage } from "./pages/Results/AlsoOnTheTablePage";
+import { ShareResultsPage } from "./pages/Results/ShareResultsPage";
+import { NoConsensusIntroPage } from "./pages/Results/NoConsensusIntroPage";
+import { NoConsensusDivergedPage } from "./pages/Results/NoConsensusDivergedPage";
+import { NoConsensusWhatNowPage } from "./pages/Results/NoConsensusWhatNowPage";
 
 function App() {
   return (

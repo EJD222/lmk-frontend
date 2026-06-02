@@ -1,15 +1,15 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AI_RECOMMENDATION_RESULT_ROUTE } from "@/common/routes";
-import ResultCard from "@/components/common/ResultCard";
+import { ResultCard } from "@/components/common/ResultCard";
 import { TypographyH2 } from "@/components/ui/Typography";
+import { TapToContinue } from "@/components/common/TapToContinue";
 
 const mockMetrics = [
   { label: "BUDGET RANGE", value: "$20 – $50", progress: 50 },
   { label: "ENERGY LEVEL", value: "leaning chill 😴", progress: 36 },
 ];
 
-const ByTheNumbersPage = () => {
+export function ByTheNumbersPage() {
   const navigate = useNavigate();
 
   return (
@@ -31,14 +31,14 @@ const ByTheNumbersPage = () => {
           ))}
 
           <div className="bg-black/[0.04] rounded-xl p-4">
-            <p className="font-brand font-semibold text-[11px] tracking-[0.08em] uppercase text-[#888888] mb-2">
+            <p className="font-brand font-semibold text-[11px] tracking-[0.08em] uppercase text-lmk-dark/50 mb-2">
               VIBE
             </p>
             <div className="flex flex-wrap gap-2 mt-2">
               <span className="px-3 py-1 rounded-full font-brand text-[13px] font-medium bg-lmk-secondary/10 text-lmk-secondary">
                 indoor
               </span>
-              <span className="px-3 py-1 rounded-full font-brand text-[13px] font-medium bg-lmk-tertiary/10 text-emerald-700">
+              <span className="px-3 py-1 rounded-full font-brand text-[13px] font-medium bg-lmk-tertiary/10 text-[#008866]">
                 low-key
               </span>
               <span className="px-3 py-1 rounded-full font-brand text-[13px] font-medium bg-lmk-primary/10 text-lmk-primary">
@@ -49,11 +49,7 @@ const ByTheNumbersPage = () => {
         </div>
       </div>
 
-      <div className="absolute text-xs -translate-x-1/2 opacity-50 bottom-8 left-1/2 animate-bounce">
-        tap to continue ↑
-      </div>
+      <TapToContinue className="opacity-50" />
     </div>
   );
-};
-
-export default ByTheNumbersPage;
+}

@@ -4,10 +4,10 @@ interface ResultCardProps {
   progress: number;
 }
 
-export default function ResultCard({ label, value, progress }: ResultCardProps) {
+export function ResultCard({ label, value, progress }: ResultCardProps) {
   return (
     <div className="bg-black/[0.04] rounded-xl p-4">
-      <p className="font-brand font-semibold text-[11px] tracking-[0.08em] uppercase text-[#888888] mb-2">
+      <p className="font-brand font-semibold text-[11px] tracking-[0.08em] uppercase text-lmk-dark/50 mb-2">
         {label}
       </p>
       <p className="font-brand font-bold text-[20px] mb-2">{value}</p>

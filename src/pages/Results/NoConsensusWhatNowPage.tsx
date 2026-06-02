@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { RESULTS_ROUTE } from "@/common/routes";
 
@@ -8,7 +7,7 @@ const suggestions = [
   { icon: "✌️", text: "Split into two groups (it's okay)" },
 ];
 
-const NoConsensusWhatNowPage = () => {
+export function NoConsensusWhatNowPage() {
   const navigate = useNavigate();
 
   return (
@@ -36,6 +35,4 @@ const NoConsensusWhatNowPage = () => {
       </div>
     </div>
   );
-};
-
-export default NoConsensusWhatNowPage;
+}

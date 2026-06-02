@@ -5,12 +5,7 @@ import { Wordmark } from "@/components/common/Wordmark";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { notifySuccess, notifyError } from "@/lib/notify";
 import { buildSessionPath } from "@/common/routes";
-
-interface SharePageState {
-  sessionId: string;
-  hostParticipantId: string;
-  joinLink: string;
-}
+import { SharePageState } from "@/types/navigation";
 
 export function ShareJoinLinkPage() {
   const location = useLocation();
