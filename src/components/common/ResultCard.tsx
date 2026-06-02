@@ -1,7 +1,3 @@
-import { Card, CardContent } from "../ui/Card";
-import { Progress } from "../ui/Progress";
-import { TypographyP } from "../ui/Typography";
-
 interface ResultCardProps {
   label: string;
   value: string;
@@ -10,16 +6,17 @@ interface ResultCardProps {
 
 export default function ResultCard({ label, value, progress }: ResultCardProps) {
   return (
-    <Card className="w-full max-w-xl">
-      <CardContent className="p-6 space-y-3">
-        <div className="space-y-1">
-          <TypographyP className="text-[16px] !mt-0">{label}</TypographyP>
-
-          <TypographyP className="text-[22px] font-bold !mt-0">{value}</TypographyP>
-        </div>
-
-        <Progress value={progress} />
-      </CardContent>
-    </Card>
+    <div className="bg-black/[0.04] rounded-xl p-4">
+      <p className="font-brand font-semibold text-[11px] tracking-[0.08em] uppercase text-[#888888] mb-2">
+        {label}
+      </p>
+      <p className="font-brand font-bold text-[20px] mb-2">{value}</p>
+      <div className="h-2 bg-black/[0.08] rounded-full overflow-hidden">
+        <div
+          className="h-full bg-lmk-primary rounded-full transition-all duration-700"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+    </div>
   );
 }
