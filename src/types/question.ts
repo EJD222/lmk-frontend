@@ -3,6 +3,7 @@ export const MECHANIC = {
   SLIDER: "SLIDER",
   TEXT: "TEXT",
   SWIPE: "SWIPE",
+  NUMBER: "NUMBER",
 } as const;
 
 export type Mechanic = (typeof MECHANIC)[keyof typeof MECHANIC];

@@ -1,5 +1,6 @@
 import { MultiSelectQuestion } from "./MultiSelectQuestion";
 import { TextQuestion } from "./TextQuestion";
+import { NumberQuestion } from "./NumberQuestion";
 import { SliderQuestion } from "./SliderQuestion";
 import { SwipeQuestion } from "./SwipeQuestion";
 import { MECHANIC } from "@/types/question";
@@ -15,6 +16,8 @@ export function QuestionRenderer({ question }: QuestionRendererProps) {
       return <MultiSelectQuestion question={question} />;
     case MECHANIC.TEXT:
       return <TextQuestion question={question} />;
+    case MECHANIC.NUMBER:
+      return <NumberQuestion question={question} />;
     case MECHANIC.SLIDER:
       return <SliderQuestion question={question} />;
     case MECHANIC.SWIPE:
