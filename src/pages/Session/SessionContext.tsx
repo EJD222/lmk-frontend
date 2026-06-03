@@ -87,8 +87,8 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
   }, []);
 
   const goNext = useCallback(() => {
-    setCurrentIndex((prev) => prev + 1);
-  }, []);
+    setCurrentIndex((prev) => Math.min(prev + 1, questions.length - 1));
+  }, [questions.length]);
 
   const goPrev = useCallback(() => {
     setCurrentIndex((prev) => Math.max(prev - 1, 0));
