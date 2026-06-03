@@ -7,7 +7,8 @@ interface SwipeQuestionProps {
 }
 
 export function SwipeQuestion({ question }: SwipeQuestionProps) {
-  const { setAnswer, goNext } = useSession();
+  const { setAnswer, goNext, handleSubmit, questions, currentIndex } = useSession();
+  const isLast = currentIndex === questions.length - 1;
   const cardRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -27,7 +28,8 @@ export function SwipeQuestion({ question }: SwipeQuestionProps) {
       setTimeout(() => {
         setIsExiting(false);
         setOffset(0);
-        goNext();
+        if (isLast) handleSubmit();
+        else goNext();
       }, 350);
     },
     [question.id, leftLabel, rightLabel, setAnswer, goNext]
