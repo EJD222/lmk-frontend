@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useSession } from "./SessionContext";
 import { QuestionRenderer } from "./Questions/QuestionRenderer";
-import { WaitingScreen } from "./WaitingScreen";
+import { WaitingScreen } from "@/pages/Loading/WaitingScreen";
 import { LoadingQuestions } from "@/pages/Loading/LoadingQuestions";
 import { GeneratingResults } from "@/pages/Loading/GeneratingResults";
 import { Wordmark } from "@/components/common/Wordmark";

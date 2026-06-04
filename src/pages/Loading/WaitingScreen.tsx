@@ -1,7 +1,7 @@
 import { Wordmark } from "@/components/common/Wordmark";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { LoadingDots } from "@/components/common/LoadingDots";
-import { useSession } from "./SessionContext";
+import { useSession } from "@/pages/Session/SessionContext";
 
 export function WaitingScreen() {
   const { isHost, isAdvancing, handleAdvance } = useSession();
