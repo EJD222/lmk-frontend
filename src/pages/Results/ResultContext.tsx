@@ -2,15 +2,17 @@ import React, { createContext, useCallback, useContext, useEffect, useState } fr
 import { sessionService } from "@/services/sessionService";
 import { notifyError } from "@/lib/notify";
 import { minDelay } from "@/lib/utils";
-import type { RecommendationResult } from "@/types/result";
+import type { OverallResult, RecommendationResult } from "@/types/result";
 
-type ResultPhase = "loading" | "top" | "rest";
+type ResultPhase = "loading" | "overall" | "top" | "rest" | "done";
 
 interface ResultContextValue {
   phase: ResultPhase;
+  overallResult: OverallResult | null;
   topResult: RecommendationResult | null;
   restResults: RecommendationResult[];
   advance: () => void;
+  restart: () => void;
 }
 
 const ResultContext = createContext<ResultContextValue | null>(null);
@@ -22,31 +24,45 @@ interface ResultProviderProps {
 
 export function ResultProvider({ children, sessionId }: ResultProviderProps) {
   const [phase, setPhase] = useState<ResultPhase>("loading");
+  const [overallResult, setOverallResult] = useState<OverallResult | null>(null);
   const [topResult, setTopResult] = useState<RecommendationResult | null>(null);
   const [restResults, setRestResults] = useState<RecommendationResult[]>([]);
 
   useEffect(() => {
     Promise.all([sessionService.getResults(sessionId), minDelay(2000)])
       .then(([res]) => {
-        const recommendations = res.results.filter(
-          (r) => r.type === "RECOMMENDATION"
-        ) as RecommendationResult[];
+        const overall = res.results.find((r) => r.type === "OVERALL") as OverallResult | undefined;
 
+        const recommendations = (
+          res.results.filter((r) => r.type === "RECOMMENDATION") as RecommendationResult[]
+        ).sort((a, b) => a.value.ranking - b.value.ranking);
+
+        setOverallResult(overall ?? null);
         setTopResult(recommendations[0] ?? null);
         setRestResults(recommendations.slice(1));
-        setPhase("top");
+        setPhase(overall ? "overall" : "top");
       })
       .catch(() => {
         notifyError("Failed to load results. Please try again.");
       });
   }, [sessionId]);
 
+  const initialPhase: ResultPhase = overallResult ? "overall" : "top";
+
   const advance = useCallback(() => {
-    setPhase((prev) => (prev === "top" ? "rest" : "top"));
+    setPhase((prev) => {
+      if (prev === "overall") return "top";
+      if (prev === "top") return "rest";
+      return "done";
+    });
   }, []);
 
+  const restart = useCallback(() => {
+    setPhase(initialPhase);
+  }, [initialPhase]);
+
   return (
-    <ResultContext.Provider value={{ phase, topResult, restResults, advance }}>
+    <ResultContext.Provider value={{ phase, overallResult, topResult, restResults, advance, restart }}>
       {children}
     </ResultContext.Provider>
   );
