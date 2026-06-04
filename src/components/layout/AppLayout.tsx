@@ -8,13 +8,18 @@ interface AppLayoutProps {
 
 export function AppLayout({ children, className }: AppLayoutProps) {
   return (
-    <div className={cn("min-h-screen bg-background", className)}>
-      <main className="w-full max-w-[1200px] mx-auto px-4">{children}</main>
+    <div className={cn("relative min-h-screen", className)}>
+      {/* Fixed paper grain behind every screen — gives the whole app its hand-made feel */}
+      <div className="paper-bg" aria-hidden="true" />
+
+      <main className="w-full max-w-[1200px] mx-auto">{children}</main>
+
       <Toaster
         position="bottom-center"
         toastOptions={{
           classNames: {
-            toast: "font-body text-[14px]",
+            toast:
+              "font-body text-[14px] !rounded-sketch !border-[2px] !border-lmk-ink !bg-lmk-ink !text-lmk-paper !shadow-sketch",
           },
         }}
       />
