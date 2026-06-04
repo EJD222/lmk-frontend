@@ -7,11 +7,13 @@ interface SwipeQuestionProps {
 }
 
 export function SwipeQuestion({ question }: SwipeQuestionProps) {
-  const { setAnswer, goNext } = useSession();
+  const { setAnswer, goNext, handleSubmit, questions, currentIndex } = useSession();
+  const isLast = currentIndex === questions.length - 1;
   const cardRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+  const [showSubmit, setShowSubmit] = useState(false);
   const startXRef = useRef(0);
 
   const SWIPE_THRESHOLD = 100;
@@ -27,10 +29,11 @@ export function SwipeQuestion({ question }: SwipeQuestionProps) {
       setTimeout(() => {
         setIsExiting(false);
         setOffset(0);
-        goNext();
+        if (isLast) setShowSubmit(true);
+        else goNext();
       }, 350);
     },
-    [question.id, leftLabel, rightLabel, setAnswer, goNext]
+    [question.id, leftLabel, rightLabel, setAnswer, goNext, isLast]
   );
 
   const onPointerDown = (e: React.PointerEvent) => {
@@ -62,6 +65,22 @@ export function SwipeQuestion({ question }: SwipeQuestionProps) {
   const exitTransform = isExiting
     ? `translateX(${offset > 0 ? 600 : -600}px) rotate(${offset > 0 ? 30 : -30}deg)`
     : undefined;
+
+  if (showSubmit) {
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center gap-6 px-6">
+        <p className="font-brand font-bold text-[22px] text-lmk-dark text-center">
+          Ready to submit?
+        </p>
+        <button
+          onClick={handleSubmit}
+          className="px-10 py-4 bg-lmk-secondary text-white font-brand font-bold text-[18px] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] active:scale-95 transition-transform"
+        >
+          Submit
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="flex-1 flex items-center justify-center relative overflow-hidden px-6">
