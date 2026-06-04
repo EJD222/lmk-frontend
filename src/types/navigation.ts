@@ -8,3 +8,8 @@ export interface SessionPageState {
   sessionId: string;
   participantId: string;
 }
+
+export interface ResultsPageState {
+  sessionId: string;
+  participantId: string;
+}
