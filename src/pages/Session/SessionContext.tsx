@@ -52,7 +52,12 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
       minDelay(2000),
     ])
       .then(([qs, info, answeredRes]) => {
-        const sorted = [...qs].sort((a, b) => a.display_order - b.display_order);
+        const sorted = [...qs]
+          .sort((a, b) => a.display_order - b.display_order)
+          .map((q) => ({
+            ...q,
+            options: [...q.options].sort((a, b) => a.display_order - b.display_order),
+          }));
         setQuestions(sorted);
         setSessionInfo(info);
 
@@ -98,6 +103,7 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
 
   const handleSubmit = useCallback(() => {
     setIsSubmitting(true);
+    setPhase("waiting");
     const submissionAnswers: AnswerSubmission[] = Object.entries(answers).map(
       ([question_id, value]) => ({ question_id, value })
     );
@@ -106,10 +112,10 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
       .then(() => {
         setIsSubmitting(false);
         notifySuccess("Answers submitted!");
-        setPhase("waiting");
       })
       .catch(() => {
         setIsSubmitting(false);
+        setPhase("answering");
         notifyError("Failed to submit answers. Please try again.");
       });
   }, [sessionId, participantId, answers]);
