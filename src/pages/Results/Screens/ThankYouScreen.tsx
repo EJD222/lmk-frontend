@@ -2,7 +2,6 @@ import { RefreshCw } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { SecondaryButton } from "@/components/common/SecondaryButton";
-import { CREATE_SESSION_ROUTE } from "@/common/routes";
 import { useResult } from "../ResultContext";
 
 export function ThankYouScreen() {
@@ -30,7 +29,7 @@ export function ThankYouScreen() {
       </div>
 
       <div className="px-6 pb-10 flex flex-col gap-3.5 w-full max-w-[600px] mx-auto">
-        <PrimaryButton onClick={() => navigate(CREATE_SESSION_ROUTE)}>New session</PrimaryButton>
+        <PrimaryButton onClick={() => navigate("/", { replace: true })}>New session</PrimaryButton>
         <SecondaryButton
           tone="outline"
           onClick={restart}
