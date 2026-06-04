@@ -33,18 +33,18 @@
   background-blend-mode: multiply;
 }
 .surface-dark {
-  background-color: #141210;
+  background-color: #2e2922;
   background-image: var(--paper-texture);
   background-size: cover;
   background-position: center;
-  background-blend-mode: multiply;
+  background-blend-mode: overlay;
 }
 .surface-blue {
   background-color: #1529d6;
   background-image: var(--paper-texture);
   background-size: cover;
   background-position: center;
-  background-blend-mode: multiply;
+  background-blend-mode: soft-light;
 }
 
 /* ---------- EXCALIDRAW CROSS-HATCH SHADING ----------
