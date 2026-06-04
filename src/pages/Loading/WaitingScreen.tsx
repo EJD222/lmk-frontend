@@ -1,4 +1,4 @@
-import { Wordmark } from "@/components/common/Wordmark";
+import { NavHeader } from "@/components/common/NavHeader";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { LoadingDots } from "@/components/common/LoadingDots";
 import { useSession } from "@/pages/Session/SessionContext";
@@ -7,19 +7,21 @@ export function WaitingScreen() {
   const { isHost, isAdvancing, handleAdvance } = useSession();
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="px-6 pt-12 pb-4 w-full max-w-[600px] mx-auto">
-        <Wordmark />
-      </header>
+    <div className="surface-paper min-h-screen flex flex-col">
+      <NavHeader />
 
-      <div className="flex flex-col flex-1 items-center justify-center text-center px-6 gap-8">
+      <div className="flex flex-col flex-1 items-center justify-center text-center px-6 gap-9">
         <LoadingDots size="sm" dim />
 
-        <h2 className="font-brand font-bold text-[28px] leading-[1.2] tracking-tight">
+        <h2 className="font-display text-[44px] leading-[1.04] text-lmk-ink">
           waiting for host
           <br />
           to advance
         </h2>
+
+        <p className="font-body text-[16px] text-lmk-ink/55 max-w-[280px] leading-relaxed">
+          we'll let you know when everyone's answers are in.
+        </p>
 
         {isHost && (
           <div className="w-full max-w-[400px]">
