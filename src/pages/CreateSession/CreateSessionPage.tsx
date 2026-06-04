@@ -3,14 +3,15 @@ import { CreateSessionProvider, useCreateSession } from "./CreateSessionContext"
 import { HostTopicForm } from "./HostTopicForm";
 import { ContextForm } from "./ContextForm";
 import { GeneratingQuestions } from "@/pages/Loading/GeneratingQuestions";
-import { Wordmark } from "@/components/common/Wordmark";
-import { BackButton } from "@/components/common/BackButton";
-import { ProgressBar } from "@/components/common/ProgressBar";
+import { NavHeader } from "@/components/common/NavHeader";
+import { ProgressDashes } from "@/components/common/ProgressDashes";
 
-const STEP_PROGRESS = {
-  "host-topic": 50,
-  context: 100,
+const STEP_INDEX = {
+  "host-topic": 1,
+  context: 2,
 } as const;
+
+const TOTAL_STEPS = 2;
 
 function CreateSessionContent() {
   const { step, isLoading, goToPrev } = useCreateSession();
@@ -26,14 +27,11 @@ function CreateSessionContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="flex items-center gap-3 px-6 pt-12 pb-4 w-full max-w-[600px] mx-auto">
-        <BackButton onClick={handleBack} />
-        <Wordmark />
-      </header>
+    <div className="surface-paper min-h-screen flex flex-col">
+      <NavHeader onBack={handleBack} step={`${STEP_INDEX[step]} of ${TOTAL_STEPS}`} />
 
-      <div className="px-6 mb-6 w-full max-w-[600px] mx-auto">
-        <ProgressBar value={STEP_PROGRESS[step]} />
+      <div className="px-6 mb-7 w-full max-w-[600px] mx-auto">
+        <ProgressDashes total={TOTAL_STEPS} current={STEP_INDEX[step]} />
       </div>
 
       <div className="flex flex-col flex-1 px-6 pb-8 w-full max-w-[600px] mx-auto">
