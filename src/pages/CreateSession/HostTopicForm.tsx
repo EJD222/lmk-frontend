@@ -1,0 +1,66 @@
+import { cn } from "@/lib/utils";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
+import { FormInput } from "@/components/common/FormInput";
+import { useCreateSession } from "./CreateSessionContext";
+
+export function HostTopicForm() {
+  const { formData, setHostName, setTopic, goToNext } = useCreateSession();
+
+  const isValid = formData.hostName.trim().length > 0 && formData.topic.trim().length > 0;
+
+  return (
+    <div className="flex flex-col flex-1">
+      <h1 className="font-brand text-[44px] leading-none uppercase tracking-tight mb-2">
+        let's get started
+      </h1>
+      <p className="text-[15px] leading-relaxed text-lmk-dark/50 mb-8">
+        tell us who you are and what you're deciding
+      </p>
+
+      <div className="flex flex-col gap-4">
+        <FormInput
+          label="your name"
+          type="text"
+          value={formData.hostName}
+          onChange={(e) => setHostName(e.target.value)}
+          placeholder="keep it fun"
+        />
+
+        <div className="flex flex-col gap-1.5">
+          <div className="flex items-center justify-between">
+            <label className="text-[11px] font-bold uppercase tracking-[0.12em] text-lmk-dark/50">
+              what are you deciding?
+            </label>
+            <span
+              className={cn(
+                "text-[11px] font-medium tabular-nums transition-colors",
+                formData.topic.length >= 250 ? "text-lmk-primary" : "text-lmk-dark/30"
+              )}
+            >
+              {formData.topic.length}/250
+            </span>
+          </div>
+          <textarea
+            value={formData.topic}
+            onChange={(e) => setTopic(e.target.value)}
+            placeholder="e.g. where should we hang out this Saturday?"
+            maxLength={250}
+            rows={4}
+            className={cn(
+              "w-full px-4 py-3.5 rounded-xl border border-lmk-dark/10 bg-white",
+              "font-medium text-[16px] text-lmk-dark placeholder:text-lmk-dark/35",
+              "outline-none transition-[border-color,box-shadow] resize-none",
+              "focus:border-lmk-secondary focus:shadow-[0_0_0_4px_rgba(91,46,255,0.15)]"
+            )}
+          />
+        </div>
+      </div>
+
+      <div className="mt-auto md:mt-8">
+        <PrimaryButton disabled={!isValid} onClick={goToNext}>
+          Continue
+        </PrimaryButton>
+      </div>
+    </div>
+  );
+}

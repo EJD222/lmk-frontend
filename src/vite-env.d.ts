@@ -1,3 +1,9 @@
 /// <reference types="vite/client" />
 
-declare var pendo: any;
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
