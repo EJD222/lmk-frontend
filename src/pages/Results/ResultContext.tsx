@@ -4,10 +4,11 @@ import { notifyError } from "@/lib/notify";
 import { minDelay } from "@/lib/utils";
 import type { OverallResult, RecommendationResult } from "@/types/result";
 
-type ResultPhase = "loading" | "overall" | "top" | "rest" | "done";
+type ResultPhase = "loading" | "overall" | "top" | "rest" | "done" | "error";
 
 interface ResultContextValue {
   phase: ResultPhase;
+  isAgreement: boolean;
   overallResult: OverallResult | null;
   topResult: RecommendationResult | null;
   restResults: RecommendationResult[];
@@ -44,25 +45,27 @@ export function ResultProvider({ children, sessionId }: ResultProviderProps) {
       })
       .catch(() => {
         notifyError("Failed to load results. Please try again.");
+        setPhase("error");
       });
   }, [sessionId]);
 
+  const isAgreement = overallResult?.value?.is_agreement ?? true;
   const initialPhase: ResultPhase = overallResult ? "overall" : "top";
 
   const advance = useCallback(() => {
     setPhase((prev) => {
-      if (prev === "overall") return "top";
+      if (prev === "overall") return isAgreement ? "top" : "done";
       if (prev === "top") return "rest";
       return "done";
     });
-  }, []);
+  }, [isAgreement]);
 
   const restart = useCallback(() => {
     setPhase(initialPhase);
   }, [initialPhase]);
 
   return (
-    <ResultContext.Provider value={{ phase, overallResult, topResult, restResults, advance, restart }}>
+    <ResultContext.Provider value={{ phase, isAgreement, overallResult, topResult, restResults, advance, restart }}>
       {children}
     </ResultContext.Provider>
   );

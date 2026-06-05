@@ -6,7 +6,7 @@ import { useResult } from "../ResultContext";
 
 export function ThankYouScreen() {
   const navigate = useNavigate();
-  const { restart } = useResult();
+  const { restart, isAgreement } = useResult();
 
   return (
     <div className="surface-dark min-h-screen flex flex-col">
@@ -15,10 +15,14 @@ export function ThankYouScreen() {
           lmk
         </span>
 
-        <h1 className="font-display text-[46px] leading-[1.05] text-lmk-paper">that's a wrap!</h1>
+        <h1 className="font-display text-[46px] leading-[1.05] text-lmk-paper">
+          {isAgreement ? "that's a wrap!" : "still deciding?"}
+        </h1>
 
         <p className="font-body text-[17px] leading-relaxed text-lmk-paper/60 max-w-[300px]">
-          hope lmk helped your group decide.
+          {isAgreement
+            ? "hope lmk helped your group decide."
+            : "mixed signals happen. try narrowing it down or splitting up for the night."}
         </p>
 
         <p className="font-display text-[26px] leading-tight text-lmk-paper/90 mt-2">

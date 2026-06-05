@@ -1,5 +1,5 @@
 import { useRef, useCallback, useState } from "react";
-import { Check, MapPin, ThumbsDown, ThumbsUp } from "lucide-react";
+import { Check, HelpCircle, ThumbsDown, ThumbsUp } from "lucide-react";
 import { useSession } from "../SessionContext";
 import type { QuestionOut } from "@/types/question";
 
@@ -111,7 +111,7 @@ export function SwipeQuestion({ question }: SwipeQuestionProps) {
           opacity: isExiting ? 0 : 1,
         }}
       >
-        <MapPin className="w-[64px] h-[64px] text-white/90" strokeWidth={2} />
+        <HelpCircle className="w-[64px] h-[64px] text-white/90" strokeWidth={2} />
         <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/75">
           swipe to answer
         </p>

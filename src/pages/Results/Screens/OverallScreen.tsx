@@ -25,7 +25,7 @@ export function OverallScreen() {
           className="text-[13px] font-semibold uppercase tracking-[0.12em] animate-scribble-in"
           style={{
             animationDelay: "0.25s",
-            color: is_agreement ? "#6B7FF5" : "#C5CDF8",
+            color: is_agreement ? "#6B7FF5" : "#F5A623",
           }}
         >
           {is_agreement ? "your group agrees" : "mixed signals"}
