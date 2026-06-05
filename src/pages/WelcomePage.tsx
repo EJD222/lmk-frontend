@@ -19,6 +19,7 @@ export function WelcomePage() {
     <div
       id="welcome-page"
       className="surface-paper flex flex-col items-center justify-center min-h-screen px-6 text-center"
+      style={{ "--paper-texture": 'url("/textures/paper3.jpg")' } as React.CSSProperties}
     >
       <h1 className="font-display text-[104px] leading-[0.9] text-lmk-ink -rotate-2 mb-2">lmk</h1>
 
