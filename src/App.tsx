@@ -7,6 +7,8 @@ import { JoinSessionPage } from "@/pages/JoinSession/JoinSessionPage";
 import { ShareJoinLinkPage } from "@/pages/ShareLink/ShareJoinLinkPage";
 import { SessionPage } from "@/pages/Session/SessionPage";
 import { ResultsPage } from "@/pages/Results/ResultsPage";
+import { DevResultsPage } from "@/pages/Results/DevResultsPage";
+import { DevSessionPage } from "@/pages/Session/DevSessionPage";
 import {
   CREATE_SESSION_ROUTE,
   JOIN_SESSION_ROUTE,
@@ -39,6 +41,8 @@ function App() {
           <Route path={SHARE_JOIN_LINK_ROUTE} element={<ShareJoinLinkPage />} />
           <Route path={SESSION_ROUTE} element={<SessionPage />} />
           <Route path={RESULTS_ROUTE} element={<ResultsPage />} />
+          {import.meta.env.DEV && <Route path="/dev/session" element={<DevSessionPage />} />}
+          {import.meta.env.DEV && <Route path="/dev/results" element={<DevResultsPage />} />}
           <Route path="*" element={<WelcomePage />} />
         </Routes>
       </AppLayout>

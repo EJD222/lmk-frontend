@@ -12,7 +12,7 @@ export function AppLayout({ children, className }: AppLayoutProps) {
       {/* Fixed paper grain behind every screen — gives the whole app its hand-made feel */}
       <div className="paper-bg" aria-hidden="true" />
 
-      <main className="w-full max-w-[1200px] mx-auto">{children}</main>
+      <main className="w-full">{children}</main>
 
       <Toaster
         position="bottom-center"
