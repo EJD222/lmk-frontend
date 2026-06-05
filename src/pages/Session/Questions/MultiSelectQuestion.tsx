@@ -1,30 +1,7 @@
+import { Check } from "lucide-react";
 import { useSession } from "../SessionContext";
 import { cn } from "@/lib/utils";
 import type { QuestionOut } from "@/types/question";
-
-const OPTION_COLORS = [
-  "bg-lmk-primary",
-  "bg-lmk-secondary",
-  "bg-lmk-tertiary",
-  "bg-lmk-accent",
-  "bg-lmk-dark/[0.06]",
-];
-
-const OPTION_TEXT_COLORS = [
-  "text-white",
-  "text-white",
-  "text-[#003D30]",
-  "text-[#3D3300]",
-  "text-lmk-dark",
-];
-
-const CHECK_BORDER_COLORS = [
-  "border-white/50",
-  "border-white/50",
-  "border-white/50",
-  "border-white/50",
-  "border-lmk-dark/20",
-];
 
 interface MultiSelectQuestionProps {
   question: QuestionOut;
@@ -44,7 +21,6 @@ export function MultiSelectQuestion({ question }: MultiSelectQuestionProps) {
   return (
     <div className="flex flex-col gap-3">
       {question.options.map((option, i) => {
-        const colorIdx = i % OPTION_COLORS.length;
         const isSelected = selected.includes(option.label);
 
         return (
@@ -53,25 +29,25 @@ export function MultiSelectQuestion({ question }: MultiSelectQuestionProps) {
             type="button"
             onClick={() => toggle(option.label)}
             className={cn(
-              "flex items-center gap-3 px-4 py-4 rounded-xl font-bold text-[16px] select-none",
-              "transition-transform duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
-              "active:scale-[0.96]",
-              OPTION_COLORS[colorIdx],
-              OPTION_TEXT_COLORS[colorIdx],
-              isSelected && "scale-[1.02] shadow-[0_0_0_3px_#fff,0_4px_16px_rgba(0,0,0,0.15)]"
+              "flex items-center gap-4 px-5 py-4 text-[17px] font-medium select-none text-left",
+              "border-[2px] border-lmk-ink shadow-sketch-sm",
+              "transition-[transform,box-shadow,background-color] duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
+              "hover:-translate-y-[2px] active:scale-[0.97]",
+              i % 2 === 0 ? "rounded-sketch" : "rounded-sketch-alt",
+              isSelected
+                ? "bg-lmk-blue text-white -translate-x-[1px] -translate-y-[1px] shadow-sketch"
+                : "bg-[#FDFAF2] text-lmk-ink"
             )}
           >
+            <span className="flex-1">{option.label}</span>
             <span
               className={cn(
-                "w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0",
-                "transition-all duration-200",
-                CHECK_BORDER_COLORS[colorIdx],
-                isSelected && "bg-white border-white"
+                "w-[30px] h-[30px] rounded-full border-[2px] flex items-center justify-center shrink-0 transition-colors",
+                isSelected ? "bg-white border-white" : "border-lmk-ink/30"
               )}
             >
-              {isSelected && <span className="text-lmk-secondary text-sm font-bold">✓</span>}
+              {isSelected && <Check className="w-4 h-4 text-lmk-blue" strokeWidth={3} />}
             </span>
-            <span>{option.label}</span>
           </button>
         );
       })}

@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/Button";
+import { Copy, Link2, Share2 } from "lucide-react";
 import { Wordmark } from "@/components/common/Wordmark";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
+import { SecondaryButton } from "@/components/common/SecondaryButton";
 import { TextButton } from "@/components/common/TextButton";
 import { notifySuccess, notifyError } from "@/lib/notify";
 import { buildSessionPath } from "@/common/routes";
@@ -54,39 +55,45 @@ export function ShareJoinLinkPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-6 text-center">
+    <div className="surface-paper flex flex-col items-center justify-center min-h-screen px-6 text-center">
       <div className="w-full max-w-[400px] flex flex-col items-center">
-        <Wordmark className="self-start mb-12" />
+        <Wordmark className="self-start mb-10 -rotate-1" />
 
-        <h1 className="font-brand text-[56px] leading-none uppercase tracking-tight mb-6 self-start">
+        <h1 className="font-display text-[58px] leading-[0.95] text-lmk-ink -rotate-2 self-start mb-3">
           you're in.
         </h1>
-
-        <div className="w-full bg-lmk-dark/[0.04] border-[1.5px] border-lmk-dark/[0.08] rounded-full px-5 py-3.5 font-mono font-bold text-[13px] text-lmk-secondary tracking-[0.06em] mb-4 truncate">
-          {shareUrl}
-        </div>
-
-        <div className="flex flex-col w-full gap-3 mb-8">
-          <PrimaryButton onClick={handleCopy}>Copy link</PrimaryButton>
-          {"share" in navigator && (
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={handleShare}
-              className="w-full h-[52px] text-[15px] font-bold rounded-md border-lmk-primary text-lmk-primary hover:bg-lmk-primary/10"
-            >
-              Share
-            </Button>
-          )}
-        </div>
-
-        <p className="text-[15px] text-lmk-dark/50 leading-relaxed">
+        <p className="font-body text-[18px] leading-relaxed text-lmk-ink/60 self-start mb-8">
           share this with your group. we'll wait.
         </p>
 
-        <TextButton onClick={handleContinueToQuestions} className="mt-10 text-[16px]">
-          continue to questions →
-        </TextButton>
+        {/* taped-on join link */}
+        <div className="relative w-full mb-8">
+          <span
+            aria-hidden="true"
+            className="absolute -top-3 left-1/2 -translate-x-1/2 -rotate-2 w-[72px] h-5 bg-lmk-blue-mid/30 border border-lmk-ink/10 z-10"
+          />
+          <div className="w-full flex items-center justify-center gap-3 bg-[#FDFAF2] border-[2.5px] border-dashed border-lmk-blue rounded-sketch px-5 py-4">
+            <Link2 className="w-5 h-5 text-lmk-ink shrink-0" strokeWidth={2.2} />
+            <span className="font-mono font-bold text-[14px] text-lmk-blue tracking-[0.04em] truncate">
+              {shareUrl}
+            </span>
+          </div>
+        </div>
+
+        <div className="flex flex-col w-full gap-3.5 mb-8">
+          <PrimaryButton onClick={handleCopy}>
+            Copy link
+            <Copy className="w-5 h-5" strokeWidth={2.2} />
+          </PrimaryButton>
+          {"share" in navigator && (
+            <SecondaryButton tone="outline" onClick={handleShare}>
+              Share
+              <Share2 className="w-5 h-5" strokeWidth={2.2} />
+            </SecondaryButton>
+          )}
+        </div>
+
+        <TextButton onClick={handleContinueToQuestions}>continue to questions →</TextButton>
       </div>
     </div>
   );

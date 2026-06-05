@@ -10,26 +10,36 @@ export function OverallScreen() {
 
   return (
     <div
-      className="min-h-screen bg-lmk-dark relative flex flex-col items-center justify-center text-center px-8 cursor-pointer select-none"
+      className="surface-dark min-h-screen relative flex flex-col items-center justify-center text-center px-8 cursor-pointer select-none"
       onClick={advance}
     >
-      <div
-        key={overallResult.id}
-        className="animate-in zoom-in-95 fade-in duration-500 flex flex-col items-center gap-6 max-w-[400px]"
-      >
+      <div key={overallResult.id} className="flex flex-col items-center gap-7 max-w-[420px]">
         <span
-          className="text-[11px] font-bold uppercase tracking-[0.1em]"
-          style={{ color: is_agreement ? "#00D4AA" : "#FF6B35" }}
+          className="font-display text-[40px] leading-none text-lmk-blue-mid -rotate-2 animate-scribble-in"
+          style={{ animationDelay: "0.1s" }}
+        >
+          lmk
+        </span>
+
+        <span
+          className="text-[13px] font-semibold uppercase tracking-[0.12em] animate-scribble-in"
+          style={{
+            animationDelay: "0.25s",
+            color: is_agreement ? "#6B7FF5" : "#C5CDF8",
+          }}
         >
           {is_agreement ? "your group agrees" : "mixed signals"}
         </span>
 
-        <p className="font-brand font-bold text-[28px] leading-[1.3] tracking-tight text-white">
+        <p
+          className="font-display text-[38px] leading-[1.15] text-lmk-paper animate-scribble-in"
+          style={{ animationDelay: "0.4s" }}
+        >
           {key_insight}
         </p>
       </div>
 
-      <TapToContinue className="text-white/30" />
+      <TapToContinue className="text-lmk-paper/40" />
     </div>
   );
 }

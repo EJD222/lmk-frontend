@@ -23,8 +23,7 @@ export function SliderQuestion({ question }: SliderQuestionProps) {
 
   const tickers = question.options;
   const activeIndex = getActiveIndex(value, tickers.length);
-  const visibleIndices =
-    tickers.length >= 4 ? new Set([0, tickers.length - 1]) : null;
+  const visibleIndices = tickers.length >= 4 ? new Set([0, tickers.length - 1]) : null;
 
   useEffect(() => {
     if (answers[question.id] === undefined) {
@@ -37,8 +36,8 @@ export function SliderQuestion({ question }: SliderQuestionProps) {
   };
 
   return (
-    <div className="flex flex-col items-center gap-6 px-2">
-      <div className="text-[72px] leading-none text-center min-h-[80px] flex items-center justify-center transition-transform duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+    <div className="flex flex-col items-center gap-7 px-2">
+      <div className="font-display text-[88px] leading-none text-lmk-blue text-center min-h-[88px] flex items-center justify-center -rotate-2">
         {tickers[activeIndex]?.label}
       </div>
 
@@ -49,7 +48,7 @@ export function SliderQuestion({ question }: SliderQuestionProps) {
             <span
               key={t.id}
               className={cn(
-                "text-[22px] font-brand font-bold leading-none transition-opacity duration-150",
+                "font-display text-[24px] leading-none transition-opacity duration-150 text-lmk-ink",
                 i === activeIndex ? "opacity-100" : "opacity-30"
               )}
             >

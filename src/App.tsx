@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AppLayout } from "./components/layout/AppLayout";
 import { WelcomePage } from "@/pages/WelcomePage";
@@ -15,7 +16,18 @@ import {
   RESULTS_ROUTE,
 } from "@/common/routes";
 
+const TEXTURES = [
+  "/textures/paper.jpg",
+  "/textures/paper2.jpg",
+  "/textures/paper3.jpg",
+];
+
 function App() {
+  useEffect(() => {
+    const pick = TEXTURES[Math.floor(Math.random() * TEXTURES.length)];
+    document.documentElement.style.setProperty("--paper-texture", `url("${pick}")`);
+  }, []);
+
   return (
     <BrowserRouter>
       <AppLayout>
