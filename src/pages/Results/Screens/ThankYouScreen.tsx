@@ -1,15 +1,20 @@
+import { useState } from "react";
 import { RefreshCw } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { SecondaryButton } from "@/components/common/SecondaryButton";
 import { useResult } from "../ResultContext";
+import { SaveAsImageModal } from "../SaveAsImageModal";
 
 export function ThankYouScreen() {
   const navigate = useNavigate();
   const { restart, isAgreement } = useResult();
+  const [showSave, setShowSave] = useState(false);
 
   return (
-    <div className="surface-dark min-h-screen flex flex-col">
+    <>
+      {showSave && <SaveAsImageModal onClose={() => setShowSave(false)} />}
+      <div className="surface-dark min-h-screen flex flex-col">
       <div className="flex flex-col flex-1 items-center justify-center text-center px-6 gap-5 animate-fade-in">
         <span className="font-display text-[64px] leading-none text-lmk-blue-mid -rotate-2">
           lmk
@@ -36,6 +41,13 @@ export function ThankYouScreen() {
         <PrimaryButton onClick={() => navigate("/", { replace: true })}>New session</PrimaryButton>
         <SecondaryButton
           tone="outline"
+          onClick={() => setShowSave(true)}
+          className="border-lmk-paper/40 text-lmk-paper hover:bg-white/10"
+        >
+          Save as image
+        </SecondaryButton>
+        <SecondaryButton
+          tone="outline"
           onClick={restart}
           className="border-lmk-paper/40 text-lmk-paper hover:bg-white/10"
         >
@@ -44,5 +56,6 @@ export function ThankYouScreen() {
         </SecondaryButton>
       </div>
     </div>
+    </>
   );
 }
