@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { X } from "lucide-react";
 import { NavHeader } from "@/components/common/NavHeader";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { SecondaryButton } from "@/components/common/SecondaryButton";
@@ -31,9 +32,20 @@ export function WaitingScreen() {
           onClick={() => setShowPopup(false)}
         >
           <div
-            className="surface-paper w-[300px] max-h-[65vh] flex flex-col rounded-sketch shadow-sketch-lg p-6"
+            className="surface-paper w-[300px] max-h-[65vh] flex flex-col rounded-sketch shadow-sketch-lg p-6 gap-4"
             onClick={(e) => e.stopPropagation()}
           >
+            <div className="flex items-center gap-3 -ml-1 -mt-1">
+              <button
+                onClick={() => setShowPopup(false)}
+                className="text-lmk-ink/40 hover:text-lmk-ink transition-colors p-1 flex-shrink-0"
+                aria-label="Close"
+              >
+                <X className="w-5 h-5" strokeWidth={2} />
+              </button>
+              <div className="flex-1 h-px bg-lmk-ink/15" />
+            </div>
+
             <div className="overflow-y-auto overflow-x-hidden">
               {loading ? (
                 <div className="flex justify-center py-4">
