@@ -13,6 +13,7 @@ export const SHARE_RESULTS_ROUTE: string = "/results/share";
 export const NO_CONSENSUS_RESULT_ROUTE: string = "/results/no-consensus";
 export const NO_CONSENSUS_DIVERGED_ROUTE: string = "/results/no-consensus/diverged";
 export const NO_CONSENSUS_WHAT_NOW_ROUTE: string = "/results/no-consensus/what-now";
+export const SAVE_AS_IMAGE_ROUTE: string = "/results/save-as-image";
 
 export function buildSessionPath(_sessionId: string): string {
   return "/session";

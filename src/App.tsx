@@ -17,6 +17,7 @@ import {
   SESSION_ROUTE,
   RESULTS_ROUTE,
 } from "@/common/routes";
+import { SaveAsImageModal } from "./pages/Results/SaveAsImageModal";
 
 const TEXTURES = [
   "/textures/paper.jpg",

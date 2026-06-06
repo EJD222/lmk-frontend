@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { ResultContext } from "./ResultContext";
 import type { ResultPhase } from "./ResultContext";
 import { ResultContent } from "./ResultContent";
+import { SaveAsImageModal } from "./SaveAsImageModal";
 import type { OverallResult, RecommendationResult } from "@/types/result";
 
 const MOCK_RECOMMENDATIONS: RecommendationResult[] = [
@@ -38,6 +39,7 @@ function getMockOverall(isAgreement: boolean): OverallResult {
 export function DevResultsPage() {
   const [isAgreement, setIsAgreement] = useState(true);
   const [phase, setPhase] = useState<ResultPhase>("overall");
+  const [showSave, setShowSave] = useState(false);
 
   const overallResult = getMockOverall(isAgreement);
   const topResult = MOCK_RECOMMENDATIONS[0];
@@ -55,11 +57,18 @@ export function DevResultsPage() {
 
   return (
     <>
-      <ResultContext.Provider value={{ phase, isAgreement, overallResult, topResult, restResults, advance, restart }}>
+      <ResultContext.Provider value={{ phase, topic: "Friday night plans 🎉", isAgreement, overallResult, topResult, restResults, advance, restart }}>
         <ResultContent />
+        {showSave && <SaveAsImageModal onClose={() => setShowSave(false)} />}
       </ResultContext.Provider>
 
-      <div style={{ position: "fixed", bottom: 16, right: 16, zIndex: 9999 }}>
+      <div style={{ position: "fixed", bottom: 16, right: 16, zIndex: 9999, display: "flex", gap: 8 }}>
+        <button
+          onClick={() => setShowSave(true)}
+          style={{ background: "#111", color: "white", padding: "8px 16px", borderRadius: 8, fontSize: 13, fontFamily: "monospace", cursor: "pointer" }}
+        >
+          💾 save as image
+        </button>
         <button
           onClick={() => { setIsAgreement((a) => !a); setPhase("overall"); }}
           style={{ background: "#1529d6", color: "white", padding: "8px 16px", borderRadius: 8, fontSize: 13, fontFamily: "monospace", cursor: "pointer" }}
