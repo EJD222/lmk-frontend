@@ -5,32 +5,77 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        brand: ['Outfit', 'sans-serif'],
+        // Handwritten display face — headers, wordmark, big numbers, "non-text" flourishes
+        display: ['"Kids Handwritten"', '"Comic Sans MS"', "cursive"],
+        // Clean sans for body / UI / inputs — distinguished by weight only
+        brand: ["Outfit", "sans-serif"],
+        body: ["Outfit", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        // Hand-drawn "sketch" corners — irregular organic radii
+        sketch: "275px 8px 245px 12px / 8px 245px 10px 275px",
+        "sketch-alt": "10px 245px 8px 275px / 275px 10px 245px 12px",
+        "sketch-soft": "205px 18px 215px 20px / 18px 215px 20px 205px",
+        "sketch-pill": "80px 4px 75px 5px / 4px 75px 5px 80px",
+      },
+      boxShadow: {
+        // Excalidraw-style hard ink offset shadows
+        sketch: "4px 6px 0 rgba(17,17,17,0.15)",
+        "sketch-sm": "2px 3px 0 rgba(17,17,17,0.12)",
+        "sketch-lg": "8px 12px 0 rgba(17,17,17,0.18)",
+        "sketch-blue": "4px 6px 0 rgba(21,41,214,0.28)",
       },
       keyframes: {
-        'fade-in': {
-          '0%': { opacity: '0', transform: 'translateY(8px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+        "fade-in": {
+          "0%": { opacity: "0", transform: "translateY(8px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
+          "50%": { transform: "translateY(-14px) rotate(5deg)" },
+        },
+        "scribble-in": {
+          "0%": { opacity: "0", transform: "translateY(40px) rotate(-2deg) scale(1.08)" },
+          "60%": { opacity: "1", transform: "translateY(-4px) rotate(0.5deg) scale(0.98)" },
+          "100%": { opacity: "1", transform: "translateY(0) rotate(0deg) scale(1)" },
+        },
+        "bounce-up": {
+          "0%, 100%": { transform: "translateX(-50%) translateY(0)" },
+          "50%": { transform: "translateX(-50%) translateY(-6px)" },
+        },
+        "pulse-dot": {
+          "0%, 100%": { transform: "scale(1) rotate(0deg)", opacity: "0.35" },
+          "50%": { transform: "scale(1.4) rotate(45deg)", opacity: "1" },
         },
       },
       animation: {
-        'fade-in': 'fade-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) both',
+        "fade-in": "fade-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both",
+        "scribble-in": "scribble-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both",
+        "bounce-up": "bounce-up 2s ease-in-out infinite",
       },
       colors: {
         lmk: {
-          primary:        '#FF6B35',
-          secondary:      '#5B2EFF',
-          tertiary:       '#00D4AA',
-          'tertiary-fg':  '#003D30',
-          accent:         '#FFE14D',
-          'accent-fg':    '#3D3300',
-          light:          '#FAF8F5',
-          dark:           '#111111',
+          // Repointed to the monotone-blue / paper / ink scrapbook palette.
+          // Names kept stable so existing utility classes adopt the new look.
+          primary: "#1529d6", // blue — primary actions
+          secondary: "#1529d6", // blue — was purple; now unified blue
+          tertiary: "#6B7FF5", // blue-mid
+          "tertiary-fg": "#FFFFFF",
+          accent: "#C5CDF8", // blue-pale
+          "accent-fg": "#1529d6",
+          light: "#F5F0E8", // paper
+          dark: "#111111", // ink
+          // Explicit semantic aliases for new code
+          blue: "#1529d6",
+          "blue-mid": "#6B7FF5",
+          "blue-pale": "#C5CDF8",
+          paper: "#F5F0E8",
+          "paper-warm": "#EDE6D6",
+          "paper-dark": "#2C2A26",
+          ink: "#111111",
         },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
