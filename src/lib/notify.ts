@@ -9,5 +9,5 @@ export function notifySuccess(message: string): void {
 }
 
 export function notifyInfo(message: string): void {
-  toast(message);
+  toast.info(message);
 }
