@@ -28,7 +28,7 @@ export function NumberQuestion({ question }: NumberQuestionProps) {
       inputMode="numeric"
       value={display}
       onChange={handleChange}
-      placeholder="Enter a number..."
+      placeholder="pop in a number..."
       className="w-full h-[58px] rounded-sketch-alt border-[2px] border-lmk-ink bg-[#FDFAF2] px-5 font-body text-[17px] text-lmk-ink placeholder:text-lmk-ink/40 placeholder:italic shadow-sketch-sm outline-none transition-[border-color,box-shadow] focus:border-lmk-blue focus:shadow-[3px_4px_0_rgba(21,41,214,0.22)]"
     />
   );

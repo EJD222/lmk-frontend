@@ -13,10 +13,10 @@ export function HostTopicForm() {
   return (
     <div className="flex flex-col flex-1">
       <h1 className="font-display text-[46px] leading-[1.04] text-lmk-ink -rotate-1 self-start mb-2">
-        let's get started
+        alright, let's set the scene
       </h1>
       <p className="font-body text-[18px] leading-relaxed text-lmk-ink/60 mb-8">
-        tell us who you are and what you're deciding
+        who's hosting, and what's the chat actually trying to decide?
       </p>
 
       <div className="flex flex-col gap-5">
@@ -25,13 +25,13 @@ export function HostTopicForm() {
           type="text"
           value={formData.hostName}
           onChange={(e) => setHostName(e.target.value)}
-          placeholder="keep it fun"
+          placeholder="nothing weird, please"
         />
 
         <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between">
             <label className="text-[12px] font-semibold uppercase tracking-[0.1em] text-lmk-ink/55">
-              what are you deciding?
+              what's everyone deciding?
             </label>
             <span
               className={cn(
@@ -45,7 +45,7 @@ export function HostTopicForm() {
           <FormTextarea
             value={formData.topic}
             onChange={(e) => setTopic(e.target.value)}
-            placeholder="e.g. where should we hang out this Saturday?"
+            placeholder="e.g. where are we even going this weekend"
             maxLength={250}
             rows={4}
           />
@@ -54,7 +54,7 @@ export function HostTopicForm() {
 
       <div className="mt-auto md:mt-8 pt-8">
         <PrimaryButton disabled={!isValid} onClick={goToNext}>
-          Continue
+          Next up
           <ArrowRight className="w-5 h-5" strokeWidth={2.4} />
         </PrimaryButton>
       </div>

@@ -26,7 +26,7 @@ export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
 
   const topPick = topResult ?? MOCK_TOP;
   const otherPicks = (restResults.length > 0 ? restResults : MOCK_REST).slice(0, 4);
-  const displayTopic = meta?.topic || "group plans";
+  const displayTopic = meta?.topic || "the plans";
   const participantCount = meta?.participant_count;
 
   async function handleSave() {
@@ -73,7 +73,9 @@ export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
         <div className="absolute -top-[9px] left-1/2 -translate-x-1/2 -rotate-[1.5deg] w-16 h-[18px] bg-lmk-blue/10 border border-lmk-blue/20 rounded-sm pointer-events-none" />
 
         <div className="flex items-center justify-between">
-          <span className="font-display text-[22px] font-bold text-lmk-ink leading-none">save as image</span>
+          <span className="font-display text-[22px] font-bold text-lmk-ink leading-none">
+            make this a screenshot-worthy moment
+          </span>
           <button
             onClick={onClose}
             className="w-7 h-7 flex items-center justify-center border-2 border-lmk-ink rounded-sketch-pill shadow-sketch-sm text-lmk-ink hover:bg-lmk-ink/5 transition-colors"
@@ -90,26 +92,26 @@ export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
         >
           <div className="flex items-center justify-between">
             <span className="font-display text-[32px] text-lmk-blue leading-none">lmk</span>
-            <span className="font-body text-[11px] text-lmk-ink/35 uppercase tracking-[0.12em] font-semibold">result</span>
+            <span className="font-body text-[11px] text-lmk-ink/35 uppercase tracking-[0.12em] font-semibold">the verdict</span>
           </div>
 
           <div className="-mt-1">
             <p className="font-display text-[22px] text-lmk-ink leading-tight">{displayTopic}</p>
             {participantCount != null && (
               <p className="font-body text-[12px] text-lmk-ink/45 mt-0.5">
-                decided by {participantCount} {participantCount === 1 ? "person" : "people"}
+                {participantCount} {participantCount === 1 ? "person" : "people"} made this call
               </p>
             )}
           </div>
 
           <div className="bg-lmk-blue rounded-xl px-4 py-3 flex flex-col gap-2">
-            <span className="font-body text-[10px] text-white/60 uppercase tracking-[0.10em] font-semibold">★ the pick</span>
+            <span className="font-body text-[10px] text-white/60 uppercase tracking-[0.10em] font-semibold">★ the chosen one</span>
             <p className="font-display text-[28px] text-white leading-tight">{topPick.value.name}</p>
           </div>
 
           {otherPicks.length > 0 && (
             <div className="flex flex-col">
-              <p className="font-display text-[12px] text-lmk-ink/45 italic mb-1.5">also on the table</p>
+              <p className="font-display text-[12px] text-lmk-ink/45 italic mb-1.5">also worth a look</p>
               {otherPicks.map((rec, i) => (
                 <div
                   key={rec.id}
@@ -127,7 +129,7 @@ export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
 
           {/* footer */}
           <div className="flex items-center justify-between mt-1">
-            <span className="font-body text-[10px] text-lmk-ink/30">made with lmk</span>
+            <span className="font-body text-[10px] text-lmk-ink/30">decided with lmk</span>
             <span className="font-display text-[15px] text-lmk-blue">lmk.app</span>
           </div>
         </div>
@@ -162,7 +164,7 @@ export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
           disabled={saving}
           className="w-full h-11 flex items-center justify-center gap-1.5 bg-lmk-blue text-white border-2 border-lmk-ink rounded-sketch font-display text-[18px] font-bold shadow-sketch-blue transition-[transform,box-shadow] duration-150 hover:-translate-y-px hover:shadow-[5px_7px_0_rgba(21,41,214,0.32)] active:translate-y-0.5 disabled:opacity-40 disabled:cursor-not-allowed mt-0.5"
         >
-          {saving ? "saving..." : "⬇ save image"}
+          {saving ? "just a sec..." : "⬇ save it, post it, whatever"}
         </button>
       </div>
     </div>

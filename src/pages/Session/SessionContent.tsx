@@ -25,7 +25,7 @@ export function SessionContent() {
     return (
       <div className="surface-paper min-h-screen flex items-center justify-center">
         <p className="font-body text-[16px] text-lmk-ink/55">
-          no questions found for this session.
+          weirdly, there are no questions here. that one's on us.
         </p>
       </div>
     );
@@ -75,7 +75,7 @@ export function SessionContent() {
                 isSubmitting || !canAdvanceQuestion(currentQuestion, answers[currentQuestion.id])
               }
             >
-              {isLast ? (isSubmitting ? "Submitting..." : "Submit") : "Next"}
+              {isLast ? (isSubmitting ? "Sending..." : "Submit and be done with it") : "Next"}
             </PrimaryButton>
           )}
           <SecondaryButton tone="paper" onClick={handleBack}>

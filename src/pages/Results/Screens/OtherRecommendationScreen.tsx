@@ -14,12 +14,12 @@ export function OtherRecommendationScreen() {
     >
       <div className="flex-1 px-6 pt-16 pb-28 w-full max-w-[600px] mx-auto animate-fade-in">
         <h2 className="font-display text-[40px] leading-[1.05] text-lmk-ink -rotate-1 mb-8">
-          also on the table
+          the runner-ups
         </h2>
 
         {restResults.length === 0 ? (
           <p className="font-body text-[16px] text-lmk-ink/55">
-            that was the only strong pick — easy call.
+            honestly, this one stood out from the rest — easy choice.
           </p>
         ) : (
           <div className="flex flex-col gap-4">

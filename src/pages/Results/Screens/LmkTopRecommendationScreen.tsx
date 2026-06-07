@@ -18,7 +18,7 @@ export function LmkTopRecommendationScreen() {
           style={{ animationDelay: "0.1s" }}
         >
           <Sparkles className="w-4 h-4" strokeWidth={2.4} />
-          the AI's pick
+          your top match
           <Sparkles className="w-4 h-4" strokeWidth={2.4} />
         </span>
 

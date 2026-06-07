@@ -47,7 +47,7 @@ export function ResultProvider({ children, sessionId }: ResultProviderProps) {
         setPhase(overall ? "overall" : "top");
       })
       .catch(() => {
-        notifyError("Failed to load results. Please try again.");
+        notifyError("couldn't load your results — let's try once more");
         setPhase("error");
       });
   }, [sessionId]);

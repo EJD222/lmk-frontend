@@ -14,7 +14,7 @@ export function TapToContinue({ className }: TapToContinueProps) {
         className
       )}
     >
-      tap to continue
+      tap to keep going
       <ArrowUp className="w-3.5 h-3.5" strokeWidth={2.5} />
     </div>
   );

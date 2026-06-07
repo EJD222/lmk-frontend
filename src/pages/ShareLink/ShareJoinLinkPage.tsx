@@ -30,16 +30,16 @@ export function ShareJoinLinkPage() {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(shareUrl);
-      notifySuccess("Link copied!");
+      notifySuccess("copied. go drop it in the chat.");
     } catch {
-      notifyError("Could not copy. Please copy the link manually.");
+      notifyError("hmm, that didn't copy — you'll have to grab it by hand");
     }
   };
 
   const handleShare = async () => {
     if ("share" in navigator) {
       try {
-        await navigator.share({ title: "Join my lmk session", url: shareUrl });
+        await navigator.share({ title: "come make plans with me on lmk", url: shareUrl });
       } catch {
         // user dismissed the share sheet
       }
@@ -60,10 +60,10 @@ export function ShareJoinLinkPage() {
         <Wordmark className="self-start mb-10 -rotate-1" />
 
         <h1 className="font-display text-[58px] leading-[0.95] text-lmk-ink -rotate-2 self-start mb-3">
-          you're in.
+          you're in. bring the chat.
         </h1>
         <p className="font-body text-[18px] leading-relaxed text-lmk-ink/60 self-start mb-8">
-          share this with your group. we'll wait.
+          send this to your people — we'll hang tight till they show up
         </p>
 
         {/* taped-on join link */}
@@ -93,7 +93,7 @@ export function ShareJoinLinkPage() {
           )}
         </div>
 
-        <TextButton onClick={handleContinueToQuestions}>continue to questions →</TextButton>
+        <TextButton onClick={handleContinueToQuestions}>I'll go first →</TextButton>
       </div>
     </div>
   );

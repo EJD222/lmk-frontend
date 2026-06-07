@@ -28,7 +28,7 @@ export function OverallScreen() {
             color: is_agreement ? "#6B7FF5" : "#F5A623",
           }}
         >
-          {is_agreement ? "your group agrees" : "mixed signals"}
+          {is_agreement ? "you're all in sync!" : "a few different vibes here"}
         </span>
 
         <p

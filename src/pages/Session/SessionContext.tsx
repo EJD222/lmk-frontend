@@ -70,7 +70,7 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
         }
       })
       .catch(() => {
-        notifyError("Failed to load session. Please try again.");
+        notifyError("this session won't load. try again in a sec.");
       });
   }, [sessionId, participantId, navigate]);
 
@@ -111,12 +111,12 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
       .submitAnswers(sessionId, { participant_id: participantId, answers: submissionAnswers })
       .then(() => {
         setIsSubmitting(false);
-        notifySuccess("Answers submitted!");
+        notifySuccess("sent. you're free now.");
       })
       .catch(() => {
         setIsSubmitting(false);
         setPhase("answering");
-        notifyError("Failed to submit answers. Please try again.");
+        notifyError("that didn't send. try again before someone notices.");
       });
   }, [sessionId, participantId, answers]);
 
@@ -124,7 +124,7 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
     setIsAdvancing(true);
     sessionService.advanceSession(sessionId, { participant_id: participantId }).catch(() => {
       setIsAdvancing(false);
-      notifyError("Failed to advance session. Please try again.");
+      notifyError("couldn't move things forward — try again in a sec");
     });
   }, [sessionId, participantId]);
 

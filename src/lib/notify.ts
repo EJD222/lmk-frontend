@@ -1,6 +1,6 @@
 import { toast } from "sonner";
 
-export function notifyError(message = "Something went wrong. Please try again."): void {
+export function notifyError(message = "that didn't work — give it another go"): void {
   toast.error(message);
 }
 

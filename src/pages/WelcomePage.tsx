@@ -34,8 +34,8 @@ export function WelcomePage() {
         </p>
 
         <p className="font-body text-[18px] leading-relaxed text-lmk-ink/75 max-w-[340px]">
-          Stop the endless "what do you wanna do?" chat. Start a session, share the link, and let
-          your group figure it out — without the 45-minute thread.
+          say less — start a session, send the link to your people, and let everyone vote their way
+          to a plan you're all actually hyped about. no more circling for 45 minutes.
         </p>
 
         <br />
@@ -47,7 +47,7 @@ export function WelcomePage() {
             <ArrowRight className="w-5 h-5" strokeWidth={2.4} />
           </PrimaryButton>
           <SecondaryButton tone="outline" onClick={handleOnJoinSessionClick}>
-            Join a session
+            Got a code? Join in
           </SecondaryButton>
         </div>
       </div>

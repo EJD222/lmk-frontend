@@ -21,13 +21,13 @@ export function ThankYouScreen() {
         </span>
 
         <h1 className="font-display text-[46px] leading-[1.05] text-lmk-paper">
-          {isAgreement ? "that's a wrap!" : "still deciding?"}
+          {isAgreement ? "yes! that's a wrap" : "still figuring it out, huh?"}
         </h1>
 
         <p className="font-body text-[17px] leading-relaxed text-lmk-paper/60 max-w-[300px]">
           {isAgreement
-            ? "hope lmk helped your group decide."
-            : "mixed signals happen. try narrowing it down or splitting up for the night."}
+            ? "hope this finally ends the discussion. no promises though."
+            : "totally normal — happens to the best groups. take another pass, or split off and do your own thing — either way's a win."}
         </p>
 
         <p className="font-display text-[26px] leading-tight text-lmk-paper/90 mt-2">
@@ -38,13 +38,15 @@ export function ThankYouScreen() {
       </div>
 
       <div className="px-6 pb-10 flex flex-col gap-3.5 w-full max-w-[600px] mx-auto">
-        <PrimaryButton onClick={() => navigate("/", { replace: true })}>New session</PrimaryButton>
+        <PrimaryButton onClick={() => navigate("/", { replace: true })}>
+          Start something new
+        </PrimaryButton>
         <SecondaryButton
           tone="outline"
           onClick={() => setShowSave(true)}
           className="border-lmk-paper/40 text-lmk-paper hover:bg-white/10"
         >
-          Save as image
+          Save this as a pic
         </SecondaryButton>
         <SecondaryButton
           tone="outline"
@@ -52,7 +54,7 @@ export function ThankYouScreen() {
           className="border-lmk-paper/40 text-lmk-paper hover:bg-white/10"
         >
           <RefreshCw className="w-5 h-5" strokeWidth={2.2} />
-          See results again
+          Run it back
         </SecondaryButton>
       </div>
     </div>
