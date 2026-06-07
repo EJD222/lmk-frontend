@@ -2,13 +2,13 @@ import React, { createContext, useCallback, useContext, useEffect, useState } fr
 import { sessionService } from "@/services/sessionService";
 import { notifyError } from "@/lib/notify";
 import { minDelay } from "@/lib/utils";
-import type { OverallResult, RecommendationResult } from "@/types/result";
+import type { OverallResult, RecommendationResult, SessionMeta } from "@/types/result";
 
 type ResultPhase = "loading" | "overall" | "top" | "rest" | "done" | "error";
 
 interface ResultContextValue {
   phase: ResultPhase;
-  topic: string;
+  meta: SessionMeta | null;
   isAgreement: boolean;
   overallResult: OverallResult | null;
   topResult: RecommendationResult | null;
@@ -26,15 +26,15 @@ interface ResultProviderProps {
 
 export function ResultProvider({ children, sessionId }: ResultProviderProps) {
   const [phase, setPhase] = useState<ResultPhase>("loading");
-  const [topic, setTopic] = useState<string>("");
+  const [meta, setMeta] = useState<SessionMeta | null>(null);
   const [overallResult, setOverallResult] = useState<OverallResult | null>(null);
   const [topResult, setTopResult] = useState<RecommendationResult | null>(null);
   const [restResults, setRestResults] = useState<RecommendationResult[]>([]);
 
   useEffect(() => {
-    Promise.all([sessionService.getResults(sessionId), sessionService.getSession(sessionId), minDelay(2000)])
-      .then(([res, sessionInfo]) => {
-        setTopic(sessionInfo.topic);
+    Promise.all([sessionService.getResults(sessionId), minDelay(2000)])
+      .then(([res]) => {
+        setMeta(res.meta);
         const overall = res.results.find((r) => r.type === "OVERALL") as OverallResult | undefined;
 
         const recommendations = (
@@ -68,7 +68,7 @@ export function ResultProvider({ children, sessionId }: ResultProviderProps) {
   }, [initialPhase]);
 
   return (
-    <ResultContext.Provider value={{ phase, topic, isAgreement, overallResult, topResult, restResults, advance, restart }}>
+    <ResultContext.Provider value={{ phase, meta, isAgreement, overallResult, topResult, restResults, advance, restart }}>
       {children}
     </ResultContext.Provider>
   );

@@ -29,6 +29,14 @@ export interface OverallResult {
   value: OverallValue;
 }
 
+export interface SessionMeta {
+  topic: string;
+  participant_count: number;
+  created_at: string;
+  top_pick: ResultOut | null;
+}
+
 export interface ResultsResponse {
   results: ResultOut[];
+  meta: SessionMeta;
 }

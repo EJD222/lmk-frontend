@@ -14,25 +14,20 @@ const MOCK_REST = [
   { id: "m5", value: { name: "Night Market", ranking: 5, reasoning: "" } },
 ];
 
-function extractBudget(reasoning: string): string | null {
-  const match = reasoning.match(/[₱$£€¥R$]{1,3}[₱$£€¥]{0,2}/);
-  return match ? match[0] : null;
-}
-
 interface SaveAsImageModalProps {
   onClose: () => void;
 }
 
 export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
-  const { topResult, restResults, topic } = useResult();
+  const { topResult, restResults, meta } = useResult();
   const [shape, setShape] = useState<Shape>("rectangle");
   const [saving, setSaving] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
   const topPick = topResult ?? MOCK_TOP;
   const otherPicks = (restResults.length > 0 ? restResults : MOCK_REST).slice(0, 4);
-  const displayTopic = topic || "group plans";
-  const topBudget = extractBudget(topPick.value.reasoning);
+  const displayTopic = meta?.topic || "group plans";
+  const participantCount = meta?.participant_count;
 
   async function handleSave() {
     if (!cardRef.current) return;
@@ -98,20 +93,18 @@ export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
             <span className="font-body text-[11px] text-lmk-ink/35 uppercase tracking-[0.12em] font-semibold">result</span>
           </div>
 
- 
-          <p className="font-display text-[22px] text-lmk-ink leading-tight -mt-1">{displayTopic}</p>
-
+          <div className="-mt-1">
+            <p className="font-display text-[22px] text-lmk-ink leading-tight">{displayTopic}</p>
+            {participantCount != null && (
+              <p className="font-body text-[12px] text-lmk-ink/45 mt-0.5">
+                decided by {participantCount} {participantCount === 1 ? "person" : "people"}
+              </p>
+            )}
+          </div>
 
           <div className="bg-lmk-blue rounded-xl px-4 py-3 flex flex-col gap-2">
             <span className="font-body text-[10px] text-white/60 uppercase tracking-[0.10em] font-semibold">★ the pick</span>
             <p className="font-display text-[28px] text-white leading-tight">{topPick.value.name}</p>
-            {topBudget && (
-              <div className="flex gap-1.5 flex-wrap">
-                <span className="font-body text-[11px] text-white/80 bg-white/15 rounded-full px-2.5 py-0.5">
-                  💰 {topBudget}
-                </span>
-              </div>
-            )}
           </div>
 
           {otherPicks.length > 0 && (
