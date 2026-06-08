@@ -68,7 +68,7 @@ export function ShareJoinLinkPage() {
           )}
         </div>
 
-        <TextButton onClick={handleContinueToQuestions}>I'll go first →</TextButton>
+        <TextButton onClick={handleContinueToQuestions}>Continue to questions →</TextButton>
       </div>
     </div>
   );
