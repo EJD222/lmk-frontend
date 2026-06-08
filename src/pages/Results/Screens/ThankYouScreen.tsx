@@ -3,18 +3,23 @@ import { RefreshCw } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { SecondaryButton } from "@/components/common/SecondaryButton";
+import { ShareLinkButton } from "@/components/common/ShareLinkButton";
 import { useResult } from "../ResultContext";
 import { SaveAsImageModal } from "../SaveAsImageModal";
 
 export function ThankYouScreen() {
   const navigate = useNavigate();
-  const { restart, isAgreement } = useResult();
+  const { restart, isAgreement, joinLink } = useResult();
   const [showSave, setShowSave] = useState(false);
 
   return (
     <>
       {showSave && <SaveAsImageModal onClose={() => setShowSave(false)} />}
       <div className="surface-dark min-h-screen flex flex-col">
+        <div className="flex justify-end px-6 pt-12 pb-4 w-full max-w-[600px] mx-auto">
+          <ShareLinkButton joinLink={joinLink} className="text-lmk-paper/70" />
+        </div>
+
         <div className="flex flex-col flex-1 items-center justify-center text-center px-6 gap-5 animate-fade-in">
           <span className="font-wordmark text-[52px] leading-none text-lmk-blue-soft -rotate-2">
             lmk

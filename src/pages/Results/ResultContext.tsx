@@ -9,6 +9,7 @@ type ResultPhase = "loading" | "overall" | "top" | "rest" | "done" | "error";
 interface ResultContextValue {
   phase: ResultPhase;
   meta: SessionMeta | null;
+  joinLink: string | null;
   isAgreement: boolean;
   overallResult: OverallResult | null;
   topResult: RecommendationResult | null;
@@ -27,14 +28,20 @@ interface ResultProviderProps {
 export function ResultProvider({ children, sessionId }: ResultProviderProps) {
   const [phase, setPhase] = useState<ResultPhase>("loading");
   const [meta, setMeta] = useState<SessionMeta | null>(null);
+  const [joinLink, setJoinLink] = useState<string | null>(null);
   const [overallResult, setOverallResult] = useState<OverallResult | null>(null);
   const [topResult, setTopResult] = useState<RecommendationResult | null>(null);
   const [restResults, setRestResults] = useState<RecommendationResult[]>([]);
 
   useEffect(() => {
-    Promise.all([sessionService.getResults(sessionId), minDelay(2000)])
-      .then(([res]) => {
+    Promise.all([
+      sessionService.getResults(sessionId),
+      sessionService.getSession(sessionId),
+      minDelay(2000),
+    ])
+      .then(([res, info]) => {
         setMeta(res.meta);
+        setJoinLink(info.join_link);
         const overall = res.results.find((r) => r.type === "OVERALL") as OverallResult | undefined;
 
         const recommendations = (
@@ -68,7 +75,7 @@ export function ResultProvider({ children, sessionId }: ResultProviderProps) {
   }, [initialPhase]);
 
   return (
-    <ResultContext.Provider value={{ phase, meta, isAgreement, overallResult, topResult, restResults, advance, restart }}>
+    <ResultContext.Provider value={{ phase, meta, joinLink, isAgreement, overallResult, topResult, restResults, advance, restart }}>
       {children}
     </ResultContext.Provider>
   );
