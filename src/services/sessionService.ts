@@ -9,6 +9,7 @@ import type {
 } from "@/types/session";
 import type { QuestionOut, HasAnsweredResponse } from "@/types/question";
 import type { ResultsResponse } from "@/types/result";
+import type { AnsweredParticipant } from "@/types/participant";
 
 export const sessionService = {
   createSession: (body: CreateSessionRequest): Promise<CreateSessionResponse> =>
@@ -31,6 +32,9 @@ export const sessionService = {
     participantId: string
   ): Promise<HasAnsweredResponse> =>
     api.get<HasAnsweredResponse>(`/sessions/${sessionId}/participants/${participantId}/answered`),
+
+  getAnsweredParticipants: (sessionId: string): Promise<AnsweredParticipant[]> =>
+    api.get<AnsweredParticipant[]>(`/sessions/${sessionId}/participants/answered`),
 
   getResults: (sessionId: string): Promise<ResultsResponse> =>
     api.get<ResultsResponse>(`/sessions/${sessionId}/results`),

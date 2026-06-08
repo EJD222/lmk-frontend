@@ -52,7 +52,12 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
       minDelay(2000),
     ])
       .then(([qs, info, answeredRes]) => {
-        const sorted = [...qs].sort((a, b) => a.display_order - b.display_order);
+        const sorted = [...qs]
+          .sort((a, b) => a.display_order - b.display_order)
+          .map((q) => ({
+            ...q,
+            options: [...q.options].sort((a, b) => a.display_order - b.display_order),
+          }));
         setQuestions(sorted);
         setSessionInfo(info);
 
@@ -65,7 +70,7 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
         }
       })
       .catch(() => {
-        notifyError("Failed to load session. Please try again.");
+        notifyError("this session won't load. try again in a sec.");
       });
   }, [sessionId, participantId, navigate]);
 
@@ -75,6 +80,8 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
         setPhase("generating");
       } else if (event.state === "RESULTS") {
         navigate(RESULTS_ROUTE, { state: { sessionId, participantId }, replace: true });
+      } else if (event.state === "ANSWERING") {
+        setPhase("loading");
       }
     });
     return () => source.close();
@@ -96,6 +103,7 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
 
   const handleSubmit = useCallback(() => {
     setIsSubmitting(true);
+    setPhase("waiting");
     const submissionAnswers: AnswerSubmission[] = Object.entries(answers).map(
       ([question_id, value]) => ({ question_id, value })
     );
@@ -103,12 +111,12 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
       .submitAnswers(sessionId, { participant_id: participantId, answers: submissionAnswers })
       .then(() => {
         setIsSubmitting(false);
-        notifySuccess("Answers submitted!");
-        setPhase("waiting");
+        notifySuccess("sent. you're free now.");
       })
       .catch(() => {
         setIsSubmitting(false);
-        notifyError("Failed to submit answers. Please try again.");
+        setPhase("answering");
+        notifyError("that didn't send. try again before someone notices.");
       });
   }, [sessionId, participantId, answers]);
 
@@ -116,7 +124,7 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
     setIsAdvancing(true);
     sessionService.advanceSession(sessionId, { participant_id: participantId }).catch(() => {
       setIsAdvancing(false);
-      notifyError("Failed to advance session. Please try again.");
+      notifyError("couldn't move things forward — try again in a sec");
     });
   }, [sessionId, participantId]);
 

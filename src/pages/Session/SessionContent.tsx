@@ -1,19 +1,30 @@
+import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useSession } from "./SessionContext";
 import { QuestionRenderer } from "./Questions/QuestionRenderer";
-import { WaitingScreen } from "./WaitingScreen";
+import { WaitingScreen } from "@/pages/Loading/WaitingScreen";
 import { LoadingQuestions } from "@/pages/Loading/LoadingQuestions";
 import { GeneratingResults } from "@/pages/Loading/GeneratingResults";
-import { Wordmark } from "@/components/common/Wordmark";
+import { NavHeader } from "@/components/common/NavHeader";
+import { ShareLinkButton } from "@/components/common/ShareLinkButton";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
-import { ProgressBar } from "@/components/common/ProgressBar";
-import { Button } from "@/components/ui/Button";
+import { SecondaryButton } from "@/components/common/SecondaryButton";
+import { ProgressDashes } from "@/components/common/ProgressDashes";
 import { canAdvanceQuestion } from "@/lib/question";
 import { MECHANIC } from "@/types/question";
 
 export function SessionContent() {
-  const { phase, questions, currentIndex, answers, isSubmitting, goNext, goPrev, handleSubmit } =
-    useSession();
+  const {
+    phase,
+    questions,
+    currentIndex,
+    answers,
+    isSubmitting,
+    sessionInfo,
+    goNext,
+    goPrev,
+    handleSubmit,
+  } = useSession();
   const navigate = useNavigate();
 
   if (phase === "loading") return <LoadingQuestions />;
@@ -22,8 +33,10 @@ export function SessionContent() {
 
   if (questions.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-[15px] text-lmk-dark/50">no questions found for this session.</p>
+      <div className="surface-paper min-h-screen flex items-center justify-center">
+        <p className="font-body text-[16px] text-lmk-ink/55">
+          weirdly, there are no questions here. that one's on us.
+        </p>
       </div>
     );
   }
@@ -31,7 +44,6 @@ export function SessionContent() {
   const total = questions.length;
   const isFirst = currentIndex === 0;
   const isLast = currentIndex === total - 1;
-  const progress = ((currentIndex + 1) / total) * 100;
   const currentQuestion = questions[currentIndex];
   const isSwipe = currentQuestion?.mechanic === MECHANIC.SWIPE;
 
@@ -41,14 +53,12 @@ export function SessionContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="px-6 pt-12 pb-4 w-full max-w-[600px] mx-auto">
-        <Wordmark />
-      </header>
+    <div className="surface-paper min-h-screen flex flex-col">
+      <NavHeader action={<ShareLinkButton joinLink={sessionInfo?.join_link} />} />
 
       <div className="px-6 w-full max-w-[600px] mx-auto">
-        <ProgressBar value={progress} />
-        <p className="text-center text-[11px] font-bold uppercase tracking-[0.08em] text-lmk-dark/40 mt-3">
+        <ProgressDashes total={total} current={currentIndex + 1} />
+        <p className="text-center text-[13px] font-semibold uppercase tracking-[0.08em] text-lmk-ink/45 mt-3">
           question {currentIndex + 1} of {total}
         </p>
       </div>
@@ -59,7 +69,7 @@ export function SessionContent() {
             <QuestionRenderer question={currentQuestion} />
           ) : (
             <div className="px-6 py-8 flex-1">
-              <h2 className="font-brand font-bold text-[28px] leading-[1.2] tracking-tight mb-6">
+              <h2 className="font-display text-[34px] leading-[1.1] text-lmk-ink -rotate-1 mb-8">
                 {currentQuestion.text}
               </h2>
               <QuestionRenderer question={currentQuestion} />
@@ -75,17 +85,13 @@ export function SessionContent() {
                 isSubmitting || !canAdvanceQuestion(currentQuestion, answers[currentQuestion.id])
               }
             >
-              {isLast ? (isSubmitting ? "Submitting..." : "Submit") : "Next"}
+              {isLast ? (isSubmitting ? "Sending..." : "Submit and be done with it") : "Next"}
             </PrimaryButton>
           )}
-          <Button
-            size="lg"
-            variant="outline"
-            onClick={handleBack}
-            className="w-full h-[52px] text-[15px] font-bold rounded-md border-lmk-dark/20 text-lmk-dark hover:bg-lmk-dark/[0.04]"
-          >
-            ← Back
-          </Button>
+          <SecondaryButton tone="paper" onClick={handleBack}>
+            <ArrowLeft className="w-5 h-5" strokeWidth={2.4} />
+            Back
+          </SecondaryButton>
         </div>
       </div>
     </div>

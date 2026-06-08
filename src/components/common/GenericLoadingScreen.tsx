@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Wordmark } from "@/components/common/Wordmark";
 import { LoadingDots } from "@/components/common/LoadingDots";
 
 interface GenericLoadingScreenProps {
@@ -23,11 +22,15 @@ export function GenericLoadingScreen({ messages }: GenericLoadingScreenProps) {
   }, [messages.length]);
 
   return (
-    <div className="min-h-screen bg-lmk-dark flex flex-col items-center justify-center text-center px-6">
-      <Wordmark className="text-lmk-light mb-16" />
+    <div className="surface-dark min-h-screen flex flex-col items-center justify-center text-center px-6">
+      <span className="font-wordmark text-[36px] leading-none text-lmk-blue-soft mb-14 -rotate-2">
+        lmk
+      </span>
+
       <LoadingDots className="mb-10" />
+
       <p
-        className="text-[17px] text-lmk-light/60 font-medium transition-opacity duration-300"
+        className="text-[19px] italic text-lmk-paper/70 font-light transition-opacity duration-300"
         style={{ opacity: fading ? 0 : 1 }}
       >
         {messages[msgIndex]}

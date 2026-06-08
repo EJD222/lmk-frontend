@@ -8,21 +8,21 @@ interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export function FormInput({ label, hint, className, ...props }: FormInputProps) {
   return (
-    <div className="flex flex-col gap-1.5">
-      <label className="text-[11px] font-bold uppercase tracking-[0.12em] text-lmk-dark/50">
+    <div className="flex flex-col gap-2">
+      <label className="text-[12px] font-semibold uppercase tracking-[0.1em] text-lmk-ink/55">
         {label}
       </label>
       <input
         className={cn(
-          "w-full h-[52px] px-4 rounded-xl border border-lmk-dark/10 bg-white",
-          "font-medium text-[16px] text-lmk-dark placeholder:text-lmk-dark/35",
-          "outline-none transition-[border-color,box-shadow]",
-          "focus:border-lmk-secondary focus:shadow-[0_0_0_4px_rgba(91,46,255,0.15)]",
+          "w-full h-[58px] px-5 rounded-sketch-alt border-[2px] border-lmk-ink bg-lmk-cream",
+          "font-body text-[17px] text-lmk-ink placeholder:text-lmk-ink/40 placeholder:italic",
+          "shadow-sketch-sm outline-none transition-[border-color,box-shadow]",
+          "focus:border-lmk-blue focus:shadow-[3px_4px_0_rgba(21,41,214,0.22)]",
           className
         )}
         {...props}
       />
-      {hint && <p className="text-[12px] text-lmk-dark/40 leading-snug">{hint}</p>}
+      {hint && <p className="text-[14px] text-lmk-ink/50 leading-snug">{hint}</p>}
     </div>
   );
 }

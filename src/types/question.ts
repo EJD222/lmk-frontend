@@ -11,6 +11,7 @@ export type Mechanic = (typeof MECHANIC)[keyof typeof MECHANIC];
 export interface QuestionOptionOut {
   id: string;
   label: string;
+  display_order: number;
 }
 
 export interface QuestionOut {

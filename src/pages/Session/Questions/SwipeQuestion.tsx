@@ -1,4 +1,5 @@
 import { useRef, useCallback, useState } from "react";
+import { Check, HelpCircle, ThumbsDown, ThumbsUp } from "lucide-react";
 import { useSession } from "../SessionContext";
 import type { QuestionOut } from "@/types/question";
 
@@ -68,28 +69,30 @@ export function SwipeQuestion({ question }: SwipeQuestionProps) {
 
   if (showSubmit) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center gap-6 px-6">
-        <p className="font-brand font-bold text-[22px] text-lmk-dark text-center">
-          Ready to submit?
+      <div className="flex-1 flex flex-col items-center justify-center gap-7 px-6">
+        <p className="font-display text-[28px] leading-tight text-lmk-ink text-center -rotate-1 max-w-[300px]">
+          that's everything. no take-backs.
         </p>
         <button
           onClick={handleSubmit}
-          className="px-10 py-4 bg-lmk-secondary text-white font-brand font-bold text-[18px] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] active:scale-95 transition-transform"
+          className="flex items-center gap-2 px-10 h-[58px] rounded-sketch-alt border-[2.5px] border-lmk-ink bg-lmk-blue text-white text-[17px] font-semibold shadow-sketch-blue active:translate-y-[2px] transition-transform"
         >
-          Submit
+          Submit my answers
+          <Check className="w-5 h-5" strokeWidth={2.4} />
         </button>
       </div>
     );
   }
 
   return (
-    <div className="flex-1 flex items-center justify-center relative overflow-hidden px-6">
-      <span
-        className="absolute left-4 top-1/2 -translate-y-1/2 text-[28px] font-brand font-bold text-lmk-dark/60 pointer-events-none transition-opacity"
+    <div className="flex-1 flex items-center justify-center relative overflow-hidden px-6 py-6">
+      {/* left (nah) hint badge */}
+      <div
+        className="absolute left-5 top-1/2 -translate-y-1/2 w-[62px] h-[62px] flex items-center justify-center rounded-full border-[2.5px] border-lmk-ink bg-lmk-paper-warm text-lmk-ink -rotate-[7deg] pointer-events-none transition-opacity"
         style={{ opacity: offset < 0 ? hintOpacity : 0 }}
       >
-        {leftLabel}
-      </span>
+        <ThumbsDown className="w-7 h-7" strokeWidth={2.2} />
+      </div>
 
       <div
         ref={cardRef}
@@ -97,7 +100,7 @@ export function SwipeQuestion({ question }: SwipeQuestionProps) {
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
-        className="w-full max-w-[320px] aspect-[3/4] bg-lmk-secondary rounded-2xl flex flex-col items-center justify-center px-8 text-white cursor-grab active:cursor-grabbing select-none touch-none shadow-[0_8px_32px_rgba(0,0,0,0.15)]"
+        className="surface-blue sketch-hatch w-full max-w-[320px] aspect-[3/4] rounded-sketch border-[2.5px] border-lmk-ink flex flex-col items-center justify-center gap-5 px-9 text-white cursor-grab active:cursor-grabbing select-none touch-none shadow-sketch-lg overflow-hidden"
         style={{
           transform: isExiting ? exitTransform : `translateX(${offset}px) rotate(${rotation}deg)`,
           transition: isDragging
@@ -108,24 +111,26 @@ export function SwipeQuestion({ question }: SwipeQuestionProps) {
           opacity: isExiting ? 0 : 1,
         }}
       >
-        <p className="text-[11px] font-bold uppercase tracking-[0.1em] opacity-70 mb-6">
-          swipe to answer
+        <HelpCircle className="w-[64px] h-[64px] text-white/90" strokeWidth={2} />
+        <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/75">
+          swipe before you overthink it
         </p>
-        <p className="font-brand font-bold text-[28px] leading-[1.2] tracking-tight text-center">
+        <p className="font-display text-[42px] leading-[1.06] text-center text-white">
           {question.text}
         </p>
-        <div className="flex gap-8 mt-8 opacity-70">
-          <span className="text-[13px]">← {leftLabel}</span>
-          <span className="text-[13px]">{rightLabel} →</span>
+        <div className="flex gap-9 mt-2 text-[12px] font-semibold uppercase tracking-[0.06em] text-white/80">
+          <span>← {leftLabel}</span>
+          <span>{rightLabel} →</span>
         </div>
       </div>
 
-      <span
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-[28px] font-brand font-bold text-lmk-dark/60 pointer-events-none transition-opacity"
+      {/* right (yes) hint badge */}
+      <div
+        className="absolute right-5 top-1/2 -translate-y-1/2 w-[62px] h-[62px] flex items-center justify-center rounded-full border-[2.5px] border-lmk-ink bg-lmk-blue text-white rotate-[7deg] pointer-events-none transition-opacity"
         style={{ opacity: offset > 0 ? hintOpacity : 0 }}
       >
-        {rightLabel}
-      </span>
+        <ThumbsUp className="w-7 h-7" strokeWidth={2.2} />
+      </div>
     </div>
   );
 }
