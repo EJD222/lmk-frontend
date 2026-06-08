@@ -6,6 +6,7 @@ import { WaitingScreen } from "@/pages/Loading/WaitingScreen";
 import { LoadingQuestions } from "@/pages/Loading/LoadingQuestions";
 import { GeneratingResults } from "@/pages/Loading/GeneratingResults";
 import { NavHeader } from "@/components/common/NavHeader";
+import { ShareLinkButton } from "@/components/common/ShareLinkButton";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { SecondaryButton } from "@/components/common/SecondaryButton";
 import { ProgressDashes } from "@/components/common/ProgressDashes";
@@ -13,8 +14,17 @@ import { canAdvanceQuestion } from "@/lib/question";
 import { MECHANIC } from "@/types/question";
 
 export function SessionContent() {
-  const { phase, questions, currentIndex, answers, isSubmitting, goNext, goPrev, handleSubmit } =
-    useSession();
+  const {
+    phase,
+    questions,
+    currentIndex,
+    answers,
+    isSubmitting,
+    sessionInfo,
+    goNext,
+    goPrev,
+    handleSubmit,
+  } = useSession();
   const navigate = useNavigate();
 
   if (phase === "loading") return <LoadingQuestions />;
@@ -44,7 +54,7 @@ export function SessionContent() {
 
   return (
     <div className="surface-paper min-h-screen flex flex-col">
-      <NavHeader />
+      <NavHeader action={<ShareLinkButton joinLink={sessionInfo?.join_link} />} />
 
       <div className="px-6 w-full max-w-[600px] mx-auto">
         <ProgressDashes total={total} current={currentIndex + 1} />

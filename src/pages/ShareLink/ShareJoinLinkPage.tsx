@@ -5,7 +5,7 @@ import { Wordmark } from "@/components/common/Wordmark";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { SecondaryButton } from "@/components/common/SecondaryButton";
 import { TextButton } from "@/components/common/TextButton";
-import { notifySuccess, notifyError } from "@/lib/notify";
+import { useShareJoinLink } from "@/hooks/useShareJoinLink";
 import { buildSessionPath } from "@/common/routes";
 import { SharePageState } from "@/types/navigation";
 
@@ -13,6 +13,7 @@ export function ShareJoinLinkPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const state = location.state as SharePageState | null;
+  const { shareUrl, copyLink, shareLink } = useShareJoinLink(state?.joinLink);
 
   useEffect(() => {
     if (!state?.joinLink) {
@@ -21,32 +22,6 @@ export function ShareJoinLinkPage() {
   }, [state, navigate]);
 
   if (!state?.joinLink) return null;
-
-  const { joinLink } = state;
-
-  const linkId = joinLink.split("/").filter(Boolean).pop() ?? joinLink;
-  const shareUrl = `${window.location.origin}/join-session/${linkId}`;
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      notifySuccess("copied. go drop it in the chat.");
-    } catch {
-      notifyError("hmm, that didn't copy — you'll have to grab it by hand");
-    }
-  };
-
-  const handleShare = async () => {
-    if ("share" in navigator) {
-      try {
-        await navigator.share({ title: "come make plans with me on lmk", url: shareUrl });
-      } catch {
-        // user dismissed the share sheet
-      }
-    } else {
-      handleCopy();
-    }
-  };
 
   const handleContinueToQuestions = () => {
     navigate(buildSessionPath(state.sessionId), {
@@ -81,12 +56,12 @@ export function ShareJoinLinkPage() {
         </div>
 
         <div className="flex flex-col w-full gap-3.5 mb-8">
-          <PrimaryButton onClick={handleCopy}>
+          <PrimaryButton onClick={copyLink}>
             Copy link
             <Copy className="w-5 h-5" strokeWidth={2.2} />
           </PrimaryButton>
           {"share" in navigator && (
-            <SecondaryButton tone="outline" onClick={handleShare}>
+            <SecondaryButton tone="outline" onClick={shareLink}>
               Share
               <Share2 className="w-5 h-5" strokeWidth={2.2} />
             </SecondaryButton>
