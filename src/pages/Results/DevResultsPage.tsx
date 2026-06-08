@@ -3,7 +3,7 @@ import { ResultContext } from "./ResultContext";
 import type { ResultPhase } from "./ResultContext";
 import { ResultContent } from "./ResultContent";
 import { SaveAsImageModal } from "./SaveAsImageModal";
-import type { OverallResult, RecommendationResult } from "@/types/result";
+import type { OverallResult, RecommendationResult, SessionMeta } from "@/types/result";
 
 const MOCK_RECOMMENDATIONS: RecommendationResult[] = [
   {
@@ -22,6 +22,15 @@ const MOCK_RECOMMENDATIONS: RecommendationResult[] = [
     value: { name: "Speakeasy Bar", reasoning: "3 of 6 prefer cocktails; Low Bar fits the $$ range and works for the 1 non-drinker.", ranking: 3 },
   },
 ];
+
+const MOCK_META: SessionMeta = {
+  topic: "Friday night plans 🎉",
+  participant_count: 6,
+  created_at: new Date().toISOString(),
+  top_pick: MOCK_RECOMMENDATIONS[0],
+};
+
+const MOCK_JOIN_LINK = "dev-link";
 
 function getMockOverall(isAgreement: boolean): OverallResult {
   return {
@@ -57,7 +66,7 @@ export function DevResultsPage() {
 
   return (
     <>
-      <ResultContext.Provider value={{ phase, topic: "Friday night plans 🎉", isAgreement, overallResult, topResult, restResults, advance, restart }}>
+      <ResultContext.Provider value={{ phase, meta: MOCK_META, joinLink: MOCK_JOIN_LINK, isAgreement, overallResult, topResult, restResults, advance, restart }}>
         <ResultContent />
         {showSave && <SaveAsImageModal onClose={() => setShowSave(false)} />}
       </ResultContext.Provider>
