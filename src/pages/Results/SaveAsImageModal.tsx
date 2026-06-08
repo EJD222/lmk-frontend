@@ -53,7 +53,7 @@ export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
       onClick={onClose}
     >
       <div
-        className="surface-paper relative border-2 border-lmk-ink rounded-sketch shadow-sketch w-[354px] flex flex-col gap-2.5 p-4 my-auto"
+        className="bg-lmk-paper relative border-2 border-lmk-ink rounded-sketch shadow-sketch w-[354px] flex flex-col gap-2.5 p-4 my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="absolute -top-[9px] left-1/2 -translate-x-1/2 -rotate-[1.5deg] w-16 h-[18px] bg-lmk-blue/10 border border-lmk-blue/20 rounded-sm pointer-events-none" />
