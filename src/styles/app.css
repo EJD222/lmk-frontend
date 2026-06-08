@@ -56,6 +56,21 @@
   background-blend-mode: soft-light;
 }
 
+/* ---------- SELF-CONTAINED PAPER CARD ----------
+   Same grain + multiply blend as `.surface-paper`, but scoped to the
+   element instead of `fixed` to the viewport. Used for small cards that
+   need the textured-paper look on their own terms — e.g. the exportable
+   preview in SaveAsImageModal, where `background-attachment: fixed` would
+   both look wrong (sampling a viewport-relative crop inside a tiny card)
+   and confuse html2canvas's screenshot capture. */
+.paper-card {
+  background-color: var(--lmk-paper);
+  background-image: var(--paper-texture);
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
 /* ---------- EXCALIDRAW CROSS-HATCH SHADING ----------
    Subtle hand-shaded fill, inherits text colour. */
 .sketch-hatch {

@@ -5,8 +5,6 @@ import { cn } from "@/lib/utils";
 import { LMK_COLORS } from "@/lib/colors";
 import { useResult } from "./ResultContext";
 
-type Shape = "rectangle" | "square";
-
 const MOCK_TOP = {
   id: "m1",
   value: {
@@ -28,7 +26,6 @@ interface SaveAsImageModalProps {
 
 export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
   const { topResult, restResults, meta } = useResult();
-  const [shape, setShape] = useState<Shape>("rectangle");
   const [saving, setSaving] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -41,6 +38,10 @@ export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
     if (!cardRef.current) return;
     setSaving(true);
     try {
+      // The card now wears `.paper-card` directly (grain + multiply blend,
+      // scoped to the element rather than `fixed` to the viewport like
+      // `surface-paper`) — so what html2canvas captures *is* what's on
+      // screen, texture included, no separate reconstruction needed.
       const canvas = await html2canvas(cardRef.current, {
         backgroundColor: LMK_COLORS.paper,
         scale: 2,
@@ -48,31 +49,9 @@ export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
         logging: false,
       });
 
-      let finalCanvas = canvas;
-      if (shape === "square") {
-        const size = Math.min(canvas.width, canvas.height);
-        const sq = document.createElement("canvas");
-        sq.width = sq.height = size;
-        const ctx = sq.getContext("2d");
-        if (ctx) {
-          ctx.drawImage(
-            canvas,
-            (canvas.width - size) / 2,
-            (canvas.height - size) / 2,
-            size,
-            size,
-            0,
-            0,
-            size,
-            size
-          );
-        }
-        finalCanvas = sq;
-      }
-
       const link = document.createElement("a");
       link.download = "lmk-result.png";
-      link.href = finalCanvas.toDataURL("image/png");
+      link.href = canvas.toDataURL("image/png");
       link.click();
     } finally {
       setSaving(false);
@@ -85,7 +64,7 @@ export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
       onClick={onClose}
     >
       <div
-        className="relative bg-lmk-paper border-2 border-lmk-ink rounded-sketch shadow-sketch w-[354px] flex flex-col gap-2.5 p-4 my-auto"
+        className="surface-paper relative border-2 border-lmk-ink rounded-sketch shadow-sketch w-[354px] flex flex-col gap-2.5 p-4 my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="absolute -top-[9px] left-1/2 -translate-x-1/2 -rotate-[1.5deg] w-16 h-[18px] bg-lmk-blue/10 border border-lmk-blue/20 rounded-sm pointer-events-none" />
@@ -104,7 +83,7 @@ export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
 
         <p className="font-display text-[12px] text-lmk-ink/55 -mb-1">preview</p>
 
-        <div ref={cardRef} className="bg-lmk-paper px-5 pt-5 pb-4 flex flex-col gap-4 rounded-lg">
+        <div ref={cardRef} className="paper-card px-5 pt-5 pb-4 flex flex-col gap-4 rounded-lg">
           <div className="flex items-center justify-between">
             <span className="font-wordmark text-[26px] text-lmk-wordmark leading-none">lmk</span>
             <span className="font-body text-[11px] text-lmk-ink/35 uppercase tracking-[0.12em] font-semibold">
@@ -153,10 +132,7 @@ export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
           )}
 
           {/* footer */}
-          <div className="flex items-center justify-between mt-1">
-            <span className="font-body text-[10px] text-lmk-ink/30">decided with lmk</span>
-            <span className="font-display text-[15px] text-lmk-blue">lmk.app</span>
-          </div>
+          <p className="font-body text-[10px] text-lmk-ink/30 mt-1">decided with lmk</p>
         </div>
 
         <div
@@ -166,27 +142,6 @@ export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
               "repeating-linear-gradient(90deg, rgba(17,17,17,0.20) 0, rgba(17,17,17,0.20) 4px, transparent 4px, transparent 9px)",
           }}
         />
-
-        {/* shape */}
-        <div>
-          <p className="font-display text-[12px] text-lmk-ink/55 mb-1">shape</p>
-          <div className="flex gap-1.5">
-            {(["rectangle", "square"] as Shape[]).map((s) => (
-              <button
-                key={s}
-                onClick={() => setShape(s)}
-                className={cn(
-                  "flex-1 py-[5px] border-2 border-lmk-ink rounded-sketch-pill font-body text-[12px] font-medium shadow-sketch-sm transition-colors",
-                  shape === s
-                    ? "bg-lmk-ink text-lmk-paper"
-                    : "bg-lmk-paper-warm text-lmk-ink hover:bg-lmk-ink/10"
-                )}
-              >
-                {s}
-              </button>
-            ))}
-          </div>
-        </div>
 
         {/* cta */}
         <button
