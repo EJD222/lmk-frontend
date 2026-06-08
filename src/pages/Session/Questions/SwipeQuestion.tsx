@@ -70,14 +70,14 @@ export function SwipeQuestion({ question }: SwipeQuestionProps) {
   if (showSubmit) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center gap-7 px-6">
-        <p className="font-display text-[32px] text-lmk-ink text-center -rotate-1">
-          Ready to submit?
+        <p className="font-display text-[28px] leading-tight text-lmk-ink text-center -rotate-1 max-w-[300px]">
+          that's everything. no take-backs.
         </p>
         <button
           onClick={handleSubmit}
           className="flex items-center gap-2 px-10 h-[58px] rounded-sketch-alt border-[2.5px] border-lmk-ink bg-lmk-blue text-white text-[17px] font-semibold shadow-sketch-blue active:translate-y-[2px] transition-transform"
         >
-          Submit
+          Submit my answers
           <Check className="w-5 h-5" strokeWidth={2.4} />
         </button>
       </div>
@@ -113,7 +113,7 @@ export function SwipeQuestion({ question }: SwipeQuestionProps) {
       >
         <HelpCircle className="w-[64px] h-[64px] text-white/90" strokeWidth={2} />
         <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/75">
-          swipe to answer
+          swipe before you overthink it
         </p>
         <p className="font-display text-[42px] leading-[1.06] text-center text-white">
           {question.text}

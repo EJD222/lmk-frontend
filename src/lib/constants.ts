@@ -1,2 +1,3 @@
-// Ring colours for the loading dots — monotone blue palette + paper accent
-export const DOT_COLORS = ["#1529d6", "#6B7FF5", "#9BAAF7", "#C5CDF8"] as const;
+// Re-exported for backwards compatibility — the canonical definition now
+// lives alongside the rest of the colour palette in `@/lib/colors`.
+export { DOT_COLORS } from "./colors";

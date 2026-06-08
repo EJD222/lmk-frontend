@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { AppLayout } from "./components/layout/AppLayout";
 import { WelcomePage } from "@/pages/WelcomePage";
 import { CreateSessionPage } from "@/pages/CreateSession/CreateSessionPage";
@@ -21,19 +21,33 @@ import {
 
 
 const TEXTURES = [
-  "/textures/paper.jpg",
-  "/textures/paper2.jpg",
-  "/textures/paper3.jpg",
+  "/textures/paper.webp",
+  "/textures/paper2.webp",
+  "/textures/paper3.webp",
 ];
 
-function App() {
-  useEffect(() => {
-    const pick = TEXTURES[Math.floor(Math.random() * TEXTURES.length)];
-    document.documentElement.style.setProperty("--paper-texture", `url("${pick}")`);
-  }, []);
+// Locked to match the texture WelcomePage hardcodes for its own surface,
+// so the root background and the welcome card never mismatch.
+const WELCOME_TEXTURE = "/textures/paper3.webp";
 
+function RootTexture() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const pick =
+      pathname === "/"
+        ? WELCOME_TEXTURE
+        : TEXTURES[Math.floor(Math.random() * TEXTURES.length)];
+    document.documentElement.style.setProperty("--paper-texture", `url("${pick}")`);
+  }, [pathname]);
+
+  return null;
+}
+
+function App() {
   return (
     <BrowserRouter>
+      <RootTexture />
       <AppLayout>
         <Routes>
           <Route path="/" element={<WelcomePage />} />

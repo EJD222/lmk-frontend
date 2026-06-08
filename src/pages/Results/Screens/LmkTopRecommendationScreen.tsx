@@ -3,7 +3,7 @@ import { TapToContinue } from "@/components/common/TapToContinue";
 import { useResult } from "../ResultContext";
 
 export function LmkTopRecommendationScreen() {
-  const { topResult, advance } = useResult();
+  const { topResult, isAgreement, advance } = useResult();
 
   if (!topResult) return null;
 
@@ -17,9 +17,9 @@ export function LmkTopRecommendationScreen() {
           className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.12em] text-white/70 animate-scribble-in"
           style={{ animationDelay: "0.1s" }}
         >
-          <Sparkles className="w-4 h-4" strokeWidth={2.4} />
-          the AI's pick
-          <Sparkles className="w-4 h-4" strokeWidth={2.4} />
+          {isAgreement && <Sparkles className="w-4 h-4" strokeWidth={2.4} />}
+          {isAgreement ? "your top match" : "if you had to pick one"}
+          {isAgreement && <Sparkles className="w-4 h-4" strokeWidth={2.4} />}
         </span>
 
         <h1

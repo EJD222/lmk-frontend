@@ -24,7 +24,7 @@ export function TextQuestion({ question }: TextQuestionProps) {
         onChange={handleChange}
         maxLength={MAX_CHARS}
         rows={5}
-        placeholder="Type your answer here..."
+        placeholder="tell us what you're really thinking..."
       />
       <p className="text-[14px] text-lmk-ink/40 text-right tabular-nums">
         {value.length}/{MAX_CHARS}

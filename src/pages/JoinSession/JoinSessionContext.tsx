@@ -33,7 +33,7 @@ export function JoinSessionProvider({ children, initialLinkId = "" }: JoinSessio
         });
       })
       .catch(() => {
-        notifyError("Failed to join session. Please check the link and try again.");
+        notifyError("that code's not it — check it again");
       });
   };
 

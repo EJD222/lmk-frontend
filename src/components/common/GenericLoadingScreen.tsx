@@ -23,7 +23,7 @@ export function GenericLoadingScreen({ messages }: GenericLoadingScreenProps) {
 
   return (
     <div className="surface-dark min-h-screen flex flex-col items-center justify-center text-center px-6">
-      <span className="font-display text-[44px] leading-none text-lmk-blue-mid mb-14 -rotate-2">
+      <span className="font-wordmark text-[36px] leading-none text-lmk-blue-soft mb-14 -rotate-2">
         lmk
       </span>
 

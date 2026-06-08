@@ -11,10 +11,10 @@ export function ContextForm() {
   return (
     <div className="flex flex-col flex-1">
       <h1 className="font-display text-[46px] leading-[1.04] text-lmk-ink rotate-1 self-start mb-2">
-        anything the AI should know?
+        wanna give us a heads up?
       </h1>
-      <p className="font-body text-[18px] leading-relaxed text-lmk-ink/60 mb-8">
-        add context so the questions are actually useful
+      <p className="font-body text-[17px] leading-relaxed text-lmk-ink/60 mb-8">
+        the more you share, the better these questions are gonna hit
       </p>
 
       <div className="flex flex-col gap-2">
@@ -31,7 +31,7 @@ export function ContextForm() {
         <FormTextarea
           value={formData.context}
           onChange={(e) => setContext(e.target.value)}
-          placeholder="e.g. mix of introverts and extroverts, some people don't drive, keep it under $30"
+          placeholder="e.g. we're a mix of homebodies and chaos goblins, budget's tight, not everyone can drive"
           maxLength={500}
           rows={5}
         />
@@ -42,7 +42,7 @@ export function ContextForm() {
           Build my session
           <Sparkles className="w-5 h-5" strokeWidth={2.2} />
         </PrimaryButton>
-        <TextButton onClick={handleSubmit}>skip for now</TextButton>
+        <TextButton onClick={handleSubmit}>nah, surprise me</TextButton>
       </div>
     </div>
   );

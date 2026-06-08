@@ -1,6 +1,6 @@
 import { toast } from "sonner";
 
-export function notifyError(message = "Something went wrong. Please try again."): void {
+export function notifyError(message = "that didn't work — give it another go"): void {
   toast.error(message);
 }
 
@@ -9,5 +9,5 @@ export function notifySuccess(message: string): void {
 }
 
 export function notifyInfo(message: string): void {
-  toast(message);
+  toast.info(message);
 }

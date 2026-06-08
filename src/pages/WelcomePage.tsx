@@ -1,8 +1,10 @@
-import { ArrowRight, Coffee, Dices, Wine } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { PrimaryButton } from "@/components/common/PrimaryButton";
+import { ScatteredIcons } from "@/components/common/ScatteredIcons";
 import { SecondaryButton } from "@/components/common/SecondaryButton";
 import { CREATE_SESSION_ROUTE, JOIN_SESSION_ROUTE } from "@/common/routes";
+import { LMK_COLORS } from "@/lib/colors";
 
 export function WelcomePage() {
   const navigate = useNavigate();
@@ -18,45 +20,44 @@ export function WelcomePage() {
   return (
     <div
       id="welcome-page"
-      className="surface-paper flex flex-col items-center justify-center min-h-screen px-6 text-center"
-      style={{ "--paper-texture": 'url("/textures/paper3.jpg")' } as React.CSSProperties}
+      className="surface-paper relative flex flex-col items-center justify-center min-h-screen px-6 text-center"
+      style={
+        {
+          "--paper-texture": 'url("/textures/paper3.webp")',
+          backgroundColor: LMK_COLORS.cream,
+        } as React.CSSProperties
+      }
     >
-      <h1 className="font-display text-[104px] leading-[0.9] text-lmk-ink -rotate-2 mb-2">lmk</h1>
+      <ScatteredIcons />
 
-      <p className="font-display text-[30px] leading-tight text-lmk-ink mb-6">
-        <span className="opacity-40">from</span> let me know, <span className="opacity-40">to</span>{" "}
-        <span className="text-lmk-blue wavy-underline">let's go</span>
-      </p>
+      <div className="relative flex flex-col items-center">
+        <h1 className="font-wordmark text-[110px] leading-[0.7] text-lmk-wordmark -rotate-2 mb-2">
+          lmk
+        </h1>
 
-      <p className="font-body text-[18px] leading-relaxed text-lmk-ink/65 max-w-[340px]">
-        Stop the endless "what do you wanna do?" chat. Start a session, share the link, and let your
-        group figure it out — without the 45-minute thread.
-      </p>
+        <p className="font-display text-[40px] leading-tight text-lmk-ink mb-6">
+          <span className="opacity-75">from</span>{" "}
+          <span className="dashed-underline">let me know,</span>{" "}
+          <span className="opacity-75">to</span> <span className="solid-underline">let's go</span>
+        </p>
 
-      {/* hero doodle trio */}
-      <div className="flex items-end justify-center gap-7 my-12">
-        <Wine
-          className="w-[60px] h-[60px] text-lmk-blue -rotate-[10deg] mb-3 animate-[float_3.8s_ease-in-out_infinite]"
-          strokeWidth={2.2}
-        />
-        <Dices
-          className="w-[92px] h-[92px] text-lmk-ink animate-[float_4.2s_ease-in-out_infinite]"
-          strokeWidth={2}
-        />
-        <Coffee
-          className="w-[60px] h-[60px] text-lmk-blue rotate-[8deg] mb-5 animate-[float_3.5s_ease-in-out_infinite]"
-          strokeWidth={2.2}
-        />
-      </div>
+        <p className="font-body text-[20px] leading-relaxed text-lmk-ink/95 max-w-[360px]">
+          say less — start a session, send the link to your people, and let everyone vote their way
+          to a plan you're all actually hyped about. no more circling for 45 minutes.
+        </p>
 
-      <div id="welcome-buttons" className="w-full max-w-[340px] flex flex-col gap-3.5">
-        <PrimaryButton onClick={handleOnCreateSessionClick}>
-          Start a session
-          <ArrowRight className="w-5 h-5" strokeWidth={2.4} />
-        </PrimaryButton>
-        <SecondaryButton tone="outline" onClick={handleOnJoinSessionClick}>
-          Join a session
-        </SecondaryButton>
+        <br />
+        <br />
+
+        <div id="welcome-buttons" className="w-full max-w-[340px] flex flex-col gap-3.5">
+          <PrimaryButton onClick={handleOnCreateSessionClick}>
+            Start a session
+            <ArrowRight className="w-5 h-5" strokeWidth={2.4} />
+          </PrimaryButton>
+          <SecondaryButton tone="outline" onClick={handleOnJoinSessionClick}>
+            Got a code? Join in
+          </SecondaryButton>
+        </div>
       </div>
     </div>
   );
