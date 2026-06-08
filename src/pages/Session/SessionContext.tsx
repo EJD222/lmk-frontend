@@ -81,7 +81,7 @@ export function SessionProvider({ children, sessionId, participantId }: SessionP
       } else if (event.state === "RESULTS") {
         navigate(RESULTS_ROUTE, { state: { sessionId, participantId }, replace: true });
       } else if (event.state === "ANSWERING") {
-        setPhase("waiting");
+        setPhase("loading");
       }
     });
     return () => source.close();
