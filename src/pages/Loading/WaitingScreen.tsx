@@ -53,7 +53,7 @@ export function WaitingScreen() {
                 </div>
               ) : answered.length === 0 ? (
                 <p className="font-body text-[14px] text-lmk-ink/55">
-                  no one yet.
+                  nobody yet — you could be the first one in!
                 </p>
               ) : (
                 <ul className="flex flex-col gap-2.5">
@@ -84,37 +84,38 @@ export function WaitingScreen() {
               <h2 className="font-display text-[44px] leading-[1.04] text-lmk-ink">
                 has everyone
                 <br />
-                answered?
+                answered, or...?
               </h2>
 
-              <p className="font-body text-[16px] text-lmk-ink/55 max-w-[280px] leading-relaxed">
-                when you're ready, advance the session to generate results.
+              <p className="font-body text-[16px] text-lmk-ink/55 max-w-[300px] leading-relaxed">
+                whenever you feel good about it, go ahead and move things along — we'll handle the
+                rest.
               </p>
 
               <div className="w-full max-w-[400px] flex flex-col gap-3.5">
                 <PrimaryButton onClick={handleAdvance} disabled={isAdvancing}>
-                  {isAdvancing ? "Advancing..." : "Advance session"}
+                  {isAdvancing ? "Crunching answers..." : "Let's wrap things up"}
                 </PrimaryButton>
                 <SecondaryButton tone="outline" onClick={openAnswered}>
-                  See who's answered
+                  Check who's in
                 </SecondaryButton>
               </div>
             </>
           ) : (
             <>
               <h2 className="font-display text-[44px] leading-[1.04] text-lmk-ink">
-                waiting for
+                cool. we wait.
                 <br />
-                everyone else
+                again.
               </h2>
 
               <p className="font-body text-[16px] text-lmk-ink/55 max-w-[280px] leading-relaxed">
-                we'll let you know when it's time.
+                we'll let you know the second it's go time.
               </p>
 
               <div className="w-full max-w-[400px]">
                 <SecondaryButton tone="outline" onClick={openAnswered}>
-                  See who's answered
+                  Check who's in
                 </SecondaryButton>
               </div>
             </>

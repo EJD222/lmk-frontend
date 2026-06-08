@@ -7,6 +7,8 @@ module.exports = {
       fontFamily: {
         // Handwritten display face — headers, wordmark, big numbers, "non-text" flourishes
         display: ['"Kids Handwritten"', '"Comic Sans MS"', "cursive"],
+        // Wordmark face — reserved for the "lmk" title only
+        wordmark: ['"Brown Cookies"', '"Kids Handwritten"', "cursive"],
         // Clean sans for body / UI / inputs — distinguished by weight only
         brand: ["Outfit", "sans-serif"],
         body: ["Outfit", "sans-serif"],
@@ -58,24 +60,31 @@ module.exports = {
       },
       colors: {
         lmk: {
-          // Repointed to the monotone-blue / paper / ink scrapbook palette.
-          // Names kept stable so existing utility classes adopt the new look.
-          primary: "#1529d6", // blue — primary actions
-          secondary: "#1529d6", // blue — was purple; now unified blue
-          tertiary: "#6B7FF5", // blue-mid
+          // Repointed to the deep-blue scrapbook palette (4-stop gradient
+          // sourced from #061386 → #2D42F9). Names kept stable so existing
+          // utility classes adopt the new look automatically.
+          primary: "#071AB8", // blue — primary actions
+          secondary: "#071AB8", // blue — unified blue
+          tertiary: "#0820EA", // blue-mid
           "tertiary-fg": "#FFFFFF",
-          accent: "#C5CDF8", // blue-pale
-          "accent-fg": "#1529d6",
+          accent: "#2D42F9", // blue-pale
+          "accent-fg": "#071AB8",
           light: "#F5F0E8", // paper
           dark: "#111111", // ink
           // Explicit semantic aliases for new code
-          blue: "#1529d6",
-          "blue-mid": "#6B7FF5",
-          "blue-pale": "#C5CDF8",
+          wordmark: "#061386", // dedicated "lmk" logo/typeface colour — darkest stop, used ONLY for the wordmark
+          blue: "#071AB8",
+          "blue-mid": "#0820EA",
+          "blue-soft": "#1B31F2", // interpolated midpoint between blue-mid & blue-pale (gradients, loading rings)
+          "blue-pale": "#2D42F9",
+          "blue-light": "#8C97FC", // lightest blue stop — legible accents on dark/espresso surfaces
           paper: "#F5F0E8",
           "paper-warm": "#EDE6D6",
           "paper-dark": "#2C2A26",
+          cream: "#FDFAF2", // warm off-white — cards, inputs, modals, sliders
           ink: "#111111",
+          brown: "#2E2922", // underline ink — solid/dashed emphasis strokes
+          espresso: "#0C0B0A", // darkest surface — full-bleed dark screens
         },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

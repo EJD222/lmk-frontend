@@ -6,7 +6,7 @@ interface WordmarkProps {
 
 export function Wordmark({ className }: WordmarkProps) {
   return (
-    <span className={cn("font-display text-[34px] leading-none text-lmk-blue", className)}>
+    <span className={cn("font-wordmark text-[28px] leading-none text-lmk-wordmark", className)}>
       lmk
     </span>
   );

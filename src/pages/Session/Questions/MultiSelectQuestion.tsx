@@ -36,7 +36,7 @@ export function MultiSelectQuestion({ question }: MultiSelectQuestionProps) {
               i % 2 === 0 ? "rounded-sketch" : "rounded-sketch-alt",
               isSelected
                 ? "bg-lmk-blue text-white -translate-x-[1px] -translate-y-[1px] shadow-sketch"
-                : "bg-[#FDFAF2] text-lmk-ink"
+                : "bg-lmk-cream text-lmk-ink"
             )}
           >
             <span className="flex-1">{option.label}</span>

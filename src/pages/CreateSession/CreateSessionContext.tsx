@@ -75,7 +75,7 @@ export function CreateSessionProvider({ children }: CreateSessionProviderProps) 
       })
       .catch(() => {
         setIsLoading(false);
-        notifyError("Failed to create session. Please try again.");
+        notifyError("couldn't make the session happen — try again?");
       });
   };
 
