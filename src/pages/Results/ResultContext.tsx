@@ -64,11 +64,14 @@ export function ResultProvider({ children, sessionId }: ResultProviderProps) {
 
   const advance = useCallback(() => {
     setPhase((prev) => {
-      if (prev === "overall") return isAgreement ? "top" : "done";
+      // Whether the group landed on consensus has nothing to do with whether
+      // there are recommendations to show — gate on `topResult` itself so a
+      // "no agreement" outcome doesn't strand the recommendation screens.
+      if (prev === "overall") return topResult ? "top" : "done";
       if (prev === "top") return "rest";
       return "done";
     });
-  }, [isAgreement]);
+  }, [topResult]);
 
   const restart = useCallback(() => {
     setPhase(initialPhase);
