@@ -17,7 +17,9 @@ export function AppLayout({ children, className }: AppLayoutProps) {
       <Toaster
         position="bottom-center"
         icons={{
-          success: <CircleCheck className="h-[18px] w-[18px] text-lmk-blue-pale" aria-hidden="true" />,
+          success: (
+            <CircleCheck className="h-[18px] w-[18px] text-lmk-blue-pale" aria-hidden="true" />
+          ),
           error: <CircleAlert className="h-[18px] w-[18px] text-destructive" aria-hidden="true" />,
           info: <Info className="h-[18px] w-[18px] text-lmk-paper" aria-hidden="true" />,
         }}

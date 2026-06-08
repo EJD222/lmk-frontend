@@ -23,7 +23,7 @@ export function WelcomePage() {
       className="surface-paper relative flex flex-col items-center justify-center min-h-screen px-6 text-center"
       style={
         {
-          "--paper-texture": 'url("/textures/paper3.jpg")',
+          "--paper-texture": 'url("/textures/paper3.webp")',
           backgroundColor: LMK_COLORS.cream,
         } as React.CSSProperties
       }

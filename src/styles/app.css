@@ -7,7 +7,7 @@
    ============================================================ */
 
 :root {
-  --paper-texture: url("/textures/paper.jpg");
+  --paper-texture: url("/textures/paper.webp");
 }
 
 /* ---------- PAPER BACKGROUND (fixed, behind everything) ---------- */
@@ -25,11 +25,16 @@
 /* ---------- TEXTURED SURFACES ----------
    Colored background blended with the paper photo via `multiply`,
    exactly like the prototype overlays. */
+/* `background-attachment: fixed` locks the texture to the viewport so every
+   surface — full page or small card — samples the same crop of the same
+   photo, reading as one continuous backdrop instead of separately tiled
+   copies. */
 .surface-paper {
   background-color: var(--lmk-paper);
   background-image: var(--paper-texture);
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   background-blend-mode: multiply;
 }
 
@@ -38,6 +43,7 @@
   background-image: var(--paper-texture);
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   background-blend-mode: overlay;
 }
 
@@ -46,6 +52,7 @@
   background-image: var(--paper-texture);
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   background-blend-mode: soft-light;
 }
 
