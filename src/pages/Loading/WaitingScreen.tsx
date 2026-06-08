@@ -87,7 +87,7 @@ export function WaitingScreen() {
                 answered, or...?
               </h2>
 
-              <p className="font-body text-[16px] text-lmk-ink/55 max-w-[280px] leading-relaxed">
+              <p className="font-body text-[16px] text-lmk-ink/55 max-w-[300px] leading-relaxed">
                 whenever you feel good about it, go ahead and move things along — we'll handle the
                 rest.
               </p>

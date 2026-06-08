@@ -15,49 +15,49 @@ export function ThankYouScreen() {
     <>
       {showSave && <SaveAsImageModal onClose={() => setShowSave(false)} />}
       <div className="surface-dark min-h-screen flex flex-col">
-      <div className="flex flex-col flex-1 items-center justify-center text-center px-6 gap-5 animate-fade-in">
-        <span className="font-display text-[64px] leading-none text-lmk-blue-mid -rotate-2">
-          lmk
-        </span>
+        <div className="flex flex-col flex-1 items-center justify-center text-center px-6 gap-5 animate-fade-in">
+          <span className="font-wordmark text-[52px] leading-none text-lmk-blue-soft -rotate-2">
+            lmk
+          </span>
 
-        <h1 className="font-display text-[46px] leading-[1.05] text-lmk-paper">
-          {isAgreement ? "yes! that's a wrap" : "still figuring it out, huh?"}
-        </h1>
+          <h1 className="font-display text-[40px] leading-[1.1] text-lmk-paper max-w-[320px]">
+            {isAgreement ? "yes! that's a wrap" : "still figuring it out, huh?"}
+          </h1>
 
-        <p className="font-body text-[17px] leading-relaxed text-lmk-paper/60 max-w-[300px]">
-          {isAgreement
-            ? "hope this finally ends the discussion. no promises though."
-            : "totally normal — happens to the best groups. take another pass, or split off and do your own thing — either way's a win."}
-        </p>
+          <p className="font-body text-[16px] leading-relaxed text-lmk-paper/60 max-w-[300px]">
+            {isAgreement
+              ? "hope this finally ends the discussion. no promises though."
+              : "totally normal — happens to the best groups. take another pass, or split off and do your own thing — either way's a win."}
+          </p>
 
-        <p className="font-display text-[26px] leading-tight text-lmk-paper/90 mt-2">
-          <span className="opacity-40">from</span> let me know,{" "}
-          <span className="opacity-40">to</span>{" "}
-          <span className="text-lmk-blue-mid wavy-underline">let's go</span>
-        </p>
+          <p className="font-display text-[26px] leading-tight text-lmk-paper/90 mt-2">
+            <span className="opacity-75">from</span>{" "}
+            <span className="dashed-underline">let me know,</span>{" "}
+            <span className="opacity-75">to</span> <span className="solid-underline">let's go</span>
+          </p>
+        </div>
+
+        <div className="px-6 pb-10 flex flex-col gap-3.5 w-full max-w-[600px] mx-auto">
+          <PrimaryButton onClick={() => navigate("/", { replace: true })}>
+            Start something new
+          </PrimaryButton>
+          <SecondaryButton
+            tone="outline"
+            onClick={() => setShowSave(true)}
+            className="border-lmk-paper/40 text-lmk-paper hover:bg-white/10"
+          >
+            Save this as a pic
+          </SecondaryButton>
+          <SecondaryButton
+            tone="outline"
+            onClick={restart}
+            className="border-lmk-paper/40 text-lmk-paper hover:bg-white/10"
+          >
+            <RefreshCw className="w-5 h-5" strokeWidth={2.2} />
+            Run it back
+          </SecondaryButton>
+        </div>
       </div>
-
-      <div className="px-6 pb-10 flex flex-col gap-3.5 w-full max-w-[600px] mx-auto">
-        <PrimaryButton onClick={() => navigate("/", { replace: true })}>
-          Start something new
-        </PrimaryButton>
-        <SecondaryButton
-          tone="outline"
-          onClick={() => setShowSave(true)}
-          className="border-lmk-paper/40 text-lmk-paper hover:bg-white/10"
-        >
-          Save this as a pic
-        </SecondaryButton>
-        <SecondaryButton
-          tone="outline"
-          onClick={restart}
-          className="border-lmk-paper/40 text-lmk-paper hover:bg-white/10"
-        >
-          <RefreshCw className="w-5 h-5" strokeWidth={2.2} />
-          Run it back
-        </SecondaryButton>
-      </div>
-    </div>
     </>
   );
 }

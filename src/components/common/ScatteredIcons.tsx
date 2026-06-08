@@ -31,9 +31,9 @@ const ICONS: LucideIcon[] = [
   Palette,
 ];
 
-const COLORS = ["text-lmk-blue", "text-lmk-blue-mid", "text-lmk-ink/40"];
+const COLORS = ["text-lmk-ink/40", "text-lmk-ink/50", "text-lmk-ink/60"];
 
-const ICON_SIZE = 52;
+const ICON_SIZE = 60;
 const ROTATION_RANGE = 26;
 const POSITION_JITTER = 3;
 
@@ -70,7 +70,7 @@ interface SafeZone {
 
 /** Approximates the centered content card (the "clipping zone") in pixels. */
 function getSafeZone(viewportWidth: number, viewportHeight: number): SafeZone {
-  const width = Math.min(420, viewportWidth * 0.72);
+  const width = Math.min(420, viewportWidth * 0.9);
   const height = Math.min(480, viewportHeight * 0.62);
   return {
     left: (viewportWidth - width) / 2,

@@ -14,7 +14,7 @@ export function FormInput({ label, hint, className, ...props }: FormInputProps) 
       </label>
       <input
         className={cn(
-          "w-full h-[58px] px-5 rounded-sketch-alt border-[2px] border-lmk-ink bg-[#FDFAF2]",
+          "w-full h-[58px] px-5 rounded-sketch-alt border-[2px] border-lmk-ink bg-lmk-cream",
           "font-body text-[17px] text-lmk-ink placeholder:text-lmk-ink/40 placeholder:italic",
           "shadow-sketch-sm outline-none transition-[border-color,box-shadow]",
           "focus:border-lmk-blue focus:shadow-[3px_4px_0_rgba(21,41,214,0.22)]",

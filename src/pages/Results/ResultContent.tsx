@@ -20,7 +20,7 @@ function ErrorScreen() {
   return (
     <div className="surface-dark min-h-screen flex flex-col items-center justify-center gap-4 px-6 text-center">
       <p className="font-display text-[32px] leading-tight text-lmk-paper">aw, something slipped</p>
-      <p className="font-body text-[16px] text-lmk-paper/60">
+      <p className="font-body text-[16px] text-lmk-paper/60 max-w-[280px]">
         the results didn't load. we're as confused as you are.
       </p>
       <button

@@ -70,7 +70,7 @@ export function SwipeQuestion({ question }: SwipeQuestionProps) {
   if (showSubmit) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center gap-7 px-6">
-        <p className="font-display text-[32px] text-lmk-ink text-center -rotate-1">
+        <p className="font-display text-[28px] leading-tight text-lmk-ink text-center -rotate-1 max-w-[300px]">
           that's everything. no take-backs.
         </p>
         <button

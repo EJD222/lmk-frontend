@@ -1,8 +1,15 @@
 import { TapToContinue } from "@/components/common/TapToContinue";
+import { LMK_COLORS } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 import { useResult } from "../ResultContext";
 
-const ACCENT_COLORS = ["#1529d6", "#6B7FF5", "#C5CDF8", "#1529d6"];
+// Accent rotation for result cards — cycles through the blue family
+const ACCENT_COLORS = [
+  LMK_COLORS.blue,
+  LMK_COLORS.blueMid,
+  LMK_COLORS.bluePale,
+  LMK_COLORS.blue,
+] as const;
 
 export function OtherRecommendationScreen() {
   const { restResults, advance } = useResult();
@@ -27,7 +34,7 @@ export function OtherRecommendationScreen() {
               <div
                 key={result.id}
                 className={cn(
-                  "bg-[#FDFAF2] border-[2px] border-lmk-ink shadow-sketch-sm px-5 py-4 flex items-stretch gap-4",
+                  "bg-lmk-cream border-[2px] border-lmk-ink shadow-sketch-sm px-5 py-4 flex items-stretch gap-4",
                   i % 2 === 0 ? "rounded-sketch" : "rounded-sketch-alt"
                 )}
               >

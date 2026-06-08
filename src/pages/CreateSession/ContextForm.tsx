@@ -13,7 +13,7 @@ export function ContextForm() {
       <h1 className="font-display text-[46px] leading-[1.04] text-lmk-ink rotate-1 self-start mb-2">
         wanna give us a heads up?
       </h1>
-      <p className="font-body text-[18px] leading-relaxed text-lmk-ink/60 mb-8">
+      <p className="font-body text-[17px] leading-relaxed text-lmk-ink/60 mb-8">
         the more you share, the better these questions are gonna hit
       </p>
 

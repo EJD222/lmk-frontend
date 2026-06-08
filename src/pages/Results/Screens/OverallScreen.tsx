@@ -1,4 +1,5 @@
 import { TapToContinue } from "@/components/common/TapToContinue";
+import { LMK_COLORS } from "@/lib/colors";
 import { useResult } from "../ResultContext";
 
 export function OverallScreen() {
@@ -15,7 +16,7 @@ export function OverallScreen() {
     >
       <div key={overallResult.id} className="flex flex-col items-center gap-7 max-w-[420px]">
         <span
-          className="font-display text-[40px] leading-none text-lmk-blue-mid -rotate-2 animate-scribble-in"
+          className="font-wordmark text-[65px] leading-[0.3] text-lmk-blue-soft -rotate-2 animate-scribble-in"
           style={{ animationDelay: "0.1s" }}
         >
           lmk
@@ -25,7 +26,7 @@ export function OverallScreen() {
           className="text-[13px] font-semibold uppercase tracking-[0.12em] animate-scribble-in"
           style={{
             animationDelay: "0.25s",
-            color: is_agreement ? "#6B7FF5" : "#F5A623",
+            color: LMK_COLORS.blueLight,
           }}
         >
           {is_agreement ? "you're all in sync!" : "a few different vibes here"}

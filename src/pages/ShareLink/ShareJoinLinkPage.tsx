@@ -59,10 +59,10 @@ export function ShareJoinLinkPage() {
       <div className="w-full max-w-[400px] flex flex-col items-center">
         <Wordmark className="self-start mb-10 -rotate-1" />
 
-        <h1 className="font-display text-[58px] leading-[0.95] text-lmk-ink -rotate-2 self-start mb-3">
+        <h1 className="font-display text-[44px] leading-[1.05] text-lmk-ink -rotate-2 self-start mb-3">
           you're in. bring the chat.
         </h1>
-        <p className="font-body text-[18px] leading-relaxed text-lmk-ink/60 self-start mb-8">
+        <p className="font-body text-[17px] leading-relaxed text-lmk-ink/60 self-start mb-8">
           send this to your people — we'll hang tight till they show up
         </p>
 
@@ -72,7 +72,7 @@ export function ShareJoinLinkPage() {
             aria-hidden="true"
             className="absolute -top-3 left-1/2 -translate-x-1/2 -rotate-2 w-[72px] h-5 bg-lmk-blue-mid/30 border border-lmk-ink/10 z-10"
           />
-          <div className="w-full flex items-center justify-center gap-3 bg-[#FDFAF2] border-[2.5px] border-dashed border-lmk-blue rounded-sketch px-5 py-4">
+          <div className="w-full flex items-center justify-center gap-3 bg-lmk-cream border-[2.5px] border-dashed border-lmk-blue rounded-sketch px-5 py-4">
             <Link2 className="w-5 h-5 text-lmk-ink shrink-0" strokeWidth={2.2} />
             <span className="font-mono font-bold text-[14px] text-lmk-blue tracking-[0.04em] truncate">
               {shareUrl}

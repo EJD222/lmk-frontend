@@ -15,7 +15,7 @@ export function HostTopicForm() {
       <h1 className="font-display text-[46px] leading-[1.04] text-lmk-ink -rotate-1 self-start mb-2">
         alright, let's set the scene
       </h1>
-      <p className="font-body text-[18px] leading-relaxed text-lmk-ink/60 mb-8">
+      <p className="font-body text-[17px] leading-relaxed text-lmk-ink/60 mb-8">
         who's hosting, and what's the chat actually trying to decide?
       </p>
 
