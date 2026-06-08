@@ -9,7 +9,7 @@ import { SaveAsImageModal } from "../SaveAsImageModal";
 
 export function ThankYouScreen() {
   const navigate = useNavigate();
-  const { restart, isAgreement, joinLink } = useResult();
+  const { restart, isAgreement, joinLink, topResult } = useResult();
   const [showSave, setShowSave] = useState(false);
 
   return (
@@ -46,13 +46,15 @@ export function ThankYouScreen() {
           <PrimaryButton onClick={() => navigate("/", { replace: true })}>
             Start something new
           </PrimaryButton>
-          <SecondaryButton
-            tone="outline"
-            onClick={() => setShowSave(true)}
-            className="border-lmk-paper/40 text-lmk-paper hover:bg-white/10"
-          >
-            Save this as a pic
-          </SecondaryButton>
+          {topResult && (
+            <SecondaryButton
+              tone="outline"
+              onClick={() => setShowSave(true)}
+              className="border-lmk-paper/40 text-lmk-paper hover:bg-white/10"
+            >
+              Save this as a pic
+            </SecondaryButton>
+          )}
           <SecondaryButton
             tone="outline"
             onClick={restart}

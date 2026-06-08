@@ -5,32 +5,21 @@ import { cn } from "@/lib/utils";
 import { LMK_COLORS } from "@/lib/colors";
 import { useResult } from "./ResultContext";
 
-const MOCK_TOP = {
-  id: "m1",
-  value: {
-    name: "Board Game Café",
-    ranking: 1,
-    reasoning: "Most of the group prefers indoor; fits the $$ budget range well.",
-  },
-};
-const MOCK_REST = [
-  { id: "m2", value: { name: "Farmers Market", ranking: 2, reasoning: "" } },
-  { id: "m3", value: { name: "Brunch Spot", ranking: 3, reasoning: "" } },
-  { id: "m4", value: { name: "Morning Hike", ranking: 4, reasoning: "" } },
-  { id: "m5", value: { name: "Night Market", ranking: 5, reasoning: "" } },
-];
-
 interface SaveAsImageModalProps {
   onClose: () => void;
 }
 
 export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
-  const { topResult, restResults, meta } = useResult();
+  const { topResult, restResults, meta, isAgreement } = useResult();
   const [saving, setSaving] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const topPick = topResult ?? MOCK_TOP;
-  const otherPicks = (restResults.length > 0 ? restResults : MOCK_REST).slice(0, 4);
+  // The card's whole premise is announcing a pick — without a real
+  // `topResult` there's nothing honest to render or save, so bail rather
+  // than ever fall back to placeholder/mock data.
+  if (!topResult) return null;
+
+  const otherPicks = restResults.slice(0, 4);
   const displayTopic = meta?.topic || "the plans";
   const participantCount = meta?.participant_count;
 
@@ -102,10 +91,10 @@ export function SaveAsImageModal({ onClose }: SaveAsImageModalProps) {
 
           <div className="bg-lmk-blue rounded-xl px-4 py-3 flex flex-col gap-2">
             <span className="font-body text-[10px] text-white/60 uppercase tracking-[0.10em] font-semibold">
-              ★ the chosen one
+              {isAgreement ? "★ the chosen one" : "if you had to pick one"}
             </span>
             <p className="font-display text-[28px] text-white leading-tight">
-              {topPick.value.name}
+              {topResult.value.name}
             </p>
           </div>
 
