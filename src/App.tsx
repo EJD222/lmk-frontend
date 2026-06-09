@@ -7,6 +7,7 @@ import { JoinSessionPage } from "@/pages/JoinSession/JoinSessionPage";
 import { ShareJoinLinkPage } from "@/pages/ShareLink/ShareJoinLinkPage";
 import { SessionPage } from "@/pages/Session/SessionPage";
 import { ResultsPage } from "@/pages/Results/ResultsPage";
+
 import {
   CREATE_SESSION_ROUTE,
   JOIN_SESSION_ROUTE,
@@ -15,6 +16,7 @@ import {
   SESSION_ROUTE,
   RESULTS_ROUTE,
 } from "@/common/routes";
+
 
 const TEXTURES = [
   "/textures/paper.webp",
