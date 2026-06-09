@@ -12,7 +12,7 @@ export function AppLayout({ children, className }: AppLayoutProps) {
     <div className={cn("relative min-h-screen", className)}>
       <div className="paper-bg" aria-hidden="true" />
 
-      <main className="w-full max-w-[1200px] mx-auto">{children}</main>
+      <main className="w-full">{children}</main>
 
       <Toaster
         position="bottom-center"

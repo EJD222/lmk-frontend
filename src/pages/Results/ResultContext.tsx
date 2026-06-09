@@ -18,7 +18,8 @@ interface ResultContextValue {
   restart: () => void;
 }
 
-const ResultContext = createContext<ResultContextValue | null>(null);
+export const ResultContext = createContext<ResultContextValue | null>(null);
+export type { ResultPhase };
 
 interface ResultProviderProps {
   children: React.ReactNode;

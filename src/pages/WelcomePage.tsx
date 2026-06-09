@@ -4,7 +4,6 @@ import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { ScatteredIcons } from "@/components/common/ScatteredIcons";
 import { SecondaryButton } from "@/components/common/SecondaryButton";
 import { CREATE_SESSION_ROUTE, JOIN_SESSION_ROUTE } from "@/common/routes";
-import { LMK_COLORS } from "@/lib/colors";
 
 export function WelcomePage() {
   const navigate = useNavigate();
@@ -24,7 +23,6 @@ export function WelcomePage() {
       style={
         {
           "--paper-texture": 'url("/textures/paper3.webp")',
-          backgroundColor: LMK_COLORS.cream,
         } as React.CSSProperties
       }
     >
