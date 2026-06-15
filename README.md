@@ -126,7 +126,7 @@ The frontend is API-driven and expects the lmk backend running at `VITE_API_URL`
 | | Contributor | GitHub |
 | --- | --- | --- |
 | 👩‍💻 | **Elmalia Jane Diaz** | [@EJD222](https://github.com/EJD222) |
-| 👨‍💻 | **Kent-Danielle Concengco** | [@Kent-Danielle](https://github.com/Kent-Danielle) |
+| 👨‍💻 | **Kent Danielle Concengco** | [@Kent-Danielle](https://github.com/Kent-Danielle) |
 
 ## License
 
