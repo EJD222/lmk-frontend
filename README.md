@@ -10,6 +10,19 @@ with a decision you're all hyped about. No more circling for 45 minutes.
 
 <sub>Built with React 19 · TypeScript · Vite · Tailwind CSS · shadcn/ui</sub>
 
+<br />
+
+[![Devpost Submission](https://img.shields.io/badge/Devpost-Submission-blue?style=for-the-badge&logo=devpost&logoColor=white)](https://devpost.com/software/letmeknow-from-let-me-know-to-let-s-go)
+[![YouTube Demo](https://img.shields.io/badge/YouTube-Demo-red?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=iX3x_TzALr8)
+
+🏆 **Winner** — *Product Bundle by Mind the Product* at [World Product Day: Everyone Ships Now](https://devpost.com/software/letmeknow-from-let-me-know-to-let-s-go) hackathon.
+
+---
+
+### 📺 Watch the Demo
+
+[![lmk Demo Video](https://img.youtube.com/vi/iX3x_TzALr8/hqdefault.jpg)](https://www.youtube.com/watch?v=iX3x_TzALr8)
+
 </div>
 
 ---
