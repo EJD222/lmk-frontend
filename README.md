@@ -8,7 +8,21 @@
 Start a session, drop the link to your people, everyone votes — and you walk away
 with a decision you're all hyped about. No more circling for 45 minutes.
 
-<sub>Built with React 19 · TypeScript · Vite · Tailwind CSS · shadcn/ui</sub>
+<sub>Built with React 19 · TypeScript · Vite · Tailwind CSS · shadcn/ui · Vercel</sub>
+
+<br />
+
+[![Live Site](https://img.shields.io/badge/Live_Site-letmeknow.quest-2ea44f?style=for-the-badge)](https://www.letmeknow.quest)
+[![Devpost Submission](https://img.shields.io/badge/Devpost-Submission-blue?style=for-the-badge&logo=devpost&logoColor=white)](https://devpost.com/software/letmeknow-from-let-me-know-to-let-s-go)
+[![YouTube Demo](https://img.shields.io/badge/YouTube-Demo-red?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=iX3x_TzALr8)
+
+🏆 **Winner** — *Product Bundle by Mind the Product* at [World Product Day: Everyone Ships Now](https://devpost.com/software/letmeknow-from-let-me-know-to-let-s-go) hackathon.
+
+---
+
+### 📺 Watch the Demo
+
+[![lmk Demo Video](https://img.youtube.com/vi/iX3x_TzALr8/hqdefault.jpg)](https://www.youtube.com/watch?v=iX3x_TzALr8)
 
 </div>
 
@@ -22,8 +36,8 @@ shares a join link. Everyone answers a few quick, low-friction questions, and an
 AI distills the group's input into a clear outcome: a top pick, where you agree,
 where you split, and a recommendation you can act on.
 
-This repository is the **frontend** (single-page React app). It talks to a separate
-backend API over REST + Server-Sent Events for live session state.
+This repository is the **frontend** (React app). It talks to a separate backend API over REST + Server-Sent Events for live session state. The Python backend API 
+lives in [Kent-Danielle/lmk-backend](https://github.com/Kent-Danielle/lmk-backend).
 
 ## How it works
 
